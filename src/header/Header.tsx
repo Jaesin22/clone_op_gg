@@ -112,7 +112,7 @@ const Header = () => {
           </div>
           <div>
             <div className="flex">
-              <div className="text-sm text-white ml-6 mr-6">|</div>
+              <div className="text-sm text-gray-500 ml-6 mr-6">|</div>
               <button
                 type="button"
                 className="text-white text-xs mt-1 before:content-none"
