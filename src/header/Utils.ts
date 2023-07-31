@@ -83,3 +83,35 @@ export const routeList: routeItems[] = [
     keys: "TALK",
   },
 ];
+
+// SummaryHeader.tsx list에서 사용
+type SummaryLists = {
+  color: string;
+  name: string;
+  selected?: boolean;
+  icon?: string;
+};
+
+export const SummaryList: SummaryLists[] = [
+  {
+    name: "종합",
+    color: "#000000",
+    selected: true,
+  },
+  {
+    name: "챔피언",
+    color: "#000000",
+    selected: false,
+  },
+  {
+    name: "인게임 정보",
+    color: "[#00A399]",
+    selected: false,
+  },
+  {
+    name: "전략적 팀 전투",
+    color: "red-600",
+    selected: false,
+    icon: "https://s-lol-web.op.gg/images/icon/icon-tft.svg?image=q_auto,f_webp,w_32&v=1690771026044",
+  },
+];

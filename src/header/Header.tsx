@@ -2,6 +2,7 @@ import Searchbar from "./Searchbar";
 import Navbar from "./Navbar";
 import Profile from "./Profile";
 import { gameList } from "./Utils";
+import SummaryHeader from "./SummaryHeader";
 
 const Header = () => {
   return (
@@ -138,6 +139,7 @@ const Header = () => {
       <Searchbar />
       <Navbar />
       <Profile />
+      <SummaryHeader />
     </header>
   );
 };

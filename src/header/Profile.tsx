@@ -3,7 +3,7 @@ import React from "react";
 const Profile = () => {
   return (
     <article>
-      <div className="flex h-56 w-full bg-white">
+      <div className="flex h-[228px] w-full bg-white">
         <div className="wrapper flex w-[1080px] mx-auto my-0">
           <div className="header-profile flex pt-2.5 pr-2.5 pb-4 pl-0 mt-8 relative basis-24">
             <div className="profile-icon">
