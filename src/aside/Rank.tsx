@@ -15,14 +15,6 @@ const Rank = () => {
       setInfo(res.filter((infos) => infos.queueType !== "CHERRY"))
     );
   }, [puuId]);
-
-  const infoDictionary: { [name: string]: UserRank } = {};
-  info.forEach((obj) => {
-    console.log(obj.);
-    // infoDictionary[obj] = obj;
-  });
-  console.log(infoDictionary);
-
   return (
     <div>
       {RankType.map((rank: RankT, index: number) => (
