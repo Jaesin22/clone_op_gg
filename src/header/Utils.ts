@@ -115,3 +115,14 @@ export const SummaryList: SummaryLists[] = [
     icon: "https://s-lol-web.op.gg/images/icon/icon-tft.svg?image=q_auto,f_webp,w_32&v=1690771026044",
   },
 ];
+
+// Profile.tsx에서 api data의 type
+export interface summonerInfo {
+  accountId?: string | null;
+  name: string | null;
+  puuid?: string | null;
+  profileIconId: string | null;
+  summonerLevel: string | null;
+  revisionDate?: string | null;
+  id?: string | null;
+}

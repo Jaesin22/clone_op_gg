@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Searchbar = () => {
+  const [name, setName] = useState<string | number>("");
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  };
   return (
     <div className="flex h-12 bg-[#5383E8]">
       <div className="ml-32">
@@ -40,9 +45,10 @@ const Searchbar = () => {
               type="text"
               name="search"
               autoComplete="off"
-              placeholder="   소환사명, 소환사명, ..."
-              value=""
-              className="float-right w-[840px] h-8 text-xs"
+              placeholder="소환사명, 소환사명, ..."
+              value={name}
+              className="float-right w-[840px] h-8 text-xs px-2.5"
+              onChange={onChange}
             />
             <button
               type="submit"

@@ -38,3 +38,13 @@ export const SummaryList: SummaryLists[] = [
     losses: "6",
   },
 ];
+
+export interface RankT {
+  name: string;
+}
+
+export const RankType: RankT[] = [
+  { name: "솔로랭크" },
+  { name: "자유랭크" },
+  { name: "아레나" },
+];

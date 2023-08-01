@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getData } from "../api/Champion";
+import { summonerInfo } from "./Utils";
+import { PROFILE_ICON_URL } from "../Config";
 
 const Profile = () => {
+  const [info, setInfo] = useState<summonerInfo | null>(null);
+  const profile_icons: string = `${PROFILE_ICON_URL}${info?.profileIconId}.png`;
+  useEffect(() => {
+    getData().then((res) => setInfo(res));
+  }, []);
+
   return (
     <article>
       <div className="flex h-[228px] w-full bg-white">
@@ -8,13 +17,13 @@ const Profile = () => {
           <div className="header-profile flex pt-2.5 pr-2.5 pb-4 pl-0 mt-8 relative basis-24">
             <div className="profile-icon">
               <img
-                src="https://opgg-static.akamaized.net/meta/images/profile_icons/profileIcon4922.jpg?image=q_auto,f_webp,w_auto&v=1690447901880"
+                src={`${profile_icons}`}
                 alt="icon"
                 className="w-24 h-24 float-left rounded-2xl"
               />
               <div className="level absolute text-center pt-20 pl-7">
                 <span className="inline-block py-0 px-2 bg-[#202D37] rounded-lg text-xs leading-5 text-white">
-                  102
+                  {info?.summonerLevel}
                 </span>
               </div>
             </div>
@@ -40,7 +49,7 @@ const Profile = () => {
               </ul>
             </div>
             <div className="flex name mt-2">
-              <h1 className="summoner-name text-2xl font-bold">슬기로운현재</h1>
+              <h1 className="summoner-name text-2xl font-bold">{info?.name}</h1>
               <button className="w-7 h-7 rounded border-solid border ml-2 mt-0.5 border-[#DBE0E4]">
                 <img
                   src="https://s-lol-web.op.gg/images/icon/icon-bookmark.svg?v=1690447902108"
