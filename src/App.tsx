@@ -3,6 +3,7 @@ import Header from "./header/Header";
 import MainTop from "./main/MainTop";
 import "./App.css";
 import Rank from "./aside/Rank";
+import Statbox from "./main/Statbox";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <main>
             <div className="w-[740px] mt-2 ml-2 text-xs align-top">
               <MainTop />
+              <Statbox />
             </div>
           </main>
         </div>
