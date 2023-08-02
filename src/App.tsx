@@ -3,7 +3,9 @@ import Header from "./header/Header";
 import MainTop from "./main/MainTop";
 import "./App.css";
 import Rank from "./aside/Rank";
+import FreeRank from "./aside/FreeRank";
 import Statbox from "./main/Statbox";
+import Arena from "./aside/Arena";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
           <aside>
             <div className="w-[332px] text-xs align-top inline-block min-h-[870px]">
               <Rank />
+              <FreeRank />
+              <Arena />
             </div>
           </aside>
           <main>

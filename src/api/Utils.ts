@@ -1,4 +1,7 @@
 export interface UserRank {
+  filter(
+    arg0: (infos: any) => boolean
+  ): import("react").SetStateAction<UserRank[] | null>;
   leagueId: string | null;
   queueType: string | null;
   tier: string | null;

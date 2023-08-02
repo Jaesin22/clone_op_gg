@@ -3,7 +3,7 @@ import { getPuuId, GetRanks } from "../api/Champion";
 import { UserRank } from "../api/Utils";
 import { useQuery } from "react-query";
 
-const Rank = () => {
+const FreeRank = () => {
   const [info, setInfo] = useState<UserRank[]>([]);
   const { data } = useQuery(["puuid"], getPuuId);
   const { data: infoss, isLoading } = useQuery<UserRank[], Error>(
@@ -16,7 +16,7 @@ const Rank = () => {
 
   useEffect(() => {
     if (infoss) {
-      setInfo(infoss.filter((infos) => infos.queueType === "RANKED_SOLO_5x5"));
+      setInfo(infoss.filter((infos) => infos.queueType === "RANKED_FLEX_SR"));
     }
   }, [infoss]);
 
@@ -28,7 +28,7 @@ const Rank = () => {
     <div>
       <div className="mt-2 rounded bg-white">
         <div className="flex header leading-9 px-3 text-sm justify-between">
-          <span>솔로랭크</span>
+          <span>자유랭크</span>
           {!info.length ? (
             <span className="unranked text-sm font-bold text-[#C3C8D1] mt-2">
               Unranked
@@ -70,4 +70,4 @@ const Rank = () => {
     </div>
   );
 };
-export default Rank;
+export default FreeRank;
