@@ -6,6 +6,7 @@ import Rank from "./aside/Rank";
 import FreeRank from "./aside/FreeRank";
 import Statbox from "./main/Statbox";
 import Arena from "./aside/Arena";
+import Record from "./main/Record";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <div className="w-[740px] mt-2 ml-2 text-xs align-top">
               <MainTop />
               <Statbox />
+              <Record />
             </div>
           </main>
         </div>
