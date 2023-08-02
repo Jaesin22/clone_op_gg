@@ -9,7 +9,11 @@ const Profile = () => {
   if (isLoading) {
     return <h3></h3>;
   }
-  const profile_icons: string = `${process.env.PROFILE_ICON_URL}${data.profileIconId}.png`;
+  const imgUrl = process.env.REACT_APP_PROFILE_ICON_URL?.replaceAll(
+    '"',
+    ""
+  ).replace(";", "");
+  const profile_icons: string = `${imgUrl}${data.profileIconId}.png`;
 
   return (
     <article>
