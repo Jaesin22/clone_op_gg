@@ -2,13 +2,11 @@ import React, { useEffect, useState } from "react";
 import { getData } from "../api/Champion";
 import { summonerInfo } from "./Utils";
 import { PROFILE_ICON_URL } from "../Config";
+import { useQuery } from "react-query";
 
 const Profile = () => {
-  const [info, setInfo] = useState<summonerInfo | null>(null);
-  const profile_icons: string = `${PROFILE_ICON_URL}${info?.profileIconId}.png`;
-  useEffect(() => {
-    getData().then((res) => setInfo(res));
-  }, []);
+  const { data } = useQuery(["response.data"], getData);
+  const profile_icons: string = `${PROFILE_ICON_URL}${data.profileIconId}.png`;
 
   return (
     <article>
@@ -23,7 +21,7 @@ const Profile = () => {
               />
               <div className="level absolute text-center pt-20 pl-7">
                 <span className="inline-block py-0 px-2 bg-[#202D37] rounded-lg text-xs leading-5 text-white">
-                  {info?.summonerLevel}
+                  {data.summonerLevel}
                 </span>
               </div>
             </div>
@@ -49,7 +47,7 @@ const Profile = () => {
               </ul>
             </div>
             <div className="flex name mt-2">
-              <h1 className="summoner-name text-2xl font-bold">{info?.name}</h1>
+              <h1 className="summoner-name text-2xl font-bold">{data.name}</h1>
               <button className="w-7 h-7 rounded border-solid border ml-2 mt-0.5 border-[#DBE0E4]">
                 <img
                   src="https://s-lol-web.op.gg/images/icon/icon-bookmark.svg?v=1690447902108"
