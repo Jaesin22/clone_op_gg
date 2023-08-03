@@ -99,6 +99,7 @@ const Statbox = () => {
               <img
                 src="https://s-lol-web.op.gg/images/icon/icon-position-top.svg?v=1691043179819"
                 className="border-0 align-middle max-w-full w-4"
+                alt="top"
               />
             </div>
           </li>
@@ -110,6 +111,7 @@ const Statbox = () => {
               <img
                 src="https://s-lol-web.op.gg/images/icon/icon-position-jungle.svg?v=1691043179819"
                 className="border-0 align-middle max-w-full w-4"
+                alt="jungle"
               />
             </div>
           </li>
@@ -121,6 +123,7 @@ const Statbox = () => {
               <img
                 src="https://s-lol-web.op.gg/images/icon/icon-position-mid.svg?v=1691043179819"
                 className="border-0 align-middle max-w-full w-4"
+                alt="mid"
               />
             </div>
           </li>
@@ -132,6 +135,7 @@ const Statbox = () => {
               <img
                 src="https://s-lol-web.op.gg/images/icon/icon-position-adc.svg?v=1691043179819"
                 className="border-0 align-middle max-w-full w-4"
+                alt="adc"
               />
             </div>
           </li>
@@ -143,6 +147,7 @@ const Statbox = () => {
               <img
                 src="https://s-lol-web.op.gg/images/icon/icon-position-support.svg?v=1691043179819"
                 className="border-0 align-middle max-w-full w-4"
+                alt="support"
               />
             </div>
           </li>
