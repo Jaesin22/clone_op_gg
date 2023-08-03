@@ -359,6 +359,10 @@ const Record = () => {
           </div>
         </div>
       </li>
+
+      <button className="more border border-[#DBE0E4] bg-white rounded block w-full h-9 py-2 text-xs text-center box-border">
+        더 보기
+      </button>
     </div>
   );
 };
