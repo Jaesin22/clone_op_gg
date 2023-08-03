@@ -100,7 +100,7 @@ const Record = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex items-center mt-1.5">
+              <div className="flex items-center mt-0.5">
                 <div className="items flex">
                   <ul className="flex">
                     <li className="rounded bg-[#FFBAC3] mx-[1px] w-[22px] h-[22px]">
