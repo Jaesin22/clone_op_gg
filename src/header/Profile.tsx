@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
 import { getData } from "../api/Champion";
-import { summonerInfo } from "./Utils";
 import { useQuery } from "react-query";
 
 const Profile = () => {
   const { data, isLoading } = useQuery(["response.data"], getData);
 
   if (isLoading) {
-    return <h3></h3>;
+    return <h3>2</h3>;
   }
   const imgUrl = process.env.REACT_APP_PROFILE_ICON_URL?.replaceAll(
     '"',
