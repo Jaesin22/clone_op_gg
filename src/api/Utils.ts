@@ -1,3 +1,5 @@
+import { number } from "yargs";
+
 export interface UserRank {
   filter(
     arg0: (infos: any) => boolean

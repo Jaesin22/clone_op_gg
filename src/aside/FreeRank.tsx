@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { getPuuId, GetRanks } from "../api/Champion";
+import { getSummonerInfo, GetRanks } from "../api/Champion";
 import { UserRank } from "../api/Utils";
 import { useQuery } from "react-query";
 
 const FreeRank = () => {
   const [info, setInfo] = useState<UserRank[]>([]);
-  const { data } = useQuery(["puuid"], getPuuId);
+  const { data } = useQuery(["id"], getSummonerInfo);
+  const id = data?.id;
   const { data: infoss, isLoading } = useQuery<UserRank[], Error>(
-    ["rankData", data],
-    () => GetRanks(data),
+    ["rankData", id],
+    () => GetRanks(id),
     {
-      enabled: !!data,
+      enabled: !!id,
     }
   );
 

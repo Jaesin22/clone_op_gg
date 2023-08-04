@@ -1,6 +1,22 @@
 import React from "react";
+import { useQuery } from "react-query";
+import { getMatchId, getSummonerInfo } from "../api/Champion";
 
 const Record = () => {
+  const { data } = useQuery(["puuid"], getSummonerInfo);
+  const puuId = data?.puuid;
+
+  const { data: matchData, isLoading } = useQuery(
+    ["matchData", puuId],
+    () => getMatchId(puuId),
+    {
+      enabled: !!puuId,
+    }
+  );
+
+  if (isLoading) {
+    return <h3></h3>;
+  }
   return (
     <div className="mt-2">
       <li className="relative mb-2 list-none">
