@@ -20,10 +20,10 @@ const Header = () => {
             {gameList.map((obj, index) => (
               <li
                 key={index}
-                className={`flex float-left px-3 ${
+                className={`flex float-left px-3  ${
                   obj.name === "리그오브레전드"
                     ? "bg-[#5383E8] text-white"
-                    : "bg-[#28344e] text-[#C3CBD1]"
+                    : "bg-[#28344e] text-[#C3CBD1] hover:bg-[#2F436E]"
                 }`}
               >
                 <a
@@ -44,7 +44,7 @@ const Header = () => {
             <img
               src="https://s-lol-web.op.gg/images/icon/icon-more.svg?v=1690447902108"
               alt="more"
-              className="flex"
+              className="flex hover:bg-[#2F436E]"
             />
           </button>
         </div>

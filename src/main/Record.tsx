@@ -36,19 +36,21 @@ const Record = () => {
                     </a>
                   </div>
                   <div className="spells ml-1">
-                    <div className="spell w-[22px] h-[22px] mb-[2px]">
+                    <div className="spell w-[22px] h-[22px] mb-[2px] rounded">
                       <div className="relative">
                         <img
                           src="https://opgg-static.akamaized.net/meta/images/lol/spell/SummonerFlash.png?image=q_auto,f_webp,w_44&v=1690894796459"
                           alt="spell"
+                          className="rounded"
                         />
                       </div>
                     </div>
-                    <div className="spell w-[22px] h-[22px] mb-[2px]">
+                    <div className="spell w-[22px] h-[22px] mb-[2px] rounded">
                       <div className="relative">
                         <img
                           src="https://opgg-static.akamaized.net/meta/images/lol/spell/SummonerFlash.png?image=q_auto,f_webp,w_44&v=1690894796459"
                           alt="spell"
+                          className="rounded"
                         />
                       </div>
                     </div>
