@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const getData = async () => {
-  const key = process.env.REACT_APP_API_KEY?.replaceAll('"', "").replace(
+  const key = process.env.REACT_APP_API_KEY?.replaceAll('"', "")?.replace(
     ";",
     ""
   );
@@ -28,7 +28,7 @@ export const getSummonerInfo = async () => {
 };
 
 export const GetRanks = async (summonerId: string | null) => {
-  const key = process.env.REACT_APP_API_KEY?.replaceAll('"', "").replace(
+  const key = process.env.REACT_APP_API_KEY?.replaceAll('"', "")?.replace(
     ";",
     ""
   );
@@ -43,7 +43,7 @@ export const GetRanks = async (summonerId: string | null) => {
 };
 
 export const getMatchId = async (puuId: string | null) => {
-  const key = process.env.REACT_APP_API_KEY?.replaceAll('"', "").replace(
+  const key = process.env.REACT_APP_API_KEY?.replaceAll('"', "")?.replace(
     ";",
     ""
   );
@@ -55,4 +55,23 @@ export const getMatchId = async (puuId: string | null) => {
   } catch (e) {
     console.error(e);
   }
+};
+
+export const getGameInfo = async (matchList: []) => {
+  let gameArray: any[] = [];
+  const key = process.env.REACT_APP_API_KEY?.replaceAll('"', "")?.replace(
+    ";",
+    ""
+  );
+  for (let i = 0; i < matchList.length; i++) {
+    try {
+      const response = await axios.get(
+        `https://asia.api.riotgames.com/lol/match/v5/matches/${matchList[i]}?api_key=${key}`
+      );
+      gameArray = [...gameArray, response.data.info];
+    } catch (e) {
+      console.error(e);
+    }
+  }
+  return gameArray;
 };
