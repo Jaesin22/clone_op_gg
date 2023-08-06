@@ -16,8 +16,14 @@ const Record = () => {
     }
   );
 
-  const { data: gameData, isLoading } = useQuery(["gameData", matchData], () =>
-    matchData ? getGameInfo(matchData) : undefined
+  const { data: gameData, isLoading } = useQuery(
+    ["gameData", matchData],
+    () => (matchData ? getGameInfo(matchData) : undefined),
+    {
+      enabled: !!matchData,
+      staleTime: Infinity,
+      refetchOnWindowFocus: false,
+    }
   );
 
   if (isLoading) {
@@ -59,165 +65,192 @@ const Record = () => {
                   </div>
                 </div>
               </div>
-              // {obj?.participants.map}
-              <div className="info">
-                <div className="flex">
-                  <div className="champion flex items-center">
-                    <div className="icon">
-                      <a href="!#" className="relative block w-12 h-12">
-                        <img
-                          src="https://opgg-static.akamaized.net/meta/images/lol/champion/JarvanIV.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_webp,w_96&v=1690894796459"
-                          className="rounded-[50%]"
-                          alt="character"
-                        />
-                        <span
-                          className="champion-level absolute right-0 bottom-0 flex items-center
+              {obj?.participants
+                .filter((partObj: any) => partObj.summonerName === "밍 이")
+                .map((partObj: any, index: number) => (
+                  <div key={index} className="info">
+                    <div className="flex">
+                      <div className="champion flex items-center">
+                        <div className="icon">
+                          <a href="!#" className="relative block w-12 h-12">
+                            <img
+                              src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/champion/${partObj.championName}.png`}
+                              className="rounded-[50%]"
+                              alt="character"
+                            />
+                            <span
+                              className="champion-level absolute right-0 bottom-0 flex items-center
                     justify-center w-5 h-5 text-xs rounded-[50%] text-white bg-[#202d37]"
-                        >
-                          15
+                            >
+                              {partObj.champLevel}
+                            </span>
+                          </a>
+                        </div>
+                        <div className="spells ml-1">
+                          <div className="spell w-[22px] h-[22px] mb-[2px] rounded">
+                            <div className="relative">
+                              <img
+                                src="https://opgg-static.akamaized.net/meta/images/lol/spell/SummonerFlash.png?image=q_auto,f_webp,w_44&v=1690894796459"
+                                alt="spell"
+                                className="rounded"
+                              />
+                            </div>
+                          </div>
+                          <div className="spell w-[22px] h-[22px] mb-[2px] rounded">
+                            <div className="relative">
+                              <img
+                                src="https://opgg-static.akamaized.net/meta/images/lol/spell/SummonerFlash.png?image=q_auto,f_webp,w_44&v=1690894796459"
+                                alt="spell"
+                                className="rounded"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="runes ml-[2px]">
+                          <div className="rune w-[22px] h-[22px] mb-[2px]">
+                            <div className="relative">
+                              <img
+                                src="https://opgg-static.akamaized.net/meta/images/lol/perk/8128.png?image=q_auto,f_webp,w_44&v=1690894796459"
+                                alt="rune"
+                              />
+                            </div>
+                          </div>
+                          <div className="rune w-[22px] h-[22px] mb-[2px]">
+                            <div className="relative">
+                              <img
+                                src="https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8000.png?image=q_auto,f_webp,w_44&v=1690894796459"
+                                alt="rune"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="kda flex flex-col justify-center pr-3 ml-3 w-[107px]">
+                        <div className="k-d-a leading-[22px] text-[15px] text-[#9AA4AF]">
+                          <span className="font-bold text-black">
+                            {partObj.kills}
+                          </span>
+                          {" / "}
+                          <span className="font-bold text-red-600">
+                            {partObj.deaths}
+                          </span>
+                          {" / "}
+                          <span className="font-bold text-[#202D37]">
+                            {partObj.assists}
+                          </span>
+                        </div>
+                        <div className="ratio leading-4 text-[#758592]"></div>
+                        <span className="leading-4 text-[#758592]">
+                          {(
+                            (partObj.kills + partObj.assists) /
+                            (partObj.deaths === 0 ? 1 : partObj.deaths)
+                          ).toFixed(2)}
+                          {":1"}
+                          평점
                         </span>
-                      </a>
-                    </div>
-                    <div className="spells ml-1">
-                      <div className="spell w-[22px] h-[22px] mb-[2px] rounded">
-                        <div className="relative">
-                          <img
-                            src="https://opgg-static.akamaized.net/meta/images/lol/spell/SummonerFlash.png?image=q_auto,f_webp,w_44&v=1690894796459"
-                            alt="spell"
-                            className="rounded"
-                          />
-                        </div>
                       </div>
-                      <div className="spell w-[22px] h-[22px] mb-[2px] rounded">
-                        <div className="relative">
-                          <img
-                            src="https://opgg-static.akamaized.net/meta/images/lol/spell/SummonerFlash.png?image=q_auto,f_webp,w_44&v=1690894796459"
-                            alt="spell"
-                            className="rounded"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="runes ml-[2px]">
-                      <div className="rune w-[22px] h-[22px] mb-[2px]">
-                        <div className="relative">
-                          <img
-                            src="https://opgg-static.akamaized.net/meta/images/lol/perk/8128.png?image=q_auto,f_webp,w_44&v=1690894796459"
-                            alt="rune"
-                          />
-                        </div>
-                      </div>
-                      <div className="rune w-[22px] h-[22px] mb-[2px]">
-                        <div className="relative">
-                          <img
-                            src="https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8000.png?image=q_auto,f_webp,w_44&v=1690894796459"
-                            alt="rune"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="kda flex flex-col justify-center pr-3 ml-3 w-[107px]">
-                    <div className="k-d-a leading-[22px] text-[15px] text-[#9AA4AF]">
-                      <span className="font-bold text-black">10</span>
-                      {" / "}
-                      <span className="font-bold text-red-600">5</span>
-                      {" / "}
-                      <span className="font-bold text-[#202D37]">26</span>
-                    </div>
-                    <div className="ratio leading-4 text-[#758592]"></div>
-                    <span className="leading-4 text-[#758592]">
-                      7.20.1 평점
-                    </span>
-                  </div>
-                  <div
-                    className="stats flex flex-col items-start w-[140px] text-[11px] mt-0.5 pl-2 text-[#758592]
+                      <div
+                        className="stats flex flex-col items-start w-[140px] text-[11px] mt-0.5 pl-2 text-[#758592]
                  before:absolute before:top-1 before:w-[1px]
                  before:h-[62px] before:bg-[#FFD8D9] before:content"
-                  >
-                    <div className="p-kill text-red-600 ml-1.5">
-                      <div className="relative">킬관여 88%</div>
+                      >
+                        <div className="p-kill text-red-600 ml-1.5">
+                          <div className="relative">킬관여 88%</div>
+                        </div>
+                        <div className="ward ml-1.5">제어 와드 0</div>
+                        <div className="cs">
+                          <div className="relative ml-1.5">CS 29 (1.9)</div>
+                        </div>
+                        <div className="average-tier font-bold ml-1.5">
+                          <div className="relative">Emerald 4</div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="ward ml-1.5">제어 와드 0</div>
-                    <div className="cs">
-                      <div className="relative ml-1.5">CS 29 (1.9)</div>
-                    </div>
-                    <div className="average-tier font-bold ml-1.5">
-                      <div className="relative">Emerald 4</div>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center mt-0.5">
-                  <div className="items flex">
-                    <ul className="flex">
-                      <li className="rounded bg-[#FFBAC3] mx-[1px] w-[22px] h-[22px]">
-                        <div className="relative">
-                          <img
-                            src="https://opgg-static.akamaized.net/meta/images/lol/item/4628.png?image=q_auto,f_webp,w_44&v=1690894796459"
-                            alt="지평선의 초점"
-                            className="w-[22px] h-[22px] rounded"
-                          />
+                    <div className="flex items-center mt-0.5">
+                      <div className="items flex">
+                        <ul className="flex">
+                          <li className="rounded bg-[#FFBAC3] mx-[1px] w-[22px] h-[22px]">
+                            <div className="relative">
+                              {partObj.item0 ? (
+                                <img
+                                  src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/item/${partObj.item0}.png`}
+                                  alt="지평선의 초점"
+                                  className="w-[22px] h-[22px] rounded"
+                                />
+                              ) : null}
+                            </div>
+                          </li>
+                          <li className="rounded bg-[#FFBAC3] mx-[1px] w-[22px] h-[22px]">
+                            <div className="relative">
+                              {partObj.item1 ? (
+                                <img
+                                  src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/item/${partObj.item1}.png`}
+                                  alt="지평선의 초점"
+                                  className="w-[22px] h-[22px] rounded"
+                                />
+                              ) : null}
+                            </div>
+                          </li>
+                          <li className="rounded bg-[#FFBAC3] mx-[1px] w-[22px] h-[22px]">
+                            <div className="relative">
+                              {partObj.item2 ? (
+                                <img
+                                  src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/item/${partObj.item2}.png`}
+                                  alt="지평선의 초점"
+                                  className="w-[22px] h-[22px] rounded"
+                                />
+                              ) : null}
+                            </div>
+                          </li>
+                          <li className="rounded bg-[#FFBAC3] mx-[1px] w-[22px] h-[22px]">
+                            <div className="relative">
+                              {partObj.item3 ? (
+                                <img
+                                  src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/item/${partObj.item3}.png`}
+                                  alt="지평선의 초점"
+                                  className="w-[22px] h-[22px] rounded"
+                                />
+                              ) : null}
+                            </div>
+                          </li>
+                          <li className="rounded bg-[#FFBAC3] mx-[1px] w-[22px] h-[22px]">
+                            <div className="relative">
+                              {partObj.item4 ? (
+                                <img
+                                  src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/item/${partObj.item4}.png`}
+                                  alt="지평선의 초점"
+                                  className="w-[22px] h-[22px] rounded"
+                                />
+                              ) : null}
+                            </div>
+                          </li>
+                          <li className="rounded bg-[#FFBAC3] mx-[1px] w-[22px] h-[22px]">
+                            <div className="relative">
+                              {partObj.item5 ? (
+                                <img
+                                  src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/item/${partObj.item5}.png`}
+                                  alt="지평선의 초점"
+                                  className="w-[22px] h-[22px] rounded"
+                                />
+                              ) : null}
+                            </div>
+                          </li>
+                        </ul>
+                        <div className="ward w-[22px] h-[22px] 0.5 mr-1 bg-[#FFBAC3] rounded-[50%]">
+                          <div className="relative">
+                            {partObj.item6 ? (
+                              <img
+                                src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/item/${partObj.item6}.png`}
+                                alt="지평선의 초점"
+                                className="w-[22px] h-[22px] rounded"
+                              />
+                            ) : null}
+                          </div>
                         </div>
-                      </li>
-                      <li className="rounded bg-[#FFBAC3] mx-[1px] w-[22px] h-[22px]">
-                        <div className="relative">
-                          <img
-                            src="https://opgg-static.akamaized.net/meta/images/lol/item/4628.png?image=q_auto,f_webp,w_44&v=1690894796459"
-                            alt="지평선의 초점"
-                            className="w-[22px] h-[22px] rounded"
-                          />
-                        </div>
-                      </li>
-                      <li className="rounded bg-[#FFBAC3] mx-[1px] w-[22px] h-[22px]">
-                        <div className="relative">
-                          <img
-                            src="https://opgg-static.akamaized.net/meta/images/lol/item/4628.png?image=q_auto,f_webp,w_44&v=1690894796459"
-                            alt="지평선의 초점"
-                            className="w-[22px] h-[22px] rounded"
-                          />
-                        </div>
-                      </li>
-                      <li className="rounded bg-[#FFBAC3] mx-[1px] w-[22px] h-[22px]">
-                        <div className="relative">
-                          <img
-                            src="https://opgg-static.akamaized.net/meta/images/lol/item/4628.png?image=q_auto,f_webp,w_44&v=1690894796459"
-                            alt="지평선의 초점"
-                            className="w-[22px] h-[22px] rounded"
-                          />
-                        </div>
-                      </li>
-                      <li className="rounded bg-[#FFBAC3] mx-[1px] w-[22px] h-[22px]">
-                        <div className="relative">
-                          <img
-                            src="https://opgg-static.akamaized.net/meta/images/lol/item/4628.png?image=q_auto,f_webp,w_44&v=1690894796459"
-                            alt="지평선의 초점"
-                            className="w-[22px] h-[22px] rounded"
-                          />
-                        </div>
-                      </li>
-                      <li className="rounded bg-[#FFBAC3] mx-[1px] w-[22px] h-[22px]">
-                        <div className="relative">
-                          <img
-                            src="https://opgg-static.akamaized.net/meta/images/lol/item/4628.png?image=q_auto,f_webp,w_44&v=1690894796459"
-                            alt="지평선의 초점"
-                            className="w-[22px] h-[22px] rounded"
-                          />
-                        </div>
-                      </li>
-                    </ul>
-                    <div className="ward w-[22px] h-[22px] 0.5 mr-1 bg-[#FFBAC3] rounded-[50%]">
-                      <div className="relative">
-                        <img
-                          src="https://opgg-static.akamaized.net/meta/images/lol/item/2052.png?
-                        image=q_auto,f_webp,w_44&amp;v=1690894796459"
-                          alt="포로 간식"
-                          className="rounded-[50%] max-w-full"
-                        />
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                ))}
               <div className="particpants flex">
                 <ul className="mr-2 mt-0.5">
                   <li className="flex items-center w-[88px] h-[18px] text-left">
