@@ -54,7 +54,9 @@ const FreeRank = () => {
               <div className="tier leading-[26px] w-[120px] text-xl font-bold text-[#202D37]">
                 {obj?.tier} {obj?.rank}
               </div>
-              <div className="lp leading-4 text-xs text-[#758592]">30 LP</div>
+              <div className="lp leading-4 text-xs text-[#758592]">
+                {obj.leaguePoints} LP
+              </div>
             </div>
             <div className="win-lose container text-xs text-right text-[#9AA4AF]">
               <div className="win-lose leading-6">

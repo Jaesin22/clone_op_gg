@@ -77,3 +77,18 @@ export const getGameInfo = async (matchList: []) => {
   }
   return gameArray;
 };
+
+export const getSpells = async () => {
+  try {
+    const response = await axios.get(
+      `https://ddragon.leagueoflegends.com/cdn/11.21.1/data/en_US/summoner.json`
+    );
+
+    console.log(response);
+    return response.data;
+    // const spellData = response.data.data;
+    // const spellInfo = spellData[id];
+  } catch (e) {
+    console.error(e);
+  }
+};

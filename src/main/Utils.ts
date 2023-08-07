@@ -49,6 +49,27 @@ export type objectives = {
   riftHerald: {};
 };
 
+export interface participants {
+  assists: number;
+  kills: number;
+  puuid: string;
+  champLevel: number;
+  deaths: number;
+  championName: string;
+  detectorWardsPlaced?: number;
+  totalMinionsKilled: number;
+  neutralMinionsKilled: number;
+  summoner1Id: number;
+  summoner2Id: number;
+  item0?: string;
+  item1?: string;
+  item2?: string;
+  item3?: string;
+  item4?: string;
+  item5?: string;
+  item6?: string;
+}
+
 export interface Team {
   bans: bans[];
   objectives: objectives;
@@ -63,6 +84,7 @@ export interface GameData {
   teams: Team[];
   gameStartTimestamp: number;
   gameEndTimestamp: number;
+  gameDuration: number;
 }
 
 // Record.tsx에서 UNix 시간 변환하는 함수
@@ -81,3 +103,21 @@ export function convertUnixTimestampToDuration(timestamp: number): string {
     return `${minutes}분 ${remainingSeconds}초`;
   }
 }
+
+export const spellArray = [
+  { key: 4, id: "SummonerFlash" },
+  { key: 3, id: "SummonerExhaust" },
+  { key: 21, id: "SummonerBarrier" },
+  { key: 1, id: "SummonerBoost" },
+  { key: 14, id: "SummonerDot" },
+  { key: 6, id: "SummonerHaste" },
+  { key: 7, id: "SummonerHeal" },
+  { key: 13, id: "SummonerMana" },
+  { key: 30, id: "SummonerPoroRecall" },
+  { key: 31, id: "SummonerPoroThrow" },
+  { key: 11, id: "SummonerSmite" },
+  { key: 39, id: "SummonerSnowURFSnowball_Mark" },
+  { key: 32, id: "SummonerSnowball" },
+  { key: 12, id: "SummonerTeleport" },
+  { key: 54, id: "Summoner_UltBook_Placeholder" },
+];
