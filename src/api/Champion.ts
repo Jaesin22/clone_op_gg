@@ -68,7 +68,9 @@ export const getGameInfo = async (matchList: []) => {
       const response = await axios.get(
         `https://asia.api.riotgames.com/lol/match/v5/matches/${matchList[i]}?api_key=${key}`
       );
-      gameArray = [...gameArray, response.data.info];
+      if (response.data.info.gameMode !== "CHERRY") {
+        gameArray = [...gameArray, response.data.info];
+      }
     } catch (e) {
       console.error(e);
     }

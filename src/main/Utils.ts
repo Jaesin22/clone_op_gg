@@ -35,17 +35,32 @@ type bans = {
   pickTurn: number | string;
 };
 
-interface Team {
+type champion = {
+  first: number;
+  kills: number;
+};
+
+export type objectives = {
+  baron: {};
+  champion: champion;
+  dragon: {};
+  inhibitor: {};
+  tower: {};
+  riftHerald: {};
+};
+
+export interface Team {
   bans: bans[];
-  objectives: any[];
+  objectives: objectives;
   win: boolean;
+  teamId: number;
 }
 
 export interface GameData {
   gameMode: string;
   gameName: string;
   participants: any;
-  teams: Team;
+  teams: Team[];
   gameStartTimestamp: number;
   gameEndTimestamp: number;
 }
