@@ -1,21 +1,24 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { useQuery } from "react-query";
 import {
   getMatchId,
   getSummonerInfo,
   getGameInfo,
-  getSpells,
+  getRuneInfo,
 } from "../api/Champion";
 import {
   GameData,
   convertUnixTimestampToDuration,
   participants,
   spellArray,
+  runeTree,
 } from "./Utils";
+import ScoreBoard from "./ScoreBoard";
 
 const Record = () => {
   const now = useMemo(() => Math.floor(Date.now()), []); // 한 번만 계산됨
   const { data } = useQuery(["puuid"], getSummonerInfo);
+  const { data: runeData } = useQuery(["runeData"], getRuneInfo);
   const puuId = data?.puuid;
 
   const { data: matchData, isLoading } = useQuery(
@@ -39,6 +42,15 @@ const Record = () => {
       notifyOnChangeProps: "tracked",
     }
   );
+  const [showScore, setShowScore] = useState(
+    Array(gameData?.length).fill(false)
+  );
+
+  const toggleScoreBoard = (index: number) => {
+    const updatedShowScore = [...showScore];
+    updatedShowScore[index] = !updatedShowScore[index];
+    setShowScore(updatedShowScore);
+  };
 
   if (isLoading) {
     return <div></div>;
@@ -101,7 +113,7 @@ const Record = () => {
                   {obj?.participants
                     .filter((partObj: participants) => partObj.puuid === puuId)
                     .map((partObj: participants, index: number) => (
-                      <div key={index} className="info">
+                      <div key={index} className="info mt-2">
                         <div className="flex">
                           <div className="champion flex items-center">
                             <div className="icon">
@@ -153,7 +165,18 @@ const Record = () => {
                               <div className="rune w-[22px] h-[22px] mb-[2px]">
                                 <div className="relative">
                                   <img
-                                    src="https://opgg-static.akamaized.net/meta/images/lol/perk/8128.png?image=q_auto,f_webp,w_44&v=1690894796459"
+                                    src={`https://ddragon.leagueoflegends.com/cdn/img/${
+                                      runeData?.find((rune: any) =>
+                                        rune.slots.some((slot: any) =>
+                                          slot.runes.some(
+                                            (key: any) =>
+                                              key.id ===
+                                              partObj.perks.styles[0]
+                                                .selections[0].perk
+                                          )
+                                        )
+                                      )?.icon
+                                    }`}
                                     alt="rune"
                                   />
                                 </div>
@@ -161,7 +184,13 @@ const Record = () => {
                               <div className="rune w-[22px] h-[22px] mb-[2px]">
                                 <div className="relative">
                                   <img
-                                    src="https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8000.png?image=q_auto,f_webp,w_44&v=1690894796459"
+                                    src={`https://ddragon.leagueoflegends.com/cdn/img/${
+                                      runeData.find(
+                                        (rune: runeTree) =>
+                                          partObj.perks.styles[1].style ===
+                                          rune.id
+                                      )?.icon
+                                    }`}
                                     alt="rune"
                                   />
                                 </div>
@@ -234,7 +263,7 @@ const Record = () => {
                             </div>
                           ) : null}
                         </div>
-                        <div className="flex items-center mt-0.5">
+                        <div className="flex items-center mt-1.5">
                           <div className="items flex">
                             <ul className="flex">
                               <li
@@ -407,6 +436,7 @@ const Record = () => {
                     className={`detail w-10 h-24 ${
                       myTeam?.win ? `bg-[#D5E3FF]` : `bg-[#FFD8D9]`
                     } `}
+                    onClick={() => toggleScoreBoard(index)}
                   >
                     <img
                       src={`https://s-lol-web.op.gg/images/icon/icon-arrow-down-${
@@ -418,6 +448,7 @@ const Record = () => {
                   </button>
                 </div>
               </div>
+              {showScore[index] && <ScoreBoard />}
             </li>
           );
         })}

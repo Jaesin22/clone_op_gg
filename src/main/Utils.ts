@@ -30,6 +30,24 @@ export const MainHeader: MainHeaders[] = [
   // },
 ];
 
+export type selections = {
+  perk: number;
+  var1: number;
+  var2: number;
+  var3: number;
+};
+
+export interface styles {
+  description: string;
+  style: number;
+  selections: selections[];
+}
+
+export interface perks {
+  statPerks: [];
+  styles: styles[];
+}
+
 type bans = {
   championId: number | string;
   pickTurn: number | string;
@@ -49,6 +67,22 @@ export type objectives = {
   riftHerald: {};
 };
 
+export type runeTree = {
+  id: number;
+  key: string;
+  icon: string;
+  name: string;
+  slots: [];
+};
+
+export type runes = {
+  id: number;
+  key: string;
+  icon: string;
+  name: string;
+  shortDesc: string;
+};
+
 export interface participants {
   assists: number;
   kills: number;
@@ -61,6 +95,7 @@ export interface participants {
   neutralMinionsKilled: number;
   summoner1Id: number;
   summoner2Id: number;
+  perks: perks;
   item0?: string;
   item1?: string;
   item2?: string;

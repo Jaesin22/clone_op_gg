@@ -78,16 +78,12 @@ export const getGameInfo = async (matchList: []) => {
   return gameArray;
 };
 
-export const getSpells = async () => {
+export const getRuneInfo = async () => {
   try {
-    const response = await axios.get(
-      `https://ddragon.leagueoflegends.com/cdn/11.21.1/data/en_US/summoner.json`
-    );
+    const url = `https://ddragon.leagueoflegends.com/cdn/13.15.1/data/ko_KR/runesReforged.json`;
 
-    console.log(response);
-    return response.data;
-    // const spellData = response.data.data;
-    // const spellInfo = spellData[id];
+    const runeResponse = await axios.get(url);
+    return runeResponse.data;
   } catch (e) {
     console.error(e);
   }
