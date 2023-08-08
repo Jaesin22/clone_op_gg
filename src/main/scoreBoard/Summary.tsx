@@ -41,9 +41,18 @@ const Summary = () => {
             <div className="data-right flex-1 h-4 absolute top-0 right-2 w-10 leading-4 text-right">
               19
             </div>
-            <div className="lose flex-1 basis-[37%] bg-red-500 h-4"></div>
-            <div className="win flex-1 basis-[63%] bg-[#5383E8] h-4"></div>
+            <div className="lose flex-grow flex-shrink basis-[37%] bg-red-500 h-4"></div>
+            <div className="win flex-grow flex-shrink basis-[63%] bg-[#5383E8] h-4"></div>
           </div>
+        </div>
+        <div className="graph relative flex-grow-0 flex-shrink basis-[405px] items-center mx-[3px]">
+          <div className="title ml-1 flex-1 h-4">Total kill</div>
+          <div className="data-left ml-1 flex-1 h-4">11</div>
+          <div className="data-right flex-1 h-4 absolute top-0 right-2 w-10 leading-4 text-right">
+            19
+          </div>
+          <div className="lose flex-grow flex-shrink basis-[37%] bg-red-500 h-4"></div>
+          <div className="win flex-grow flex-shrink basis-[63%] bg-[#5383E8] h-4"></div>
         </div>
       </div>
     </div>
