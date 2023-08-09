@@ -96,6 +96,9 @@ export interface participants {
   summoner1Id: number;
   summoner2Id: number;
   perks: perks;
+  wardsPlaced: number;
+  wardsKilled: number;
+  summonerName: string;
   item0?: string;
   item1?: string;
   item2?: string;
@@ -103,6 +106,7 @@ export interface participants {
   item4?: string;
   item5?: string;
   item6?: string;
+  challenges: any;
 }
 
 export interface Team {

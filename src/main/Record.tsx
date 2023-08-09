@@ -56,8 +56,6 @@ const Record = () => {
     return <div></div>;
   }
 
-  console.log(gameData);
-
   return (
     <div className="mt-2">
       {gameData
@@ -448,7 +446,7 @@ const Record = () => {
                   </button>
                 </div>
               </div>
-              {showScore[index] && <ScoreBoard />}
+              {showScore[index] && <ScoreBoard GameData={obj} />}
             </li>
           );
         })}
