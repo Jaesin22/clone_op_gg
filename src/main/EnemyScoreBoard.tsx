@@ -1,5 +1,4 @@
 import { useQuery } from "react-query";
-import Summary from "./scoreBoard/Summary";
 import {
   spellArray,
   participants,
@@ -7,9 +6,8 @@ import {
   getMaxDamageInParticipant,
 } from "./Utils";
 import { getRuneInfo, getSummonerInfo } from "../api/Champion";
-import EnemyScoreBoard from "./EnemyScoreBoard";
 
-const ScoreBoard = ({ GameData }: any) => {
+const EnemyScoreBoard = ({ GameData }: any) => {
   const { data: runeData, isLoading } = useQuery(["runeData"], getRuneInfo);
   const { data } = useQuery(["puuid"], getSummonerInfo);
   const puuId = data?.puuid;
@@ -25,13 +23,13 @@ const ScoreBoard = ({ GameData }: any) => {
   const participantData = GameData.participants.filter(
     (partObj: any) => partObj.puuid === puuId
   );
-  const myTeam = GameData.teams.find(
-    (team: any) => team.teamId === participantData[0]?.teamId
+  const enemyTeam = GameData.teams.find(
+    (team: any) => team.teamId !== participantData[0]?.teamId
   );
 
-  console.log(myTeam);
+  // teamId = 100  > 블루
+  // temId = 200 > red
 
-  console.log(GameData);
   return (
     <div className="mt-1">
       <div className="">
@@ -41,12 +39,12 @@ const ScoreBoard = ({ GameData }: any) => {
               <th colSpan={4} className="pl-[15px] text-left text-gray-400">
                 <span
                   className={`font-xs ${
-                    myTeam.win ? `text-[#4171D6]` : `text-[#D31A45]`
+                    enemyTeam.win ? `text-[#4171D6]` : `text-[#D31A45]`
                   }`}
                 >
-                  {myTeam.win ? "승리" : "패배"}
+                  {enemyTeam.win ? "승리" : "패배"}
                 </span>
-                ({myTeam.teamId === 100 ? "블루팀" : "레드팀"})
+                ({enemyTeam.teamId === 100 ? "블루팀" : "레드팀"})
               </th>
               <th className=" h-8 text-[#9AA4AF] text-xs font-normal text-center border-b border-b-[#D5E3FF]">
                 KDA
@@ -67,14 +65,14 @@ const ScoreBoard = ({ GameData }: any) => {
           </thead>
           <tbody
             className={`${
-              myTeam.win
+              enemyTeam.win
                 ? `bg-[#ECF2FF] border-[#d5e3ff]`
                 : `bg-[#FFF1F3] border-[#ffd8d9]`
             } border-t `}
           >
             {GameData.participants
               .filter(
-                (partObj: participants) => partObj.teamId === myTeam.teamId
+                (partObj: participants) => partObj.teamId === enemyTeam.teamId
               )
               .map((partObj: participants, index: number) => {
                 return (
@@ -169,7 +167,7 @@ const ScoreBoard = ({ GameData }: any) => {
                           (
                           {(
                             ((partObj.kills + partObj.assists) /
-                              myTeam!.objectives.champion.kills) *
+                              enemyTeam!.objectives.champion.kills) *
                             100
                           ).toFixed()}
                           %)
@@ -265,7 +263,7 @@ const ScoreBoard = ({ GameData }: any) => {
                     <td className="items text-center pt-1 pb-[3px] align-middle">
                       <div
                         className={`item ml-0 inline-block w-[22px] h-[22px] align-middle mx-[1px] rounded ${
-                          myTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
+                          enemyTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
                         }`}
                       >
                         <div className="relative">
@@ -280,7 +278,7 @@ const ScoreBoard = ({ GameData }: any) => {
                       </div>
                       <div
                         className={`item ml-0 inline-block w-[22px] h-[22px] align-middle mx-[1px] rounded ${
-                          myTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
+                          enemyTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
                         }`}
                       >
                         <div className="relative">
@@ -295,7 +293,7 @@ const ScoreBoard = ({ GameData }: any) => {
                       </div>
                       <div
                         className={`item ml-0 inline-block w-[22px] h-[22px] align-middle mx-[1px] rounded ${
-                          myTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
+                          enemyTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
                         }`}
                       >
                         <div className="relative">
@@ -310,7 +308,7 @@ const ScoreBoard = ({ GameData }: any) => {
                       </div>
                       <div
                         className={`item ml-0 inline-block w-[22px] h-[22px] align-middle mx-[1px] rounded ${
-                          myTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
+                          enemyTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
                         }`}
                       >
                         <div className="relative">
@@ -325,7 +323,7 @@ const ScoreBoard = ({ GameData }: any) => {
                       </div>
                       <div
                         className={`item ml-0 inline-block w-[22px] h-[22px] align-middle mx-[1px] rounded ${
-                          myTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
+                          enemyTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
                         }`}
                       >
                         <div className="relative">
@@ -340,7 +338,7 @@ const ScoreBoard = ({ GameData }: any) => {
                       </div>
                       <div
                         className={`item ml-0 inline-block w-[22px] h-[22px] align-middle mx-[1px] rounded ${
-                          myTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
+                          enemyTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
                         }`}
                       >
                         <div className="relative">
@@ -355,7 +353,7 @@ const ScoreBoard = ({ GameData }: any) => {
                       </div>
                       <div
                         className={`item ml-0 inline-block w-[22px] h-[22px] align-middle mx-[1px] rounded ${
-                          myTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
+                          enemyTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
                         }`}
                       >
                         <div className="relative">
@@ -365,7 +363,13 @@ const ScoreBoard = ({ GameData }: any) => {
                               alt={partObj.item6}
                               className="h-full w-full rounded-[3px] max-w-full align-middle border-0"
                             />
-                          ) : null}
+                          ) : (
+                            <div
+                              className={`no-item w-22 h-22 rounded ${
+                                enemyTeam.win ? `bg-[#B3CDFF]` : "bg-[#FFBAC3]"
+                              }`}
+                            ></div>
+                          )}
                         </div>
                       </div>
                     </td>
@@ -375,10 +379,8 @@ const ScoreBoard = ({ GameData }: any) => {
           </tbody>
         </table>
       </div>
-      <Summary />
-      <EnemyScoreBoard GameData={GameData} />
     </div>
   );
 };
 
-export default ScoreBoard;
+export default EnemyScoreBoard;

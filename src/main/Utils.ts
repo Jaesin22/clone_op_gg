@@ -99,6 +99,9 @@ export interface participants {
   wardsPlaced: number;
   wardsKilled: number;
   summonerName: string;
+  totalDamageDealtToChampions: number;
+  totalDamageTaken: number;
+  teamId: number;
   item0?: string;
   item1?: string;
   item2?: string;
@@ -114,6 +117,10 @@ export interface Team {
   objectives: objectives;
   win: boolean;
   teamId: number;
+}
+
+export interface BoardProps {
+  gameData: GameData;
 }
 
 export interface GameData {
@@ -143,6 +150,21 @@ export function convertUnixTimestampToDuration(timestamp: number): string {
   }
 }
 
+// participant에서 최대 데미지 가져오는 함수
+export const getMaxDamageInParticipant = (participants: any) => {
+  return participants.reduce(
+    (maxParticipant: participants, participant: participants) => {
+      if (
+        participant.totalDamageDealtToChampions >
+        maxParticipant.totalDamageDealtToChampions
+      ) {
+        return participant;
+      }
+      return maxParticipant;
+    },
+    participants[0] || { totalDamageDealtToChampions: 0 }
+  );
+};
 export const spellArray = [
   { key: 4, id: "SummonerFlash" },
   { key: 3, id: "SummonerExhaust" },
