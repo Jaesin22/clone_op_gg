@@ -17,8 +17,12 @@ import ScoreBoard from "./ScoreBoard";
 
 const Record = () => {
   const now = useMemo(() => Math.floor(Date.now()), []); // 한 번만 계산됨
-  const { data } = useQuery(["puuid"], getSummonerInfo);
-  const { data: runeData } = useQuery(["runeData"], getRuneInfo);
+  const { data } = useQuery(["puuid"], getSummonerInfo, {
+    refetchOnWindowFocus: false,
+  });
+  const { data: runeData } = useQuery(["runeData"], getRuneInfo, {
+    refetchOnWindowFocus: false,
+  });
   const puuId = data?.puuid;
 
   const { data: matchData, isLoading } = useQuery(
