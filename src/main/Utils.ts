@@ -162,9 +162,22 @@ export const getMaxDamageInParticipant = (participants: any) => {
       }
       return maxParticipant;
     },
-    participants[0] || { totalDamageDealtToChampions: 0 }
+    participants[0]
   );
 };
+
+export const getMaxtotalDamageTaken = (participants: any) => {
+  return participants.reduce(
+    (maxParticipant: participants, participant: participants) => {
+      if (participant.totalDamageTaken > maxParticipant.totalDamageTaken) {
+        return participant;
+      }
+      return maxParticipant;
+    },
+    participants[0]
+  );
+};
+
 export const spellArray = [
   { key: 4, id: "SummonerFlash" },
   { key: 3, id: "SummonerExhaust" },

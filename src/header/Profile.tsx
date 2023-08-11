@@ -32,26 +32,8 @@ const Profile = () => {
                 </div>
               </div>
             </div>
-            <div className="info ml-6">
-              <div className="prev-tier items-center justify-between mt-4">
-                <ul className="flex tier-list list-none">
-                  <li className="leading-5 py-0 px-1 text-xs ml-1 rounded-sm bg-[#ebeef1]">
-                    <div className="releative text-[#9AA4AF]">
-                      <b>S2023 S1</b> silver 4
-                    </div>
-                  </li>
-                  <li className="leading-5 py-0 px-1 text-xs ml-1 rounded-sm bg-[#ebeef1]">
-                    <div className="releative text-[#9AA4AF]">
-                      <b>S2023</b> silver 4
-                    </div>
-                  </li>
-                  <li className="leading-5 py-0 px-1 text-xs ml-1 rounded-sm bg-[#ebeef1]">
-                    <div className="releative text-[#9AA4AF]">
-                      <b>S2023</b> silver 4
-                    </div>
-                  </li>
-                </ul>
-              </div>
+            <div className="info ml-6 mt-3">
+              <div className="prev-tier items-center justify-between mt-4"></div>
               <div className="flex name mt-2">
                 <h1 className="summoner-name text-2xl font-bold">
                   {data?.name}

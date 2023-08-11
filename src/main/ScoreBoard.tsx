@@ -5,6 +5,8 @@ import {
   participants,
   runeTree,
   getMaxDamageInParticipant,
+  getMaxtotalDamageTaken,
+  Team,
 } from "./Utils";
 import { getRuneInfo, getSummonerInfo } from "../api/Champion";
 import EnemyScoreBoard from "./EnemyScoreBoard";
@@ -23,13 +25,15 @@ const ScoreBoard = ({ GameData }: any) => {
   ).totalDamageDealtToChampions;
 
   const participantData = GameData.participants.filter(
-    (partObj: any) => partObj.puuid === puuId
+    (partObj: participants) => partObj.puuid === puuId
   );
   const myTeam = GameData.teams.find(
-    (team: any) => team.teamId === participantData[0]?.teamId
+    (team: Team) => team.teamId === participantData[0]?.teamId
   );
 
-  console.log(myTeam);
+  const maxTotalDamageTaken = getMaxtotalDamageTaken(
+    GameData.participants
+  ).totalDamageTaken;
 
   console.log(GameData);
   return (
@@ -233,7 +237,16 @@ const ScoreBoard = ({ GameData }: any) => {
                               .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                           </div>
                           <div className="progress--taken w-[50px] h-1.5 mt-1 mr-auto ml-2 bg-white">
-                            <div className="fill w-[53%] h-full bg-gray-400"></div>
+                            <div
+                              className="fill w-[53%] h-full bg-gray-400"
+                              style={{
+                                width: `${
+                                  (partObj.totalDamageTaken /
+                                    maxTotalDamageTaken) *
+                                  100
+                                }%`,
+                              }}
+                            ></div>
                           </div>
                         </div>
                       </div>
@@ -375,7 +388,7 @@ const ScoreBoard = ({ GameData }: any) => {
           </tbody>
         </table>
       </div>
-      <Summary />
+      <Summary GameData={GameData} />
       <EnemyScoreBoard GameData={GameData} />
     </div>
   );

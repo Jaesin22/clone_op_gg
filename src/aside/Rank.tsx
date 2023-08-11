@@ -51,7 +51,7 @@ const Rank = () => {
               />
             </div>
             <div className="info flex-1 relative ml-4">
-              <div className="tier leading-[26px] w-[120px] text-xl font-bold text-[#202D37]">
+              <div className="tier leading-[26px] w-[130px] text-xl font-bold text-[#202D37]">
                 {obj?.tier} {obj?.rank}
               </div>
               <div className="lp leading-4 text-xs text-[#758592]">30 LP</div>
