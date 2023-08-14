@@ -8,6 +8,9 @@ const PieGraph = () => {
   ];
 
   const COLORS = ["#5382e9", "#e84057"];
+  // Calculate win rate
+  const totalGames = data.reduce((sum, entry) => sum + entry.value, 0);
+  const winRate = (data[0].value / totalGames) * 100;
 
   return (
     <div style={{ width: "88px", height: "88px" }}>
@@ -29,10 +32,7 @@ const PieGraph = () => {
               />
             ))}
             <Label
-              value={`Total: ${data.reduce(
-                (sum, entry) => sum + entry.value,
-                0
-              )}`}
+              value={`${winRate.toFixed(0)}%`}
               position="center"
               fontSize={12}
             />
