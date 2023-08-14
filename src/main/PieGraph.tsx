@@ -1,14 +1,16 @@
 import React from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Label } from "recharts";
+import useSummonerData from "../hooks/useSummonerData";
 
 const PieGraph = () => {
+  const { gameData } = useSummonerData();
+  console.log(gameData);
   const data = [
     { name: "Wins", value: 5 },
     { name: "Losses", value: 7 },
   ];
 
   const COLORS = ["#5382e9", "#e84057"];
-  // Calculate win rate
   const totalGames = data.reduce((sum, entry) => sum + entry.value, 0);
   const winRate = (data[0].value / totalGames) * 100;
 
@@ -35,6 +37,9 @@ const PieGraph = () => {
               value={`${winRate.toFixed(0)}%`}
               position="center"
               fontSize={12}
+              fontStyle={"#5383E8"}
+              fill="#5383E8"
+              fontWeight="bold"
             />
           </Pie>
         </PieChart>

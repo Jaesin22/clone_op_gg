@@ -1,4 +1,3 @@
-import { useQuery } from "react-query";
 import {
   spellArray,
   participants,
@@ -7,12 +6,10 @@ import {
   getMaxtotalDamageTaken,
   Team,
 } from "./Utils";
-import { getRuneInfo, getSummonerInfo } from "../api/Champion";
+import useSummonerData from "../hooks/useSummonerData";
 
 const EnemyScoreBoard = ({ GameData }: any) => {
-  const { data: runeData, isLoading } = useQuery(["runeData"], getRuneInfo);
-  const { data } = useQuery(["puuid"], getSummonerInfo);
-  const puuId = data?.puuid;
+  const { runeData, puuId, isLoading } = useSummonerData();
 
   if (isLoading) {
     return <div></div>;

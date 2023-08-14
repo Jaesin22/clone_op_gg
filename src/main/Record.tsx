@@ -1,11 +1,4 @@
 import React, { useMemo, useState } from "react";
-import { useQuery, useInfiniteQuery } from "react-query";
-import {
-  getMatchId,
-  getSummonerInfo,
-  getGameInfo,
-  getRuneInfo,
-} from "../api/Champion";
 import {
   GameData,
   convertUnixTimestampToDuration,
@@ -15,47 +8,12 @@ import {
   Team,
 } from "./Utils";
 import ScoreBoard from "./ScoreBoard";
+import useSummonerData from "../hooks/useSummonerData";
 
 const Record = () => {
-  const PAGE_SIZE = 20;
   const now = useMemo(() => Math.floor(Date.now()), []); // 한 번만 계산됨
-  const { data } = useQuery(["puuid"], getSummonerInfo, {
-    refetchOnWindowFocus: false,
-  });
-  const { data: runeData } = useQuery(["runeData"], getRuneInfo, {
-    refetchOnWindowFocus: false,
-  });
-  const puuId = data?.puuid;
-
-  const {
-    data: matchData,
-    isLoading,
-    fetchNextPage,
-  } = useInfiniteQuery(
-    ["matchData", puuId],
-    ({ pageParam = 0 }) => getMatchId(puuId, pageParam, PAGE_SIZE),
-    {
-      enabled: !!puuId,
-      staleTime: Infinity,
-      getNextPageParam: (lastPage, pages) => {
-        return PAGE_SIZE * pages.length;
-      },
-    }
-  );
-
-  const { data: gameData } = useQuery(
-    ["gameData", matchData?.pages],
-    () => {
-      const allMatchIds: any = matchData?.pages.flatMap((page) => page);
-      return getGameInfo(allMatchIds);
-    },
-    {
-      enabled: !!matchData && !isLoading, // matchData가 있고, isLoading이 false인 경우에만 쿼리 실행
-      staleTime: Infinity,
-      refetchOnWindowFocus: false,
-      notifyOnChangeProps: "tracked",
-    }
-  );
+  const { runeData, puuId, isLoading, gameData, fetchNextPage } =
+    useSummonerData();
 
   const [showScore, setShowScore] = useState(
     Array(gameData?.length).fill(false)
