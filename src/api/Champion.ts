@@ -42,14 +42,19 @@ export const GetRanks = async (summonerId: string | null) => {
   }
 };
 
-export const getMatchId = async (puuId: string | null) => {
+export const getMatchId = async (
+  puuId: string | null,
+  start: number,
+  count: number
+) => {
   const key = process.env.REACT_APP_API_KEY?.replaceAll('"', "")?.replace(
     ";",
     ""
   );
+  console.log(start, count);
   try {
     const response = await axios.get(
-      `https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuId}/ids?start=0&count=20&api_key=${key}`
+      `https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuId}/ids?type=ranked&start=${start}&count=${count}&api_key=${key}`
     );
     return response.data;
   } catch (e) {
@@ -68,9 +73,7 @@ export const getGameInfo = async (matchList: []) => {
       const response = await axios.get(
         `https://asia.api.riotgames.com/lol/match/v5/matches/${matchList[i]}?api_key=${key}`
       );
-      if (response.data.info.gameMode !== "CHERRY") {
-        gameArray = [...gameArray, response.data.info];
-      }
+      gameArray = [...gameArray, response.data.info];
     } catch (e) {
       console.error(e);
     }

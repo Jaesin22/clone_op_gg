@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { useQuery } from "react-query";
+import { useQuery, useInfiniteQuery } from "react-query";
 import {
   getMatchId,
   getSummonerInfo,
@@ -12,10 +12,12 @@ import {
   participants,
   spellArray,
   runeTree,
+  Team,
 } from "./Utils";
 import ScoreBoard from "./ScoreBoard";
 
 const Record = () => {
+  const PAGE_SIZE = 20;
   const now = useMemo(() => Math.floor(Date.now()), []); // 한 번만 계산됨
   const { data } = useQuery(["puuid"], getSummonerInfo, {
     refetchOnWindowFocus: false,
@@ -25,20 +27,28 @@ const Record = () => {
   });
   const puuId = data?.puuid;
 
-  const { data: matchData, isLoading } = useQuery(
+  const {
+    data: matchData,
+    isLoading,
+    fetchNextPage,
+  } = useInfiniteQuery(
     ["matchData", puuId],
-    () => getMatchId(puuId),
+    ({ pageParam = 0 }) => getMatchId(puuId, pageParam, PAGE_SIZE),
     {
       enabled: !!puuId,
       staleTime: Infinity,
-      refetchOnWindowFocus: false,
-      notifyOnChangeProps: "tracked",
+      getNextPageParam: (lastPage, pages) => {
+        return PAGE_SIZE * pages.length;
+      },
     }
   );
-  // 룬 정보 : api perks 유심히 볼 것 !
+
   const { data: gameData } = useQuery(
-    ["gameData", matchData],
-    () => (matchData ? getGameInfo(matchData) : undefined),
+    ["gameData", matchData?.pages],
+    () => {
+      const allMatchIds: any = matchData?.pages.flatMap((page) => page);
+      return getGameInfo(allMatchIds);
+    },
     {
       enabled: !!matchData && !isLoading, // matchData가 있고, isLoading이 false인 경우에만 쿼리 실행
       staleTime: Infinity,
@@ -46,6 +56,7 @@ const Record = () => {
       notifyOnChangeProps: "tracked",
     }
   );
+
   const [showScore, setShowScore] = useState(
     Array(gameData?.length).fill(false)
   );
@@ -66,10 +77,10 @@ const Record = () => {
         ?.filter((obj: GameData) => obj.gameMode !== "CHERRY")
         .map((obj: GameData, index: number) => {
           const participantData = obj.participants.filter(
-            (partObj: any) => partObj.puuid === puuId
+            (partObj: participants) => partObj.puuid === puuId
           );
           const myTeam = obj.teams.find(
-            (team: any) => team.teamId === participantData[0]?.teamId
+            (team: Team) => team.teamId === participantData[0]?.teamId
           );
           return (
             <li key={index} className="relative mb-2 list-none">
@@ -121,7 +132,7 @@ const Record = () => {
                             <div className="icon">
                               <a href="!#" className="relative block w-12 h-12">
                                 <img
-                                  src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/champion/${partObj.championName}.png`}
+                                  src={`https://ddragon.leagueoflegends.com/cdn/13.15.1/img/champion/${partObj.championName}.png`}
                                   className="rounded-[50%]"
                                   alt="character"
                                 />
@@ -137,7 +148,7 @@ const Record = () => {
                               <div className="spell w-[22px] h-[22px] mb-[2px] rounded">
                                 <div className="relative">
                                   <img
-                                    src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/spell/${
+                                    src={`https://ddragon.leagueoflegends.com/cdn/13.15.1/img/spell/${
                                       spellArray.find(
                                         (spell) =>
                                           spell.key === partObj.summoner1Id
@@ -151,7 +162,7 @@ const Record = () => {
                               <div className="spell w-[22px] h-[22px] mb-[2px] rounded">
                                 <div className="relative">
                                   <img
-                                    src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/spell/${
+                                    src={`https://ddragon.leagueoflegends.com/cdn/13.15.1/img/spell/${
                                       spellArray.find(
                                         (spell) =>
                                           spell.key === partObj.summoner2Id
@@ -276,7 +287,7 @@ const Record = () => {
                                 <div className="relative">
                                   {partObj.item0 ? (
                                     <img
-                                      src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/item/${partObj.item0}.png`}
+                                      src={`${process.env.REACT_APP_ITEM_URL}${partObj.item0}.png`}
                                       alt={partObj.item0}
                                       className="w-[22px] h-[22px] rounded"
                                     />
@@ -291,7 +302,7 @@ const Record = () => {
                                 <div className="relative">
                                   {partObj.item1 ? (
                                     <img
-                                      src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/item/${partObj.item1}.png`}
+                                      src={`${process.env.REACT_APP_ITEM_URL}${partObj.item1}.png`}
                                       alt={partObj.item1}
                                       className="w-[22px] h-[22px] rounded"
                                     />
@@ -306,7 +317,7 @@ const Record = () => {
                                 <div className="relative">
                                   {partObj.item2 ? (
                                     <img
-                                      src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/item/${partObj.item2}.png`}
+                                      src={`${process.env.REACT_APP_ITEM_URL}${partObj.item2}.png`}
                                       alt={partObj.item2}
                                       className="w-[22px] h-[22px] rounded"
                                     />
@@ -321,7 +332,7 @@ const Record = () => {
                                 <div className="relative">
                                   {partObj.item3 ? (
                                     <img
-                                      src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/item/${partObj.item3}.png`}
+                                      src={`${process.env.REACT_APP_ITEM_URL}${partObj.item3}.png`}
                                       alt={partObj.item3}
                                       className="w-[22px] h-[22px] rounded"
                                     />
@@ -336,7 +347,7 @@ const Record = () => {
                                 <div className="relative">
                                   {partObj.item4 ? (
                                     <img
-                                      src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/item/${partObj.item4}.png`}
+                                      src={`${process.env.REACT_APP_ITEM_URL}${partObj.item4}.png`}
                                       alt={partObj.item4}
                                       className="w-[22px] h-[22px] rounded"
                                     />
@@ -351,7 +362,7 @@ const Record = () => {
                                 <div className="relative">
                                   {partObj.item5 ? (
                                     <img
-                                      src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/item/${partObj.item5}.png`}
+                                      src={`${process.env.REACT_APP_ITEM_URL}${partObj.item5}.png`}
                                       alt={partObj.item5}
                                       className="w-[22px] h-[22px] rounded"
                                     />
@@ -363,7 +374,7 @@ const Record = () => {
                               <div className="relative">
                                 {partObj.item6 ? (
                                   <img
-                                    src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/item/${partObj.item6}.png`}
+                                    src={`${process.env.REACT_APP_ITEM_URL}${partObj.item6}.png`}
                                     alt={partObj.item6}
                                     className="w-[22px] h-[22px] rounded"
                                   />
@@ -387,7 +398,7 @@ const Record = () => {
                             <div className="icon relative inline-block align-middle mr-1">
                               <img
                                 src={`${process.env.REACT_APP_CHAMPION_ICON_URL}${userObj.championName}.png`}
-                                alt="쓰레쉬"
+                                alt={userObj.championName}
                                 className="block h-4 w-4 rounded"
                               />
                             </div>
@@ -455,7 +466,11 @@ const Record = () => {
           );
         })}
 
-      <button className="more border border-[#DBE0E4] bg-white rounded block w-full h-9 py-2 text-xs text-center box-border">
+      <button
+        className="more border border-[#DBE0E4] bg-white rounded block w-full h-9 py-2 text-xs text-center box-border"
+        onClick={() => fetchNextPage()}
+        type="button"
+      >
         더 보기
       </button>
     </div>

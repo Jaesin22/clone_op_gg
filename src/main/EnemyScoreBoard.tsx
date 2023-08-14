@@ -86,8 +86,8 @@ const EnemyScoreBoard = ({ GameData }: any) => {
                     <a href="!#" className="relative block">
                       <div className="relative w-8">
                         <img
-                          src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/champion/${partObj.championName}.png`}
-                          alt="퀸"
+                          src={`${process.env.REACT_APP_CHAMPION_ICON_URL}${partObj.championName}.png`}
+                          alt={partObj.championName}
                           className="w-8 h-8 rounded-[50%] block"
                         />
                         <div className="level absolute -bottom-[3px] -left-[3px] w-[15px] h-[15px] bg-[#202d37] rounded-[50%] text-white font-[10px] text-center leading-[15px]">
@@ -99,7 +99,7 @@ const EnemyScoreBoard = ({ GameData }: any) => {
                   <td className="spells pt-1 pb-[3px] align-middle">
                     <div className="relative w-4 h-4">
                       <img
-                        src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/spell/${
+                        src={`https://ddragon.leagueoflegends.com/cdn/13.15.1/img/spell/${
                           spellArray.find(
                             (spell) => spell.key === partObj.summoner1Id
                           )?.id
@@ -110,7 +110,7 @@ const EnemyScoreBoard = ({ GameData }: any) => {
                     </div>
                     <div className="relative w-4 h-4">
                       <img
-                        src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/spell/${
+                        src={`https://ddragon.leagueoflegends.com/cdn/13.15.1/img/spell/${
                           spellArray.find(
                             (spell) => spell.key === partObj.summoner2Id
                           )?.id
@@ -156,7 +156,9 @@ const EnemyScoreBoard = ({ GameData }: any) => {
                       {partObj.summonerName}
                     </a>
                     <div className="tier text-[11px] leading-[14px] text-[#9AA4AF]">
-                      <div className="relative capitalize">Emerald 1</div>
+                      <div className="relative capitalize">
+                        Level {partObj.summonerLevel}
+                      </div>
                     </div>
                   </td>
                   <td className="kda text-center whitespace-nowrap">
@@ -278,7 +280,7 @@ const EnemyScoreBoard = ({ GameData }: any) => {
                       <div className="relative">
                         {partObj.item0 ? (
                           <img
-                            src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/item/${partObj.item0}.png`}
+                            src={`${process.env.REACT_APP_ITEM_URL}${partObj.item0}.png`}
                             alt={partObj.item0}
                             className="h-full w-full rounded-[3px] max-w-full align-middle border-0"
                           />
@@ -293,7 +295,7 @@ const EnemyScoreBoard = ({ GameData }: any) => {
                       <div className="relative">
                         {partObj.item1 ? (
                           <img
-                            src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/item/${partObj.item1}.png`}
+                            src={`${process.env.REACT_APP_ITEM_URL}${partObj.item1}.png`}
                             alt={partObj.item1}
                             className="h-full w-full rounded-[3px] max-w-full align-middle border-0"
                           />
@@ -308,7 +310,7 @@ const EnemyScoreBoard = ({ GameData }: any) => {
                       <div className="relative">
                         {partObj.item2 ? (
                           <img
-                            src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/item/${partObj.item2}.png`}
+                            src={`${process.env.REACT_APP_ITEM_URL}${partObj.item2}.png`}
                             alt={partObj.item2}
                             className="h-full w-full rounded-[3px] max-w-full align-middle border-0"
                           />
@@ -323,7 +325,7 @@ const EnemyScoreBoard = ({ GameData }: any) => {
                       <div className="relative">
                         {partObj.item3 ? (
                           <img
-                            src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/item/${partObj.item3}.png`}
+                            src={`${process.env.REACT_APP_ITEM_URL}${partObj.item3}.png`}
                             alt={partObj.item3}
                             className="h-full w-full rounded-[3px] max-w-full align-middle border-0"
                           />
@@ -338,7 +340,7 @@ const EnemyScoreBoard = ({ GameData }: any) => {
                       <div className="relative">
                         {partObj.item4 ? (
                           <img
-                            src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/item/${partObj.item4}.png`}
+                            src={`${process.env.REACT_APP_ITEM_URL}${partObj.item4}.png`}
                             alt={partObj.item4}
                             className="h-full w-full rounded-[3px] max-w-full align-middle border-0"
                           />
@@ -353,7 +355,7 @@ const EnemyScoreBoard = ({ GameData }: any) => {
                       <div className="relative">
                         {partObj.item5 ? (
                           <img
-                            src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/item/${partObj.item5}.png`}
+                            src={`${process.env.REACT_APP_ITEM_URL}${partObj.item5}.png`}
                             alt={partObj.item5}
                             className="h-full w-full rounded-[3px] max-w-full align-middle border-0"
                           />
@@ -368,7 +370,7 @@ const EnemyScoreBoard = ({ GameData }: any) => {
                       <div className="relative">
                         {partObj.item6 ? (
                           <img
-                            src={`http://ddragon.leagueoflegends.com/cdn/13.15.1/img/item/${partObj.item6}.png`}
+                            src={`${process.env.REACT_APP_ITEM_URL}${partObj.item6}.png`}
                             alt={partObj.item6}
                             className="h-full w-full rounded-[3px] max-w-full align-middle border-0"
                           />

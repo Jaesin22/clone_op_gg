@@ -108,6 +108,7 @@ export interface participants {
   item3?: string;
   item4?: string;
   item5?: string;
+  summonerLevel: number;
   item6?: string;
   challenges: any;
 }
