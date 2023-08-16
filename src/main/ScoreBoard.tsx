@@ -32,7 +32,6 @@ const ScoreBoard = ({ GameData }: any) => {
     GameData.participants
   ).totalDamageTaken;
 
-  console.log(GameData);
   return (
     <div className="mt-1">
       <div className="">

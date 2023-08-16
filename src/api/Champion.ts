@@ -51,7 +51,6 @@ export const getMatchId = async (
     ";",
     ""
   );
-  console.log(start, count);
   try {
     const response = await axios.get(
       `https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuId}/ids?type=ranked&start=${start}&count=${count}&api_key=${key}`
@@ -63,22 +62,40 @@ export const getMatchId = async (
 };
 
 export const getGameInfo = async (matchList: []) => {
-  let gameArray: any[] = [];
   const key = process.env.REACT_APP_API_KEY?.replaceAll('"', "")?.replace(
     ";",
     ""
   );
-  for (let i = 0; i < matchList.length; i++) {
+
+  const fetchGameInfo = async (matchId: string) => {
     try {
       const response = await axios.get(
-        `https://asia.api.riotgames.com/lol/match/v5/matches/${matchList[i]}?api_key=${key}`
+        `https://asia.api.riotgames.com/lol/match/v5/matches/${matchId}?api_key=${key}`
       );
-      gameArray = [...gameArray, response.data.info];
+      if (response.data.info.gameMode !== "CHERRY") {
+        return response.data.info;
+      }
     } catch (e) {
       console.error(e);
+      return null;
     }
-  }
-  return gameArray;
+  };
+
+  const delay = (ms: number) =>
+    new Promise((resolve) => setTimeout(resolve, ms));
+
+  const gamePromises = matchList.map(async (matchId, index) => {
+    if (index !== 0) {
+      await delay(1000); // delay 주기
+    }
+    return fetchGameInfo(matchId);
+  });
+
+  const gameArray = await Promise.all(gamePromises);
+
+  return gameArray.filter(
+    (gameInfo) => gameInfo !== undefined && gameInfo !== null
+  );
 };
 
 export const getRuneInfo = async () => {

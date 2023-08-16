@@ -1,13 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Label } from "recharts";
 import useSummonerData from "../hooks/useSummonerData";
+import { GameData, participants } from "./Utils";
 
 const PieGraph = () => {
-  const { gameData } = useSummonerData();
-  console.log(gameData);
+  const { gameData, puuId }: any = useSummonerData();
+  const [win, setWin] = useState(0);
+  const [lose, setLose] = useState(0);
+
+  useEffect(() => {
+    calculateVictory(gameData);
+  }, [gameData]);
+
+  const calculateVictory = (gameData: GameData[]) => {
+    let winCount = 0;
+    let loseCount = 0;
+
+    gameData?.forEach((data: any) => {
+      data.participants.forEach((participant: participants) => {
+        if (participant.puuid === puuId) {
+          participant.win ? winCount++ : loseCount++;
+        }
+      });
+    });
+
+    setWin(winCount);
+    setLose(loseCount);
+  };
+
   const data = [
-    { name: "Wins", value: 5 },
-    { name: "Losses", value: 7 },
+    { name: "Wins", value: win },
+    { name: "Losses", value: lose },
   ];
 
   const COLORS = ["#5382e9", "#e84057"];

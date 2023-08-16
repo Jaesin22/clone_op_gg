@@ -1,7 +1,12 @@
 import React from "react";
 import PieGraph from "./PieGraph";
+import useSummonerData from "../hooks/useSummonerData";
 
 const Statbox = () => {
+  const { gameData } = useSummonerData();
+
+  console.log(gameData);
+
   return (
     <div className="stats-box flex text-left bg-white py-2 px-3 box-border border-t h-[132px]">
       <div className="stats w-[222px]">

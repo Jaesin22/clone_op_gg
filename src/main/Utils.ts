@@ -98,6 +98,7 @@ export interface participants {
   perks: perks;
   wardsPlaced: number;
   wardsKilled: number;
+  win: boolean;
   summonerName: string;
   totalDamageDealtToChampions: number;
   totalDamageTaken: number;
