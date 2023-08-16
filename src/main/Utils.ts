@@ -106,6 +106,7 @@ export interface participants {
   item0?: string;
   item1?: string;
   item2?: string;
+  lane: string;
   item3?: string;
   item4?: string;
   item5?: string;

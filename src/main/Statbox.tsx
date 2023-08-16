@@ -1,17 +1,28 @@
 import React from "react";
 import PieGraph from "./PieGraph";
 import useSummonerData from "../hooks/useSummonerData";
+import useTeamInfo from "../hooks/useTeamInfo";
+import { Champions } from "../hooks/Utils";
 
 const Statbox = () => {
-  const { gameData } = useSummonerData();
+  const { gameData, puuId, isLoading }: any = useSummonerData();
+  const { win, lose, kill, death, assist, teamKill, champion } = useTeamInfo(
+    gameData,
+    puuId
+  );
+
+  if (isLoading || gameData === undefined) {
+    return <div></div>; // 또는 원하는 뷰로 대체할 수 있음
+  }
 
   console.log(gameData);
+  console.log(champion);
 
   return (
     <div className="stats-box flex text-left bg-white py-2 px-3 box-border border-t h-[132px]">
       <div className="stats w-[222px]">
         <div className="win-lose leading-4 text-xs text-[#758592]">
-          20전 11승 9패
+          {win + lose}전 {win}승 {lose}패
         </div>
         <div className="kda flex items-center mt-3">
           <div className="chart w-[88px] h-[88px] relative">
@@ -21,74 +32,58 @@ const Statbox = () => {
           </div>
           <div className="info ml-8">
             <div className="k-d-a leading-4 text-xs text-[#758592]">
-              <span className="">5.8</span>
+              <span className="">{(kill / (win + lose)).toFixed(1)}</span>
               {" / "}
-              <span className=" text-red-600">5.0</span>
+              <span className=" text-red-600">
+                {(death / (win + lose)).toFixed(1)}
+              </span>
               {" / "}
-              <span>8.7</span>
+              <span>{(assist / (win + lose)).toFixed(1)}</span>
             </div>
             <div className="ratio mt-0.5 leading-[26px] text-[20px] font-bold text[-#202D37]">
-              2.9:1
+              {((kill + assist) / death).toFixed(2)}:1
             </div>
             <div className="kill-participantion leading-4 mt-0.5 text-xs text-red-600">
-              킬관여 50%
+              킬관여 {(((kill + assist) / teamKill) * 100).toFixed()}%
             </div>
           </div>
         </div>
       </div>
       <div className="champions w-[222px] ml-4">
         <div className="title leading-4 text-xs text-[#758592]">
-          플레이한 챔피언(최근 20게임)
+          플레이한 챔피언(최근 {win + lose}게임)
         </div>
         <ul className="flex flex-col justify-center h-[88px] mt-3">
-          <li className="flex mt-0 items-center my-1.5">
-            <img
-              src="https://opgg-static.akamaized.net/meta/images/lol/champion/Udyr.png?
-              image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_webp,w_48&v=1691043179819"
-              alt="우디르"
-              className="w-6 h-6 rounded-[50%] mr-2"
-            />
-            <div className="win-lose text-[11px] text-[#9AA4AF]">
-              <div className="relative inline">
-                <span className="text-[#D31A45]">71%</span> (5승 2패)
+          {champion.slice(0, 3).map((obj: Champions, index: number) => (
+            <li key={index} className="flex mt-0 items-center my-1.5">
+              <img
+                src={`https://opgg-static.akamaized.net/meta/images/lol/champion/${obj.championName}.png?
+                image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_webp,w_48&v=1691043179819`}
+                alt={`${obj.championName}`}
+                className="w-6 h-6 rounded-[50%] mr-2"
+              />
+              <div className="win-lose text-[11px] text-[#9AA4AF]">
+                <div className="relative inline">
+                  <span className="text-[#D31A45]">
+                    {(
+                      (obj.championWinCount /
+                        (obj.championWinCount + obj.championLoseCount)) *
+                      100
+                    ).toFixed()}
+                    %
+                  </span>{" "}
+                  ({obj.championWinCount}승 {obj.championLoseCount}패)
+                </div>
               </div>
-            </div>
-            <div className="inline-block text-[11px] ml-1 text-[#00A399]">
-              3.32 평점
-            </div>
-          </li>
-          <li className="flex mt-0 items-center my-1.5">
-            <img
-              src="https://opgg-static.akamaized.net/meta/images/lol/champion/Udyr.png?
-              image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_webp,w_48&v=1691043179819"
-              alt="우디르"
-              className="w-6 h-6 rounded-[50%] mr-2"
-            />
-            <div className="win-lose text-[11px] text-[#9AA4AF]">
-              <div className="relative inline">
-                <span className="text-[#D31A45]">71%</span> (5승 2패)
+              <div className="inline-block text-[11px] ml-1 text-[#00A399]">
+                {(
+                  (obj.championKill + obj.championAssist) /
+                  obj.championDeath
+                ).toFixed(2)}{" "}
+                평점
               </div>
-            </div>
-            <div className="inline-block text-[11px] ml-1 text-[#00A399]">
-              3.32 평점
-            </div>
-          </li>
-          <li className="flex mt-0 items-center my-1.5">
-            <img
-              src="https://opgg-static.akamaized.net/meta/images/lol/champion/Udyr.png?
-              image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_webp,w_48&v=1691043179819"
-              alt="우디르"
-              className="w-6 h-6 rounded-[50%] mr-2"
-            />
-            <div className="win-lose text-[11px] text-[#9AA4AF]">
-              <div className="relative inline">
-                <span className="text-[#D31A45]">71%</span> (5승 2패)
-              </div>
-            </div>
-            <div className="inline-block text-[11px] ml-1 text-[#00A399]">
-              3.32 평점
-            </div>
-          </li>
+            </li>
+          ))}
         </ul>
       </div>
       <div className="positions w-[222px] ml-4">
@@ -162,4 +157,4 @@ const Statbox = () => {
   );
 };
 
-export default Statbox;
+export default React.memo(Statbox);

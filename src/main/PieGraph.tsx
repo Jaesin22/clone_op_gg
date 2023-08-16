@@ -1,32 +1,10 @@
-import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Label } from "recharts";
 import useSummonerData from "../hooks/useSummonerData";
-import { GameData, participants } from "./Utils";
+import useTeamInfo from "../hooks/useTeamInfo";
 
 const PieGraph = () => {
-  const { gameData, puuId }: any = useSummonerData();
-  const [win, setWin] = useState(0);
-  const [lose, setLose] = useState(0);
-
-  useEffect(() => {
-    calculateVictory(gameData);
-  }, [gameData]);
-
-  const calculateVictory = (gameData: GameData[]) => {
-    let winCount = 0;
-    let loseCount = 0;
-
-    gameData?.forEach((data: any) => {
-      data.participants.forEach((participant: participants) => {
-        if (participant.puuid === puuId) {
-          participant.win ? winCount++ : loseCount++;
-        }
-      });
-    });
-
-    setWin(winCount);
-    setLose(loseCount);
-  };
+  const { gameData, puuId }: any = useSummonerData(); // Adjust this according to your code
+  const { win, lose } = useTeamInfo(gameData, puuId);
 
   const data = [
     { name: "Wins", value: win },
