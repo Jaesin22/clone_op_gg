@@ -3,9 +3,9 @@ import { routeList } from "./Utils";
 
 const Navbar = () => {
   return (
-    <div className="flex h-11 bg-[#5383E8] pt-1">
-      <nav>
-        <ul className="flex list-none ml-20">
+    <div className="flex h-11 bg-[#5383E8] pt-2 justify-center">
+      <nav className="route-nav flex w-[1080px] items-center relative">
+        <ul className="flex list-none">
           {routeList.map((obj, index) => (
             <li key={index} className="text-[#B3CDFF] hover:text-white">
               <a
