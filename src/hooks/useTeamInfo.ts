@@ -11,6 +11,13 @@ const useTeamInfo = (gameData: GameData[], puuId: string) => {
   const [assist, setAssist] = useState(0);
   const [teamKill, setTeamKill] = useState(0);
   const [champion, setChampion] = useState<Champions[]>([]);
+  const [positionCounts, setPositionCounts] = useState({
+    TOP: 0,
+    JUNGLE: 0,
+    MIDDLE: 0,
+    UTILITY: 0,
+    BOTTOM: 0,
+  });
 
   useEffect(() => {
     calculateVictory();
@@ -34,6 +41,14 @@ const useTeamInfo = (gameData: GameData[], puuId: string) => {
           deathCount += participant.deaths;
           assistCount += participant.assists;
           teamId = participant.teamId;
+
+          const position = participant.individualPosition;
+          if (positionCounts.hasOwnProperty(position)) {
+            setPositionCounts((prevCounts: any) => ({
+              ...prevCounts,
+              [position]: prevCounts[position] + 1,
+            }));
+          }
           const championData: any = {
             championName: participant.championName,
             championWinCount: participant.win ? 1 : 0,
@@ -94,7 +109,7 @@ const useTeamInfo = (gameData: GameData[], puuId: string) => {
       teamKillCount += myTeam.objectives.champion.kills;
     });
 
-    console.log(champion);
+    console.log(positionCounts);
     setWin(winCount);
     setLose(loseCount);
     setKill(killCount);
@@ -112,6 +127,7 @@ const useTeamInfo = (gameData: GameData[], puuId: string) => {
     assist,
     teamKill,
     champion,
+    positionCounts,
   };
 };
 

@@ -111,6 +111,7 @@ export interface participants {
   item4?: string;
   item5?: string;
   summonerLevel: number;
+  individualPosition: string;
   item6?: string;
   challenges: any;
 }

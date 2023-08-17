@@ -6,17 +6,15 @@ import { Champions } from "../hooks/Utils";
 
 const Statbox = () => {
   const { gameData, puuId, isLoading }: any = useSummonerData();
-  const { win, lose, kill, death, assist, teamKill, champion } = useTeamInfo(
-    gameData,
-    puuId
-  );
+  const { win, lose, kill, death, assist, teamKill, champion, positionCounts } =
+    useTeamInfo(gameData, puuId);
 
   if (isLoading || gameData === undefined) {
     return <div></div>; // 또는 원하는 뷰로 대체할 수 있음
   }
 
   console.log(gameData);
-  console.log(champion);
+  console.log(positionCounts);
 
   return (
     <div className="stats-box flex text-left bg-white py-2 px-3 box-border border-t h-[132px]">
@@ -93,7 +91,12 @@ const Statbox = () => {
         <ul className="flex justify-around mt-3">
           <li>
             <div className="bar flex items-end w-4 h-16 bg-[#DBE0E4]">
-              <div className="gauge w-4 h-[16.6667%] bg-[#5383E8]"></div>
+              <div
+                className="gauge w-4 bg-[#5383E8]"
+                style={{
+                  height: `${(positionCounts.TOP / (win + lose)) * 100}%`,
+                }}
+              ></div>
             </div>
             <div className="position mt-2">
               <img
@@ -105,7 +108,12 @@ const Statbox = () => {
           </li>
           <li>
             <div className="bar flex items-end w-4 h-16 bg-[#DBE0E4]">
-              <div className="gauge w-4 h-[16.6667%] bg-[#5383E8]"></div>
+              <div
+                className="gauge w-4 bg-[#5383E8]"
+                style={{
+                  height: `${(positionCounts.JUNGLE / (win + lose)) * 100}%`,
+                }}
+              ></div>
             </div>
             <div className="position mt-2">
               <img
@@ -117,7 +125,12 @@ const Statbox = () => {
           </li>
           <li>
             <div className="bar flex items-end w-4 h-16 bg-[#DBE0E4]">
-              <div className="gauge w-4 h-[16.6667%] bg-[#5383E8]"></div>
+              <div
+                className="gauge w-4 bg-[#5383E8]"
+                style={{
+                  height: `${(positionCounts.MIDDLE / (win + lose)) * 100}%`,
+                }}
+              ></div>
             </div>
             <div className="position mt-2">
               <img
@@ -129,7 +142,12 @@ const Statbox = () => {
           </li>
           <li>
             <div className="bar flex items-end w-4 h-16 bg-[#DBE0E4]">
-              <div className="gauge w-4 h-[16.6667%] bg-[#5383E8]"></div>
+              <div
+                className="gauge w-4 bg-[#5383E8]"
+                style={{
+                  height: `${(positionCounts.BOTTOM / (win + lose)) * 100}%`,
+                }}
+              ></div>
             </div>
             <div className="position mt-2">
               <img
@@ -141,7 +159,12 @@ const Statbox = () => {
           </li>
           <li>
             <div className="bar flex items-end w-4 h-16 bg-[#DBE0E4]">
-              <div className="gauge w-4 h-[16.6667%] bg-[#5383E8]"></div>
+              <div
+                className="gauge w-4 bg-[#5383E8]"
+                style={{
+                  height: `${(positionCounts.UTILITY / (win + lose)) * 100}%`,
+                }}
+              ></div>
             </div>
             <div className="position mt-2">
               <img
