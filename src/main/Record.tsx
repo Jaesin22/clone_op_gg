@@ -32,7 +32,7 @@ const Record = () => {
   return (
     <div className="mt-2">
       {gameData
-        ?.filter((obj: GameData) => obj.gameMode !== "CHERRY")
+        ?.filter((obj: GameData) => obj.queueId !== 1700)
         .map((obj: GameData, index: number) => {
           const participantData = obj.participants.filter(
             (partObj: participants) => partObj.puuid === puuId
@@ -194,7 +194,7 @@ const Record = () => {
                               평점
                             </span>
                           </div>
-                          {obj.gameMode !== "CHERRY" ? (
+                          {obj.queueId !== 1700 ? (
                             <div
                               className={`stats flex flex-col items-start w-[140px] text-[11px] mt-0.5 pl-2 text-[#758592]
                  before:absolute before:top-1 before:w-[1px]

@@ -5,9 +5,10 @@ export const getData = async () => {
     ";",
     ""
   );
+  const summonerName = "%EC%8A%AC%EA%B8%B0%EB%A1%9C%EC%9A%B4%ED%98%84%EC%9E%AC";
   try {
     const response = await axios.get(
-      `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/%EB%B0%8D%20%EC%9D%B4?api_key=${key}`
+      `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${summonerName}?api_key=${key}`
     );
     return response.data;
   } catch (e) {
@@ -53,7 +54,7 @@ export const getMatchId = async (
   );
   try {
     const response = await axios.get(
-      `https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuId}/ids?type=ranked&start=${start}&count=${count}&api_key=${key}`
+      `https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuId}/ids?start=${start}&count=${count}&api_key=${key}`
     );
     return response.data;
   } catch (e) {
@@ -72,7 +73,7 @@ export const getGameInfo = async (matchList: []) => {
       const response = await axios.get(
         `https://asia.api.riotgames.com/lol/match/v5/matches/${matchId}?api_key=${key}`
       );
-      if (response.data.info.gameMode !== "CHERRY") {
+      if (response.data.info.queueId !== 1700) {
         return response.data.info;
       }
     } catch (e) {
