@@ -57,13 +57,15 @@ const Record = () => {
                           myTeam?.win ? `text-[#4171D6]` : `text-[#D31A45]`
                         }`}
                       >
-                        {obj.gameMode === "CHERRY"
-                          ? "아레나"
-                          : obj.gameMode === "ARAM"
-                          ? "무작위 총력전"
-                          : obj.gameMode === "CLASSIC"
+                        {obj.queueId === 440
                           ? "자유 5:5 랭크"
-                          : "몰라 이쒸"}
+                          : obj.queueId === 420
+                          ? "솔랭"
+                          : obj.queueId === 450
+                          ? "무작위 총력전"
+                          : obj.queueId === 430
+                          ? "일반"
+                          : ""}
                       </div>
                       <div className="time-stamp relative">
                         {convertUnixTimestampToDuration(
@@ -402,7 +404,7 @@ const Record = () => {
                     </ul>
                   </div>
                 </div>
-                <div className="action relative w-10 rounded overflow-hidden">
+                <div className="action relative w-10 roundㄹed overflow-hidden">
                   <button
                     className={`detail w-10 h-24 ${
                       myTeam?.win ? `bg-[#D5E3FF]` : `bg-[#FFD8D9]`

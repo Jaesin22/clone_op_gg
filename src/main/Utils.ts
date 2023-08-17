@@ -135,6 +135,7 @@ export interface GameData {
   gameStartTimestamp: number;
   gameEndTimestamp: number;
   gameDuration: number;
+  queueId: number;
 }
 
 // Record.tsx에서 UNix 시간 변환하는 함수
