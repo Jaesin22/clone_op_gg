@@ -1,10 +1,10 @@
 import { useQuery } from "react-query";
 import { getSummonerInfo } from "../../api/Champion";
 import { Team, participants } from "../Utils";
+import useSummonerData from "../../hooks/useSummonerData";
 
 const Summary = ({ GameData }: any) => {
-  const { data } = useQuery(["puuid"], getSummonerInfo);
-  const puuId = data?.puuid;
+  const { puuId } = useSummonerData();
 
   const participantData = GameData.participants.filter(
     (partObj: participants) => partObj.puuid === puuId

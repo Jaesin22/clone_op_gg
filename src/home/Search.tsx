@@ -1,14 +1,24 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { GetData } from "../api/Champion";
 
 const Search = () => {
-  const [name, setName] = useState<string | number>("");
+  const [name, setName] = useState<string>("");
+  const navigate = useNavigate();
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
+  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    GetData(encodeURI(name));
+    navigate(`/summoner/${name}`, { state: { name: name } });
+  };
   return (
     <div className="relative w-[800px] my-0 mx-auto text-center">
-      <form className="flex h-[60px] items-center relative rounded-[30px] text-left bg-white shadow-xl">
+      <form
+        className="flex h-[60px] items-center relative rounded-[30px] text-left bg-white shadow-xl"
+        onSubmit={onSubmitHandler}
+      >
         <div className="relative h-10 pl-8 mr-2 pr-2">
           <label
             htmlFor="searchHome"

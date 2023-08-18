@@ -1,29 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { getSummonerInfo, GetRanks } from "../api/Champion";
 import { UserRank } from "../api/Utils";
-import { useQuery } from "react-query";
+import useSummonerData from "../hooks/useSummonerData";
 
 const Rank = () => {
   const [info, setInfo] = useState<UserRank[]>([]);
-  const { data } = useQuery(["id"], getSummonerInfo);
-  const id = data?.id;
-  const { data: infoss, isLoading } = useQuery<UserRank[], Error>(
-    ["rankData", id],
-    () => GetRanks(id),
-    {
-      enabled: !!data,
-    }
-  );
+  const { infoss } = useSummonerData();
 
   useEffect(() => {
     if (infoss) {
       setInfo(infoss.filter((infos) => infos.queueType === "RANKED_SOLO_5x5"));
     }
   }, [infoss]);
-
-  if (isLoading) {
-    return <div></div>;
-  }
 
   return (
     <div>

@@ -1,11 +1,16 @@
-import { getData } from "../api/Champion";
+import { GetData } from "../api/Champion";
 import { useQuery } from "react-query";
+import { useLocation } from "react-router-dom";
 
 const Profile = () => {
-  const { data, isLoading } = useQuery(["response.data"], getData);
+  const location = useLocation();
+  const summonerName = location.state.name;
+  const { data, isLoading } = useQuery(["summonerData", summonerName], () =>
+    GetData(encodeURI(summonerName))
+  );
 
   if (isLoading) {
-    return <h3>2</h3>;
+    return <div></div>;
   }
   const imgUrl = process.env.REACT_APP_PROFILE_ICON_URL?.replaceAll(
     '"',

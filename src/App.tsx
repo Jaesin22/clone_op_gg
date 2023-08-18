@@ -9,7 +9,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomeLayout />} />
-          <Route path="/summoner" element={<SummonerLayout />} />
+          <Route path="/summoner/:summonerName" element={<SummonerLayout />} />
         </Routes>
       </BrowserRouter>
     </div>

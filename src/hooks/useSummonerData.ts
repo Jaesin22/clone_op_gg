@@ -4,7 +4,9 @@ import {
   getRuneInfo,
   getMatchId,
   getGameInfo,
+  GetRanks,
 } from "../api/Champion";
+import { UserRank } from "../api/Utils";
 
 const useSummonerData = () => {
   const PAGE_SIZE = 20;
@@ -48,6 +50,14 @@ const useSummonerData = () => {
     }
   );
 
+  const { data: infoss } = useQuery<UserRank[], Error>(
+    ["rankData", puuId],
+    () => GetRanks(puuId),
+    {
+      enabled: !!puuId,
+    }
+  );
+
   return {
     data,
     runeData,
@@ -56,6 +66,7 @@ const useSummonerData = () => {
     isLoading,
     fetchNextPage,
     gameData,
+    infoss,
   };
 };
 

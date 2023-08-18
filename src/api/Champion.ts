@@ -1,14 +1,16 @@
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
-export const getData = async () => {
+export const GetData = async (name: string) => {
   const key = process.env.REACT_APP_API_KEY?.replaceAll('"', "")?.replace(
     ";",
     ""
   );
-  const summonerName = "%EC%8A%AC%EA%B8%B0%EB%A1%9C%EC%9A%B4%ED%98%84%EC%9E%AC";
+  const summonerNames =
+    "%EC%8A%AC%EA%B8%B0%EB%A1%9C%EC%9A%B4%ED%98%84%EC%9E%AC";
   try {
     const response = await axios.get(
-      `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${summonerName}?api_key=${key}`
+      `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}?api_key=${key}`
     );
     return response.data;
   } catch (e) {
@@ -17,8 +19,10 @@ export const getData = async () => {
 };
 
 export const getSummonerInfo = async () => {
+  const summonerNames =
+    "%EC%8A%AC%EA%B8%B0%EB%A1%9C%EC%9A%B4%ED%98%84%EC%9E%AC";
   try {
-    const response = await getData();
+    const response = await GetData(summonerNames);
     if (response) {
       return response;
     }
