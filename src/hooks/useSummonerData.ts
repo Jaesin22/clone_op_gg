@@ -1,6 +1,6 @@
 import { useQuery, useInfiniteQuery } from "react-query";
 import { getRuneInfo, getMatchId, getGameInfo, GetData } from "../api/Champion";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const useSummonerData = () => {
   const PAGE_SIZE = 20;

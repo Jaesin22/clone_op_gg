@@ -1,7 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Searchbar = () => {
   const [name, setName] = useState<string>("");
+  const navigate = useNavigate();
+
+  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    navigate(`/summoner/${name}`);
+  };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -16,7 +22,7 @@ const Searchbar = () => {
         />
       </div>
       <div className="ml-5 flex items-center justify-center">
-        <form>
+        <form onSubmit={onSubmitHandler}>
           <div className="float-left ">
             <button
               type="button"
@@ -47,7 +53,7 @@ const Searchbar = () => {
               autoComplete="off"
               placeholder="소환사명, 소환사명, ..."
               value={name}
-              className="float-right w-[840px] h-8 text-xs px-2.5"
+              className="float-right w-[840px] h-8 text-xs px-2.5 outline-none"
               onChange={onChange}
             />
             <button
