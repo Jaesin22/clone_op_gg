@@ -12,7 +12,7 @@ import useSummonerData from "../hooks/useSummonerData";
 
 const Record = () => {
   const now = useMemo(() => Math.floor(Date.now()), []); // 한 번만 계산됨
-  const { runeData, puuId, isLoading, gameData, fetchNextPage } =
+  const { runeData, puuId, isLoading, gameData, fetchNextPage, hasNextPage } =
     useSummonerData();
 
   const [showScore, setShowScore] = useState(
@@ -428,7 +428,11 @@ const Record = () => {
 
       <button
         className="more border border-[#DBE0E4] bg-white rounded block w-full h-9 py-2 text-xs text-center box-border"
-        onClick={() => fetchNextPage()}
+        onClick={() => {
+          if (hasNextPage) {
+            fetchNextPage();
+          }
+        }}
         type="button"
       >
         더 보기

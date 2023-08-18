@@ -3,7 +3,7 @@ import { getRuneInfo, getMatchId, getGameInfo, GetData } from "../api/Champion";
 import { useLocation } from "react-router-dom";
 
 const useSummonerData = () => {
-  const PAGE_SIZE = 20;
+  const PAGE_SIZE = 10;
   const location = useLocation();
   const splitUrl = location.pathname.split("/") ?? null;
   const summonerName =
@@ -23,13 +23,35 @@ const useSummonerData = () => {
   const id = data?.id;
 
   // 게임 매치 정보 가져오는 쿼리
+  // const {
+  //   data: matchData,
+  //   isLoading,
+  //   fetchNextPage,
+  //   hasNextPage,
+  // } = useInfiniteQuery(
+  //   ["matchData", puuId],
+  //   ({ pageParam = 0 }) => {
+  //     getMatchId(puuId, pageParam, PAGE_SIZE), console.log(pageParam);
+  //   },
+  //   {
+  //     enabled: !!puuId,
+  //     staleTime: Infinity,
+  //     getNextPageParam: (lastPage, pages) => {
+  //       return PAGE_SIZE * pages.length;
+  //     },
+  //   }
+  // );
   const {
     data: matchData,
     isLoading,
     fetchNextPage,
+    hasNextPage,
   } = useInfiniteQuery(
     ["matchData", puuId],
-    ({ pageParam = 0 }) => getMatchId(puuId, pageParam, PAGE_SIZE),
+    ({ pageParam = 0 }) => {
+      console.log(pageParam);
+      return getMatchId(puuId, pageParam, PAGE_SIZE);
+    },
     {
       enabled: !!puuId,
       staleTime: Infinity,
@@ -38,9 +60,10 @@ const useSummonerData = () => {
       },
     }
   );
+  console.log(matchData?.pages[matchData?.pages.length - 1]);
   // 매치 정보를 통해 세부 게임 결과 가져오는 쿼리
   const { data: gameData } = useQuery(
-    ["gameData", matchData?.pages],
+    ["gameData", matchData?.pages[matchData?.pages.length - 1]],
     () => {
       const allMatchIds: any = matchData?.pages.flatMap((page) => page);
       return getGameInfo(allMatchIds);
@@ -63,6 +86,7 @@ const useSummonerData = () => {
     gameData,
     isFetching,
     id,
+    hasNextPage,
   };
 };
 
