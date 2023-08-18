@@ -1,13 +1,17 @@
 import { useQuery, useInfiniteQuery } from "react-query";
 import { getRuneInfo, getMatchId, getGameInfo, GetData } from "../api/Champion";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 const useSummonerData = () => {
   const PAGE_SIZE = 20;
   const location = useLocation();
-  const summonerName = location.state.name;
+  const splitUrl = location.pathname.split("/") ?? null;
+  const summonerName =
+    splitUrl.length > 1
+      ? splitUrl[splitUrl.length - 1].replaceAll("'", "")
+      : "";
   const { data, isFetching } = useQuery(["summonerData", summonerName], () =>
-    GetData(encodeURI(summonerName))
+    GetData(summonerName)
   );
 
   // 룬 정보 가져오는 query

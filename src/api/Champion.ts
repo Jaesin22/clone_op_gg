@@ -11,7 +11,7 @@ export const GetData = async (name: string) => {
     );
     return response.data;
   } catch (e) {
-    console.log("Failed", e);
+    console.error(e);
   }
 };
 
