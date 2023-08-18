@@ -1,25 +1,24 @@
 import { useQuery, useInfiniteQuery } from "react-query";
-import {
-  getSummonerInfo,
-  getRuneInfo,
-  getMatchId,
-  getGameInfo,
-  GetRanks,
-} from "../api/Champion";
-import { UserRank } from "../api/Utils";
+import { getRuneInfo, getMatchId, getGameInfo, GetData } from "../api/Champion";
+import { useLocation } from "react-router-dom";
 
 const useSummonerData = () => {
   const PAGE_SIZE = 20;
-  const { data } = useQuery(["puuid"], getSummonerInfo, {
-    refetchOnWindowFocus: false,
-  });
+  const location = useLocation();
+  const summonerName = location.state.name;
+  const { data, isFetching } = useQuery(["summonerData", summonerName], () =>
+    GetData(encodeURI(summonerName))
+  );
 
+  // 룬 정보 가져오는 query
   const { data: runeData } = useQuery(["runeData"], getRuneInfo, {
     refetchOnWindowFocus: false,
   });
 
   const puuId = data?.puuid;
+  const id = data?.id;
 
+  // 게임 매치 정보 가져오는 쿼리
   const {
     data: matchData,
     isLoading,
@@ -35,7 +34,7 @@ const useSummonerData = () => {
       },
     }
   );
-
+  // 매치 정보를 통해 세부 게임 결과 가져오는 쿼리
   const { data: gameData } = useQuery(
     ["gameData", matchData?.pages],
     () => {
@@ -50,14 +49,6 @@ const useSummonerData = () => {
     }
   );
 
-  const { data: infoss } = useQuery<UserRank[], Error>(
-    ["rankData", puuId],
-    () => GetRanks(puuId),
-    {
-      enabled: !!puuId,
-    }
-  );
-
   return {
     data,
     runeData,
@@ -66,7 +57,8 @@ const useSummonerData = () => {
     isLoading,
     fetchNextPage,
     gameData,
-    infoss,
+    isFetching,
+    id,
   };
 };
 

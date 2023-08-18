@@ -1,5 +1,3 @@
-import { useQuery } from "react-query";
-import { getSummonerInfo } from "../../api/Champion";
 import { Team, participants } from "../Utils";
 import useSummonerData from "../../hooks/useSummonerData";
 

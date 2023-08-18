@@ -108,8 +108,6 @@ const useTeamInfo = (gameData: GameData[], puuId: string) => {
       const myTeam = data.teams.find((team: Team) => team.teamId === teamId);
       teamKillCount += myTeam.objectives.champion.kills;
     });
-
-    console.log(positionCounts);
     setWin(winCount);
     setLose(loseCount);
     setKill(killCount);

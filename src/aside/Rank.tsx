@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { UserRank } from "../api/Utils";
-import useSummonerData from "../hooks/useSummonerData";
+import GetRankGame from "../hooks/GetRankGame";
 
 const Rank = () => {
   const [info, setInfo] = useState<UserRank[]>([]);
-  const { infoss } = useSummonerData();
+  const { infoss, isLoading } = GetRankGame();
 
   useEffect(() => {
     if (infoss) {
       setInfo(infoss.filter((infos) => infos.queueType === "RANKED_SOLO_5x5"));
     }
   }, [infoss]);
+
+  if (isLoading) {
+    return <div></div>;
+  }
 
   return (
     <div>

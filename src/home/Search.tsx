@@ -41,6 +41,7 @@ const Search = () => {
           <img
             src="https://s-lol-web.op.gg/images/icon/icon-gg.svg"
             className="w-[42px] box-content"
+            alt="logo"
           />
         </button>
       </form>

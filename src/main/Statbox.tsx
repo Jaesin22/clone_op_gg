@@ -13,9 +13,6 @@ const Statbox = () => {
     return <div></div>; // 또는 원하는 뷰로 대체할 수 있음
   }
 
-  console.log(gameData);
-  console.log(positionCounts);
-
   return (
     <div className="stats-box flex text-left bg-white py-2 px-3 box-border border-t h-[132px]">
       <div className="stats w-[222px]">
