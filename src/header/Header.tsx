@@ -1,10 +1,15 @@
 import { gameList } from "./Utils";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const navigateToHome = () => {
+    navigate("/");
+  };
   return (
     <header>
       <div className="flex bg-[#28344e]">
-        <a className="logo" href="#!">
+        <a className="logo" href="#!" onClick={navigateToHome}>
           <img
             src="https://s-lol-web.op.gg/images/icon/opgglogo.svg?v=1690271849565"
             alt="로고"
