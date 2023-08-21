@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { gameList } from "./Utils";
 import { useNavigate } from "react-router-dom";
 
@@ -6,6 +7,12 @@ const Header = () => {
   const navigateToHome = () => {
     navigate("/");
   };
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const toggleMode = () => {
+    setIsDarkMode((mode) => !mode);
+  };
+
   return (
     <header>
       <div className="flex bg-[#28344e]">
@@ -76,53 +83,24 @@ const Header = () => {
             </button>
           </div>
           <div className="flex mt-2 mx-2 ">
-            <div className="mt-0.5">
-              <button>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="#b4ceff"
-                  className="w-4.5 h-5"
-                >
-                  <path d="M15.75 8.25a.75.75 0 01.75.75c0 1.12-.492 2.126-1.27 2.812a.75.75 0 11-.992-1.124A2.243 2.243 0 0015 9a.75.75 0 01.75-.75z" />
-                  <path
-                    fillRule="evenodd"
-                    d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM4.575 15.6a8.25 8.25 0 009.348 4.425 1.966 1.966 0 00-1.84-1.275.983.983 0 01-.97-.822l-.073-.437c-.094-.565.25-1.11.8-1.267l.99-.282c.427-.123.783-.418.982-.816l.036-.073a1.453 1.453 0 012.328-.377L16.5 15h.628a2.25 2.25 0 011.983 1.186 8.25 8.25 0 00-6.345-12.4c.044.262.18.503.389.676l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 01-1.161.886l-.143.048a1.107 1.107 0 00-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 01-1.652.928l-.679-.906a1.125 1.125 0 00-1.906.172L4.575 15.6z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
-            </div>
-            <div className="flex ml-1">
-              <button type="button" className="mb-2.5 ml-1">
-                <span className="text-xs text-[#C3CBD1] ">한국어</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="#c2cad6"
-                  className="flex w-4 h-4 float-right mt-1.5 ml-2"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
-            </div>
             <div>
               <div className="flex">
                 <div className="text-sm text-gray-500 ml-6 mr-6">|</div>
                 <button
                   type="button"
-                  className="text-white text-xs mt-1 before:content-none"
+                  className={`text-xs mt-1 ${
+                    isDarkMode ? "bg-gray-800" : "bg-white"
+                  } ${isDarkMode ? "text-white" : "text-gray-800"}`}
+                  onClick={toggleMode}
                 >
-                  hello
+                  {isDarkMode ? "Dark Mode" : "Light Mode"}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    fill="#c2cad6"
-                    className="flex w-4 h-4 float-right mt-0.5 ml-2"
+                    fill={isDarkMode ? "#c2cad6" : "#4A90E2"}
+                    className={`flex w-4 h-4 float-right mt-0.5 ml-2 ${
+                      isDarkMode ? "rotate-0" : "rotate-180"
+                    }`}
                   >
                     <path
                       fillRule="evenodd"
