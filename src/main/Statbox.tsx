@@ -17,9 +17,9 @@ const Statbox = () => {
 
   return (
     <div
-      className={`stats-box flex text-left ${
-        isDarkMode ? `bg-[#31313C]` : `bg-white`
-      } py-2 px-3 box-border border-t h-[132px]`}
+      className={`stats-box flex text-left border-t ${
+        isDarkMode ? `bg-[#31313C] border-[#1C1C1F]` : `bg-white`
+      } py-2 px-3 box-border  h-[132px]`}
     >
       <div className="stats w-[222px]">
         <div className="win-lose leading-4 text-xs text-[#758592]">

@@ -7,8 +7,10 @@ const SummaryHeader = () => {
   return (
     <div
       className={`flex h-[45px] w-full ${
-        isDarkMode ? `bg-[#31313C]` : `bg-white`
-      }  border-t`}
+        isDarkMode
+          ? `bg-[#31313C] border-t border-[#1C1C1F]`
+          : `bg-white border-t`
+      }  `}
     >
       <ul className="flex w-[1080px] m-auto">
         {SummaryList.map((obj, index) => (

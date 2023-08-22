@@ -17,7 +17,7 @@ const FreeRank = () => {
   if (isLoading) {
     return <div></div>;
   }
-
+  console.log(info);
   return (
     <div>
       <div
@@ -38,8 +38,10 @@ const FreeRank = () => {
         {info.map((obj: UserRank, index: number) => (
           <div
             key={index}
-            className={`content flex items-center p-3 border-t border-[#ebeef1] ${
-              isDarkMode ? `bg-[#31313C]` : `bg-white`
+            className={`content flex items-center p-3 border-t  ${
+              isDarkMode
+                ? `bg-[#31313C] border-[#1C1C1F]`
+                : `bg-white border-[#ebeef1]`
             }`}
           >
             <div className="img relative">

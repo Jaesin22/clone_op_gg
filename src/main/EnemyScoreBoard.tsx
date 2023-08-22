@@ -160,7 +160,12 @@ const EnemyScoreBoard = ({ GameData }: any) => {
                     </div>
                   </td>
                   <td className="name pl-[5px] whitespace-nowrap overflow-hidden text-ellipsis">
-                    <a href="!#" className=" leading-4 text-xs text-[#202D37]">
+                    <a
+                      href="!#"
+                      className={`leading-4 text-xs ${
+                        isDarkMode ? `text-white` : `text-[#202D37]`
+                      } `}
+                    >
                       {partObj.summonerName}
                     </a>
                     <div className="tier text-[11px] leading-[14px] text-[#9AA4AF]">
@@ -282,7 +287,9 @@ const EnemyScoreBoard = ({ GameData }: any) => {
                   <td className="items text-center pt-1 pb-[3px] align-middle">
                     <div
                       className={`item ml-0 inline-block w-[22px] h-[22px] align-middle mx-[1px] rounded ${
-                        enemyTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
+                        enemyTeam.win
+                          ? ` ${isDarkMode ? `bg-[#2F436E]` : `bg-[#B3CDFF]`}`
+                          : `${isDarkMode ? `bg-[#703C47]` : `bg-[#FFBAC3]`}`
                       }`}
                     >
                       <div className="relative">
@@ -297,7 +304,9 @@ const EnemyScoreBoard = ({ GameData }: any) => {
                     </div>
                     <div
                       className={`item ml-0 inline-block w-[22px] h-[22px] align-middle mx-[1px] rounded ${
-                        enemyTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
+                        enemyTeam.win
+                          ? ` ${isDarkMode ? `bg-[#2F436E]` : `bg-[#B3CDFF]`}`
+                          : `${isDarkMode ? `bg-[#703C47]` : `bg-[#FFBAC3]`}`
                       }`}
                     >
                       <div className="relative">
@@ -312,7 +321,9 @@ const EnemyScoreBoard = ({ GameData }: any) => {
                     </div>
                     <div
                       className={`item ml-0 inline-block w-[22px] h-[22px] align-middle mx-[1px] rounded ${
-                        enemyTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
+                        enemyTeam.win
+                          ? ` ${isDarkMode ? `bg-[#2F436E]` : `bg-[#B3CDFF]`}`
+                          : `${isDarkMode ? `bg-[#703C47]` : `bg-[#FFBAC3]`}`
                       }`}
                     >
                       <div className="relative">
@@ -327,7 +338,9 @@ const EnemyScoreBoard = ({ GameData }: any) => {
                     </div>
                     <div
                       className={`item ml-0 inline-block w-[22px] h-[22px] align-middle mx-[1px] rounded ${
-                        enemyTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
+                        enemyTeam.win
+                          ? ` ${isDarkMode ? `bg-[#2F436E]` : `bg-[#B3CDFF]`}`
+                          : `${isDarkMode ? `bg-[#703C47]` : `bg-[#FFBAC3]`}`
                       }`}
                     >
                       <div className="relative">
@@ -342,7 +355,9 @@ const EnemyScoreBoard = ({ GameData }: any) => {
                     </div>
                     <div
                       className={`item ml-0 inline-block w-[22px] h-[22px] align-middle mx-[1px] rounded ${
-                        enemyTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
+                        enemyTeam.win
+                          ? ` ${isDarkMode ? `bg-[#2F436E]` : `bg-[#B3CDFF]`}`
+                          : `${isDarkMode ? `bg-[#703C47]` : `bg-[#FFBAC3]`}`
                       }`}
                     >
                       <div className="relative">
@@ -357,7 +372,9 @@ const EnemyScoreBoard = ({ GameData }: any) => {
                     </div>
                     <div
                       className={`item ml-0 inline-block w-[22px] h-[22px] align-middle mx-[1px] rounded ${
-                        enemyTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
+                        enemyTeam.win
+                          ? ` ${isDarkMode ? `bg-[#2F436E]` : `bg-[#B3CDFF]`}`
+                          : `${isDarkMode ? `bg-[#703C47]` : `bg-[#FFBAC3]`}`
                       }`}
                     >
                       <div className="relative">
@@ -372,7 +389,9 @@ const EnemyScoreBoard = ({ GameData }: any) => {
                     </div>
                     <div
                       className={`item ml-0 inline-block w-[22px] h-[22px] align-middle mx-[1px] rounded ${
-                        enemyTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
+                        enemyTeam.win
+                          ? ` ${isDarkMode ? `bg-[#2F436E]` : `bg-[#B3CDFF]`}`
+                          : `${isDarkMode ? `bg-[#703C47]` : `bg-[#FFBAC3]`}`
                       }`}
                     >
                       <div className="relative">

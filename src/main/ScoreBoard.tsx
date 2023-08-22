@@ -44,7 +44,7 @@ const ScoreBoard = ({ GameData }: any) => {
               isDarkMode ? `bg-[#31313C]` : `bg-white`
             }`}
           >
-            <tr className=" table-row border-inherit align-middle w-[740px]">
+            <tr className="table-row border-inherit align-middle w-[740px]">
               <th colSpan={4} className="pl-[15px] text-left text-gray-400">
                 <span
                   className={`font-xs ${
@@ -165,7 +165,9 @@ const ScoreBoard = ({ GameData }: any) => {
                     <td className="name pl-[5px] whitespace-nowrap overflow-hidden text-ellipsis">
                       <a
                         href="!#"
-                        className=" leading-4 text-xs text-[#202D37]"
+                        className={`leading-4 text-xs ${
+                          isDarkMode ? `text-white` : `text-[#202D37]`
+                        }`}
                       >
                         {partObj.summonerName}
                       </a>
@@ -287,7 +289,9 @@ const ScoreBoard = ({ GameData }: any) => {
                     <td className="items text-center pt-1 pb-[3px] align-middle">
                       <div
                         className={`item ml-0 inline-block w-[22px] h-[22px] align-middle mx-[1px] rounded ${
-                          myTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
+                          myTeam.win
+                            ? ` ${isDarkMode ? `bg-[#2F436E]` : `bg-[#B3CDFF]`}`
+                            : `${isDarkMode ? `bg-[#703C47]` : `bg-[#FFBAC3]`}`
                         }`}
                       >
                         <div className="relative">
@@ -302,7 +306,9 @@ const ScoreBoard = ({ GameData }: any) => {
                       </div>
                       <div
                         className={`item ml-0 inline-block w-[22px] h-[22px] align-middle mx-[1px] rounded ${
-                          myTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
+                          myTeam.win
+                            ? ` ${isDarkMode ? `bg-[#2F436E]` : `bg-[#B3CDFF]`}`
+                            : `${isDarkMode ? `bg-[#703C47]` : `bg-[#FFBAC3]`}`
                         }`}
                       >
                         <div className="relative">
@@ -317,7 +323,9 @@ const ScoreBoard = ({ GameData }: any) => {
                       </div>
                       <div
                         className={`item ml-0 inline-block w-[22px] h-[22px] align-middle mx-[1px] rounded ${
-                          myTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
+                          myTeam.win
+                            ? ` ${isDarkMode ? `bg-[#2F436E]` : `bg-[#B3CDFF]`}`
+                            : `${isDarkMode ? `bg-[#703C47]` : `bg-[#FFBAC3]`}`
                         }`}
                       >
                         <div className="relative">
@@ -332,7 +340,9 @@ const ScoreBoard = ({ GameData }: any) => {
                       </div>
                       <div
                         className={`item ml-0 inline-block w-[22px] h-[22px] align-middle mx-[1px] rounded ${
-                          myTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
+                          myTeam.win
+                            ? ` ${isDarkMode ? `bg-[#2F436E]` : `bg-[#B3CDFF]`}`
+                            : `${isDarkMode ? `bg-[#703C47]` : `bg-[#FFBAC3]`}`
                         }`}
                       >
                         <div className="relative">
@@ -347,7 +357,9 @@ const ScoreBoard = ({ GameData }: any) => {
                       </div>
                       <div
                         className={`item ml-0 inline-block w-[22px] h-[22px] align-middle mx-[1px] rounded ${
-                          myTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
+                          myTeam.win
+                            ? ` ${isDarkMode ? `bg-[#2F436E]` : `bg-[#B3CDFF]`}`
+                            : `${isDarkMode ? `bg-[#703C47]` : `bg-[#FFBAC3]`}`
                         }`}
                       >
                         <div className="relative">
@@ -362,7 +374,9 @@ const ScoreBoard = ({ GameData }: any) => {
                       </div>
                       <div
                         className={`item ml-0 inline-block w-[22px] h-[22px] align-middle mx-[1px] rounded ${
-                          myTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
+                          myTeam.win
+                            ? ` ${isDarkMode ? `bg-[#2F436E]` : `bg-[#B3CDFF]`}`
+                            : `${isDarkMode ? `bg-[#703C47]` : `bg-[#FFBAC3]`}`
                         }`}
                       >
                         <div className="relative">
@@ -377,7 +391,9 @@ const ScoreBoard = ({ GameData }: any) => {
                       </div>
                       <div
                         className={`item ml-0 inline-block w-[22px] h-[22px] align-middle mx-[1px] rounded ${
-                          myTeam.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
+                          myTeam.win
+                            ? ` ${isDarkMode ? `bg-[#2F436E]` : `bg-[#B3CDFF]`}`
+                            : `${isDarkMode ? `bg-[#703C47]` : `bg-[#FFBAC3]`}`
                         }`}
                       >
                         <div className="relative">

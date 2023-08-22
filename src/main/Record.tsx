@@ -255,7 +255,17 @@ const Record = () => {
                             <ul className="flex">
                               <li
                                 className={`rounded ${
-                                  myTeam?.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
+                                  myTeam?.win
+                                    ? `${
+                                        isDarkMode
+                                          ? `bg-[#2F436E]`
+                                          : `bg-[#B3CDFF]`
+                                      }`
+                                    : `${
+                                        isDarkMode
+                                          ? `bg-[#703C47]`
+                                          : `bg-[#FFBAC3]`
+                                      }`
                                 } mx-[1px] w-[22px] h-[22px]`}
                               >
                                 <div className="relative">
@@ -270,7 +280,17 @@ const Record = () => {
                               </li>
                               <li
                                 className={`rounded ${
-                                  myTeam?.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
+                                  myTeam?.win
+                                    ? `${
+                                        isDarkMode
+                                          ? `bg-[#2F436E]`
+                                          : `bg-[#B3CDFF]`
+                                      }`
+                                    : `${
+                                        isDarkMode
+                                          ? `bg-[#703C47]`
+                                          : `bg-[#FFBAC3]`
+                                      }`
                                 } mx-[1px] w-[22px] h-[22px]`}
                               >
                                 <div className="relative">
@@ -285,7 +305,17 @@ const Record = () => {
                               </li>
                               <li
                                 className={`rounded ${
-                                  myTeam?.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
+                                  myTeam?.win
+                                    ? `${
+                                        isDarkMode
+                                          ? `bg-[#2F436E]`
+                                          : `bg-[#B3CDFF]`
+                                      }`
+                                    : `${
+                                        isDarkMode
+                                          ? `bg-[#703C47]`
+                                          : `bg-[#FFBAC3]`
+                                      }`
                                 } mx-[1px] w-[22px] h-[22px]`}
                               >
                                 <div className="relative">
@@ -300,7 +330,17 @@ const Record = () => {
                               </li>
                               <li
                                 className={`rounded ${
-                                  myTeam?.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
+                                  myTeam?.win
+                                    ? `${
+                                        isDarkMode
+                                          ? `bg-[#2F436E]`
+                                          : `bg-[#B3CDFF]`
+                                      }`
+                                    : `${
+                                        isDarkMode
+                                          ? `bg-[#703C47]`
+                                          : `bg-[#FFBAC3]`
+                                      }`
                                 } mx-[1px] w-[22px] h-[22px]`}
                               >
                                 <div className="relative">
@@ -315,7 +355,17 @@ const Record = () => {
                               </li>
                               <li
                                 className={`rounded ${
-                                  myTeam?.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
+                                  myTeam?.win
+                                    ? `${
+                                        isDarkMode
+                                          ? `bg-[#2F436E]`
+                                          : `bg-[#B3CDFF]`
+                                      }`
+                                    : `${
+                                        isDarkMode
+                                          ? `bg-[#703C47]`
+                                          : `bg-[#FFBAC3]`
+                                      }`
                                 } mx-[1px] w-[22px] h-[22px]`}
                               >
                                 <div className="relative">
@@ -330,7 +380,17 @@ const Record = () => {
                               </li>
                               <li
                                 className={`rounded ${
-                                  myTeam?.win ? `bg-[#B3CDFF]` : `bg-[#FFBAC3]`
+                                  myTeam?.win
+                                    ? `${
+                                        isDarkMode
+                                          ? `bg-[#2F436E]`
+                                          : `bg-[#B3CDFF]`
+                                      }`
+                                    : `${
+                                        isDarkMode
+                                          ? `bg-[#703C47]`
+                                          : `bg-[#FFBAC3]`
+                                      }`
                                 } mx-[1px] w-[22px] h-[22px]`}
                               >
                                 <div className="relative">

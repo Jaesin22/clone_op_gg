@@ -24,7 +24,7 @@ const Summary = ({ GameData }: any) => {
         isDarkMode ? `bg-[#282830]` : `bg-gray-100`
       }`}
     >
-      <div className="team pr-0 pl-4 text-left border-l">
+      <div className="team pr-0 pl-4 text-left">
         <div className="object ml-0 inline-block text-xs text-gray-500">
           <div className="relative">
             <img
