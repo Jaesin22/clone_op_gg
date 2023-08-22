@@ -404,7 +404,21 @@ const Record = () => {
                                 </div>
                               </li>
                             </ul>
-                            <div className="ward w-[22px] h-[22px] 0.5 mr-1 bg-[#FFBAC3] rounded-[50%]">
+                            <div
+                              className={`ward w-[22px] h-[22px] 0.5 mr-1 ${
+                                myTeam?.win
+                                  ? `${
+                                      isDarkMode
+                                        ? `bg-[#2F436E]`
+                                        : `bg-[#B3CDFF]`
+                                    }`
+                                  : `${
+                                      isDarkMode
+                                        ? `bg-[#703C47]`
+                                        : `bg-[#FFBAC3]`
+                                    }`
+                              } rounded-[50%]`}
+                            >
                               <div className="relative">
                                 {partObj.item6 ? (
                                   <img
