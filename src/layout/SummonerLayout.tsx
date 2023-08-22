@@ -12,17 +12,11 @@ import SummaryHeader from "../header/SummaryHeader";
 import { useTheme } from "../context/ThemeProvider";
 
 const SummonerLayout = () => {
-  // const { isDarkMode } = useTheme();
-  // const bodyStyle = {
-  //   margin: 0,
-  //   backgroundColor: "#dadada",
-  //   ...(isDarkMode && {
-  //     backgroundColor: "#1C1C1F",
-  //   }),
-  // };
   const { isDarkMode } = useTheme();
   return (
-    <div className={`${isDarkMode ? `bg-[#1C1C1F]` : `bg-[#dadada]`} h-screen`}>
+    <div
+      className={`${isDarkMode ? `bg-[#1C1C1F]` : `bg-[#dadada]`} min-h-screen`}
+    >
       <Header />
       <Searchbar />
       <Navbar />

@@ -45,7 +45,7 @@ const Rank = () => {
           >
             <div className="img relative">
               <img
-                src="https://opgg-static.akamaized.net/images/medals_new/diamond.png?image=q_auto,f_webp,w_144&v=1690782010896"
+                src={`https://opgg-static.akamaized.net/images/medals_new/${obj.tier?.toLowerCase()}.png?image=q_auto,f_webp,w_144&v=1690782010896`}
                 alt="tier"
                 className={`${
                   isDarkMode ? `bg-[#282830]` : `bg-[#F7F7F9]`
