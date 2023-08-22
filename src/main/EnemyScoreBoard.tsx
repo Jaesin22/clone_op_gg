@@ -1,3 +1,4 @@
+import React from "react";
 import {
   spellArray,
   participants,
@@ -390,4 +391,4 @@ const EnemyScoreBoard = ({ GameData }: any) => {
   );
 };
 
-export default EnemyScoreBoard;
+export default React.memo(EnemyScoreBoard);

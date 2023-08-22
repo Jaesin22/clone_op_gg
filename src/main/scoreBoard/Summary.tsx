@@ -1,3 +1,4 @@
+import React from "react";
 import { Team, participants } from "../Utils";
 import useSummonerData from "../../hooks/useSummonerData";
 
@@ -173,4 +174,4 @@ const Summary = ({ GameData }: any) => {
   );
 };
 
-export default Summary;
+export default React.memo(Summary);

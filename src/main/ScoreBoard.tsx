@@ -1,3 +1,4 @@
+import React from "react";
 import Summary from "./scoreBoard/Summary";
 import {
   spellArray,
@@ -392,4 +393,4 @@ const ScoreBoard = ({ GameData }: any) => {
   );
 };
 
-export default ScoreBoard;
+export default React.memo(ScoreBoard);
