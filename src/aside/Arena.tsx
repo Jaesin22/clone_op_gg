@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { UserRank } from "../api/Utils";
 import GetRankGame from "../hooks/GetRankGame";
+import { useTheme } from "../context/ThemeProvider";
 
 const Arena = () => {
   const [info, setInfo] = useState<UserRank[]>([]);
   const { infoss, isLoading } = GetRankGame();
+  const { isDarkMode } = useTheme();
 
   useEffect(() => {
     if (infoss) {
@@ -18,9 +20,13 @@ const Arena = () => {
 
   return (
     <div>
-      <div className="mt-2 rounded bg-white">
+      <div
+        className={`mt-2 rounded ${isDarkMode ? `bg-[#31313C]` : `bg-white`} `}
+      >
         <div className="flex header leading-9 px-3 text-sm justify-between">
-          <span>아레나</span>
+          <span className={`${isDarkMode ? `text-white` : `text-[#31313C]`}`}>
+            아레나
+          </span>
           {!info.length ? (
             <span className="unranked text-sm font-bold text-[#C3C8D1] mt-2">
               Unranked
@@ -32,13 +38,17 @@ const Arena = () => {
         {info.map((obj: UserRank, index: number) => (
           <div
             key={index}
-            className="content flex items-center p-3 border-t border-[#ebeef1] bg-white"
+            className={`content flex items-center p-3 border-t border-[#ebeef1] ${
+              isDarkMode ? `bg-[#31313C]` : `bg-white`
+            }`}
           >
             <div className="img relative">
               <img
                 src="https://opgg-static.akamaized.net/images/medals_new/diamond.png?image=q_auto,f_webp,w_144&v=1690782010896"
                 alt="tier"
-                className="bg-[#F7F7F9] rounded-[50%] h-[72px] min-w-[72px] w-[100%]"
+                className={`${
+                  isDarkMode ? `bg-[#282830]` : `bg-[#F7F7F9]`
+                }  rounded-[50%] h-[72px] min-w-[72px] w-[100%]`}
               />
             </div>
             <div className="info flex-1 relative ml-4">

@@ -1,6 +1,9 @@
 import useSummonerData from "../hooks/useSummonerData";
+import { useTheme } from "../context/ThemeProvider";
 const Profile = () => {
   const { data, isFetching } = useSummonerData();
+  const { isDarkMode } = useTheme();
+  //#31313C
 
   if (isFetching) {
     return <div></div>;
@@ -15,7 +18,11 @@ const Profile = () => {
   return (
     <article>
       {data && (
-        <div className="flex h-[228px] w-full bg-white">
+        <div
+          className={`flex h-[228px] w-full ${
+            isDarkMode ? `bg-[#31313C]` : `bg-white`
+          }`}
+        >
           <div className="wrapper flex w-[1080px] mx-auto my-0">
             <div className="header-profile flex pt-2.5 pr-2.5 pb-4 pl-0 mt-8 relative basis-24">
               <div className="profile-icon">
@@ -34,10 +41,18 @@ const Profile = () => {
             <div className="info ml-6 mt-3">
               <div className="prev-tier items-center justify-between mt-4"></div>
               <div className="flex name mt-2">
-                <h1 className="summoner-name text-2xl font-bold">
+                <h1
+                  className={`summoner-name text-2xl font-bold ${
+                    isDarkMode ? `text-white` : `text-black`
+                  }`}
+                >
                   {data?.name}
                 </h1>
-                <button className="w-7 h-7 rounded border-solid border ml-2 mt-0.5 border-[#DBE0E4]">
+                <button
+                  className={`w-7 h-7 rounded border-solid border ml-2 mt-0.5 ${
+                    isDarkMode ? `border-[#424254]` : `border-[#DBE0E4]`
+                  } `}
+                >
                   <img
                     src="https://s-lol-web.op.gg/images/icon/icon-bookmark.svg?v=1690447902108"
                     alt="off"
@@ -47,14 +62,18 @@ const Profile = () => {
               <div className="advertise mt-2 items-center">
                 <a
                   href="!#"
-                  className="flex border border-[#DBE0E4] bg-white p-1.5 rounded"
+                  className="flex border border-[#DBE0E4] bg-inherit p-1.5 rounded"
                 >
                   <img
                     src="https://s-lol-web.op.gg/assets/images/icons/riot-logomark-circle-offwhite@2x.png?image=q_auto,f_webp,w_32&v=1690447901880"
                     alt="logo"
                     className="w-4 h-4"
                   />
-                  <span className="text-xs ml-2">
+                  <span
+                    className={`text-xs ml-2 ${
+                      isDarkMode ? `text-white` : `text-black`
+                    }`}
+                  >
                     라이엇 계정 연동하고 나만의 프로필을 설정해보세요.
                   </span>
                   <img

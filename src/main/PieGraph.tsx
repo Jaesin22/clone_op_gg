@@ -27,6 +27,7 @@ const PieGraph = () => {
             outerRadius={40}
             fill="#8884d8"
             dataKey="value"
+            stroke="none" // 이 부분 추가
           >
             {data.map((entry, index) => (
               <Cell

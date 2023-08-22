@@ -9,11 +9,13 @@ import {
 } from "./Utils";
 import ScoreBoard from "./ScoreBoard";
 import useSummonerData from "../hooks/useSummonerData";
+import { useTheme } from "../context/ThemeProvider";
 
 const Record = () => {
   const now = useMemo(() => Math.floor(Date.now()), []); // 한 번만 계산됨
   const { runeData, puuId, isLoading, gameData, fetchNextPage, hasNextPage } =
     useSummonerData();
+  const { isDarkMode } = useTheme();
 
   const [showScore, setShowScore] = useState(
     Array(gameData?.length).fill(false)
@@ -45,8 +47,12 @@ const Record = () => {
               <div
                 className={`flex h-24 rounded border-l-[6px] ${
                   myTeam?.win
-                    ? `border-[#5383E8] bg-[#ECF2FF]`
-                    : `border-[#e84057] bg-[#FFF1F3]`
+                    ? `${
+                        isDarkMode ? `bg-[#28344E]` : `bg-[#ECF2FF]`
+                      } border-[#5383E8]`
+                    : `${
+                        isDarkMode ? `bg-[#59343B]` : `bg-[#FFF1F3]`
+                      } border-[#e84057]`
                 } `}
               >
                 <div className="content flex h-full justify-between flex-grow">
@@ -172,7 +178,11 @@ const Record = () => {
                           </div>
                           <div className="kda flex flex-col justify-center pr-3 ml-3 w-[107px]">
                             <div className="k-d-a leading-[22px] text-[15px] text-[#9AA4AF]">
-                              <span className="font-bold text-black">
+                              <span
+                                className={`font-bold ${
+                                  isDarkMode ? `text-white` : `text-[#202D37]`
+                                }`}
+                              >
                                 {partObj.kills}
                               </span>
                               {" / "}
@@ -180,7 +190,11 @@ const Record = () => {
                                 {partObj.deaths}
                               </span>
                               {" / "}
-                              <span className="font-bold text-[#202D37]">
+                              <span
+                                className={`font-bold text-[#202D37] ${
+                                  isDarkMode ? `text-white` : `text-[#202D37]`
+                                }`}
+                              >
                                 {partObj.assists}
                               </span>
                             </div>
@@ -407,7 +421,9 @@ const Record = () => {
                 <div className="action relative w-10 roundㄹed overflow-hidden">
                   <button
                     className={`detail w-10 h-24 ${
-                      myTeam?.win ? `bg-[#D5E3FF]` : `bg-[#FFD8D9]`
+                      myTeam?.win
+                        ? `${isDarkMode ? `bg-[#2F436E]` : `bg-[#D5E3FF]`}`
+                        : ` ${isDarkMode ? `bg-[#703C47]` : `bg-[#FFD8D9]`}`
                     } `}
                     onClick={() => toggleScoreBoard(index)}
                   >
@@ -427,7 +443,11 @@ const Record = () => {
         })}
 
       <button
-        className="more border border-[#DBE0E4] bg-white rounded block w-full h-9 py-2 text-xs text-center box-border"
+        className={`more border rounded block w-full h-9 py-2 text-xs text-center box-border ${
+          isDarkMode
+            ? `bg-[#31313C] text-white border-[#424254]`
+            : `bg-white text-black border-[#DBE0E4]`
+        }`}
         onClick={() => {
           if (hasNextPage) {
             fetchNextPage();

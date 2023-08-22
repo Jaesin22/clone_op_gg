@@ -4,6 +4,7 @@ import "./App.css";
 import SummonerLayout from "./layout/SummonerLayout";
 import HomeLayout from "./layout/HomeLayout";
 import { ThemeProvider } from "./context/ThemeProvider";
+
 function App() {
   return (
     <div className="App">

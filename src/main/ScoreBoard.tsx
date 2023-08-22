@@ -10,9 +10,11 @@ import {
 } from "./Utils";
 import useSummonerData from "../hooks/useSummonerData";
 import EnemyScoreBoard from "./EnemyScoreBoard";
+import { useTheme } from "../context/ThemeProvider";
 
 const ScoreBoard = ({ GameData }: any) => {
   const { runeData, puuId, isLoading } = useSummonerData();
+  const { isDarkMode } = useTheme();
 
   if (isLoading) {
     return <div></div>;
@@ -37,7 +39,11 @@ const ScoreBoard = ({ GameData }: any) => {
     <div className="mt-1">
       <div className="">
         <table className="rounded-t w-[740px]">
-          <thead className=" table-header-group align-middle border-inherit bg-white ">
+          <thead
+            className={`table-header-group align-middle border-inherit bg-white ${
+              isDarkMode ? `bg-[#31313C]` : `bg-white`
+            }`}
+          >
             <tr className=" table-row border-inherit align-middle w-[740px]">
               <th colSpan={4} className="pl-[15px] text-left text-gray-400">
                 <span
@@ -69,8 +75,12 @@ const ScoreBoard = ({ GameData }: any) => {
           <tbody
             className={`${
               myTeam.win
-                ? `bg-[#ECF2FF] border-[#d5e3ff]`
-                : `bg-[#FFF1F3] border-[#ffd8d9]`
+                ? `${
+                    isDarkMode ? `bg-[#28344E]` : `bg-[#ECF2FF]`
+                  } border-[#d5e3ff]`
+                : ` ${
+                    isDarkMode ? `bg-[#59343B]` : `bg-[#FFF1F3]`
+                  } border-[#ffd8d9]`
             } border-t `}
           >
             {GameData.participants
@@ -183,22 +193,22 @@ const ScoreBoard = ({ GameData }: any) => {
                           (partObj.kills + partObj.assists) /
                             (partObj.deaths === 0 ? 1 : partObj.deaths) <
                           3
-                            ? "text-gray-400" // Apply red text color for values less than 3
+                            ? "text-gray-400"
                             : (partObj.kills + partObj.assists) /
                                 (partObj.deaths === 0 ? 1 : partObj.deaths) >=
                                 3 &&
                               (partObj.kills + partObj.assists) /
                                 (partObj.deaths === 0 ? 1 : partObj.deaths) <
                                 4
-                            ? "text-[#00A399]" // Apply yellow text color for values between 3 and 4 (inclusive)
+                            ? "text-[#00A399]"
                             : (partObj.kills + partObj.assists) /
                                 (partObj.deaths === 0 ? 1 : partObj.deaths) >=
                                 4 &&
                               (partObj.kills + partObj.assists) /
                                 (partObj.deaths === 0 ? 1 : partObj.deaths) <
                                 5
-                            ? "text-blue-500" // Apply green text color for values between 4 (inclusive) and 5 (inclusive)
-                            : "text-orange-600" // Apply blue text color for values greater than 5
+                            ? "text-blue-500"
+                            : "text-orange-600"
                         }`}
                       >
                         {(
@@ -208,7 +218,7 @@ const ScoreBoard = ({ GameData }: any) => {
                         {":1"}
                       </div>
                     </td>
-                    <td className="damage pt-1 pb-[3px] align-middle">
+                    <td className="damage pt-1 pb-[3px] align-middle text-gray-500">
                       <div className="flex justify-center">
                         <div className="relative">
                           <div className="dealt text-center text-[11px] leading-[14px]">

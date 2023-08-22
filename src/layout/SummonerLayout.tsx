@@ -9,17 +9,25 @@ import Searchbar from "../header/Searchbar";
 import Navbar from "../header/Navbar";
 import Profile from "../header/Profile";
 import SummaryHeader from "../header/SummaryHeader";
+import { useTheme } from "../context/ThemeProvider";
 
 const SummonerLayout = () => {
+  // const { isDarkMode } = useTheme();
+  // const bodyStyle = {
+  //   margin: 0,
+  //   backgroundColor: "#dadada",
+  //   ...(isDarkMode && {
+  //     backgroundColor: "#1C1C1F",
+  //   }),
+  // };
+  const { isDarkMode } = useTheme();
   return (
-    <>
-      <header>
-        <Header />
-        <Searchbar />
-        <Navbar />
-        <Profile />
-        <SummaryHeader />
-      </header>
+    <div className={`${isDarkMode ? `bg-[#1C1C1F]` : `bg-[#dadada]`} h-screen`}>
+      <Header />
+      <Searchbar />
+      <Navbar />
+      <Profile />
+      <SummaryHeader />
       <div className="content-container w-[1080px] mx-auto my-0">
         <div className="flex">
           <aside>
@@ -38,7 +46,7 @@ const SummonerLayout = () => {
           </main>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

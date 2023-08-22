@@ -1,9 +1,11 @@
 import React from "react";
 import { Team, participants } from "../Utils";
 import useSummonerData from "../../hooks/useSummonerData";
+import { useTheme } from "../../context/ThemeProvider";
 
 const Summary = ({ GameData }: any) => {
   const { puuId } = useSummonerData();
+  const { isDarkMode } = useTheme();
 
   const participantData = GameData.participants.filter(
     (partObj: participants) => partObj.puuid === puuId
@@ -17,7 +19,11 @@ const Summary = ({ GameData }: any) => {
   );
 
   return (
-    <div className="summary flex justify-between items-center bg-gray-100 border-t border-t-gray-200">
+    <div
+      className={`summary flex justify-between mb-0.5 items-center  border-t border-t-gray-200 ${
+        isDarkMode ? `bg-[#282830]` : `bg-gray-100`
+      }`}
+    >
       <div className="team pr-0 pl-4 text-left border-l">
         <div className="object ml-0 inline-block text-xs text-gray-500">
           <div className="relative">

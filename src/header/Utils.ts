@@ -110,7 +110,7 @@ export const SummaryList: SummaryLists[] = [
   },
   {
     name: "전략적 팀 전투",
-    color: "red-600",
+    color: "[#907659]",
     selected: false,
     icon: "https://s-lol-web.op.gg/images/icon/icon-tft.svg?image=q_auto,f_webp,w_32&v=1690771026044",
   },

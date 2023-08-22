@@ -3,18 +3,24 @@ import PieGraph from "./PieGraph";
 import useSummonerData from "../hooks/useSummonerData";
 import useTeamInfo from "../hooks/useTeamInfo";
 import { Champions } from "../hooks/Utils";
+import { useTheme } from "../context/ThemeProvider";
 
 const Statbox = () => {
   const { gameData, puuId, isLoading }: any = useSummonerData();
   const { win, lose, kill, death, assist, teamKill, champion, positionCounts } =
     useTeamInfo(gameData, puuId);
+  const { isDarkMode } = useTheme();
 
   if (isLoading || gameData === undefined) {
     return <div></div>; // 또는 원하는 뷰로 대체할 수 있음
   }
 
   return (
-    <div className="stats-box flex text-left bg-white py-2 px-3 box-border border-t h-[132px]">
+    <div
+      className={`stats-box flex text-left ${
+        isDarkMode ? `bg-[#31313C]` : `bg-white`
+      } py-2 px-3 box-border border-t h-[132px]`}
+    >
       <div className="stats w-[222px]">
         <div className="win-lose leading-4 text-xs text-[#758592]">
           {win + lose}전 {win}승 {lose}패
@@ -35,7 +41,11 @@ const Statbox = () => {
               {" / "}
               <span>{(assist / (win + lose)).toFixed(1)}</span>
             </div>
-            <div className="ratio mt-0.5 leading-[26px] text-[20px] font-bold text[-#202D37]">
+            <div
+              className={`ratio mt-0.5 leading-[26px] text-[20px] font-bold ${
+                isDarkMode ? `text-white` : `text[#202D37]`
+              }`}
+            >
               {((kill + assist) / death).toFixed(2)}:1
             </div>
             <div className="kill-participantion leading-4 mt-0.5 text-xs text-red-600">
@@ -87,7 +97,11 @@ const Statbox = () => {
         </div>
         <ul className="flex justify-around mt-3">
           <li>
-            <div className="bar flex items-end w-4 h-16 bg-[#DBE0E4]">
+            <div
+              className={`bar flex items-end w-4 h-16 ${
+                isDarkMode ? `bg-[#424254]` : `bg-[#DBE0E4]`
+              } `}
+            >
               <div
                 className="gauge w-4 bg-[#5383E8]"
                 style={{
@@ -104,7 +118,11 @@ const Statbox = () => {
             </div>
           </li>
           <li>
-            <div className="bar flex items-end w-4 h-16 bg-[#DBE0E4]">
+            <div
+              className={`bar flex items-end w-4 h-16 ${
+                isDarkMode ? `bg-[#424254]` : `bg-[#DBE0E4]`
+              } `}
+            >
               <div
                 className="gauge w-4 bg-[#5383E8]"
                 style={{
@@ -121,7 +139,11 @@ const Statbox = () => {
             </div>
           </li>
           <li>
-            <div className="bar flex items-end w-4 h-16 bg-[#DBE0E4]">
+            <div
+              className={`bar flex items-end w-4 h-16 ${
+                isDarkMode ? `bg-[#424254]` : `bg-[#DBE0E4]`
+              } `}
+            >
               <div
                 className="gauge w-4 bg-[#5383E8]"
                 style={{
@@ -138,7 +160,11 @@ const Statbox = () => {
             </div>
           </li>
           <li>
-            <div className="bar flex items-end w-4 h-16 bg-[#DBE0E4]">
+            <div
+              className={`bar flex items-end w-4 h-16 ${
+                isDarkMode ? `bg-[#424254]` : `bg-[#DBE0E4]`
+              } `}
+            >
               <div
                 className="gauge w-4 bg-[#5383E8]"
                 style={{
@@ -155,7 +181,11 @@ const Statbox = () => {
             </div>
           </li>
           <li>
-            <div className="bar flex items-end w-4 h-16 bg-[#DBE0E4]">
+            <div
+              className={`bar flex items-end w-4 h-16 ${
+                isDarkMode ? `bg-[#424254]` : `bg-[#DBE0E4]`
+              } `}
+            >
               <div
                 className="gauge w-4 bg-[#5383E8]"
                 style={{

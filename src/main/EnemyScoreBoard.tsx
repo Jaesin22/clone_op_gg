@@ -8,9 +8,11 @@ import {
   Team,
 } from "./Utils";
 import useSummonerData from "../hooks/useSummonerData";
+import { useTheme } from "../context/ThemeProvider";
 
 const EnemyScoreBoard = ({ GameData }: any) => {
   const { runeData, puuId, isLoading } = useSummonerData();
+  const { isDarkMode } = useTheme();
 
   if (isLoading) {
     return <div></div>;
@@ -34,7 +36,11 @@ const EnemyScoreBoard = ({ GameData }: any) => {
   return (
     <div className="">
       <table className="rounded-t w-[740px]">
-        <thead className=" table-header-group align-middle border-inherit bg-white ">
+        <thead
+          className={`table-header-group align-middle border-inherit ${
+            isDarkMode ? `bg-[#31313C]` : `bg-white`
+          }`}
+        >
           <tr className=" table-row border-inherit align-middle w-[740px]">
             <th colSpan={4} className="pl-[15px] text-left text-gray-400">
               <span
@@ -66,8 +72,12 @@ const EnemyScoreBoard = ({ GameData }: any) => {
         <tbody
           className={`${
             enemyTeam.win
-              ? `bg-[#ECF2FF] border-[#d5e3ff]`
-              : `bg-[#FFF1F3] border-[#ffd8d9]`
+              ? `${
+                  isDarkMode ? `bg-[#28344E]` : `bg-[#ECF2FF]`
+                } border-[#d5e3ff]`
+              : ` ${
+                  isDarkMode ? `bg-[#59343B]` : `bg-[#FFF1F3]`
+                } border-[#ffd8d9]`
           } border-t `}
         >
           {GameData.participants
@@ -202,7 +212,7 @@ const EnemyScoreBoard = ({ GameData }: any) => {
                       {":1"}
                     </div>
                   </td>
-                  <td className="damage pt-1 pb-[3px] align-middle">
+                  <td className="damage pt-1 pb-[3px] align-middle text-gray-500">
                     <div className="flex justify-center">
                       <div className="relative">
                         <div className="dealt text-center text-[11px] leading-[14px]">
