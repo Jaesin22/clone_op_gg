@@ -22,25 +22,6 @@ const useSummonerData = () => {
   const puuId = data?.puuid;
   const id = data?.id;
 
-  // 게임 매치 정보 가져오는 쿼리
-  // const {
-  //   data: matchData,
-  //   isLoading,
-  //   fetchNextPage,
-  //   hasNextPage,
-  // } = useInfiniteQuery(
-  //   ["matchData", puuId],
-  //   ({ pageParam = 0 }) => {
-  //     getMatchId(puuId, pageParam, PAGE_SIZE), console.log(pageParam);
-  //   },
-  //   {
-  //     enabled: !!puuId,
-  //     staleTime: Infinity,
-  //     getNextPageParam: (lastPage, pages) => {
-  //       return PAGE_SIZE * pages.length;
-  //     },
-  //   }
-  // );
   const {
     data: matchData,
     isLoading,
@@ -49,8 +30,7 @@ const useSummonerData = () => {
   } = useInfiniteQuery(
     ["matchData", puuId],
     ({ pageParam = 0 }) => {
-      console.log(pageParam);
-      return getMatchId(puuId, pageParam, PAGE_SIZE);
+      return getMatchId(puuId, pageParam, 10);
     },
     {
       enabled: !!puuId,
@@ -60,7 +40,7 @@ const useSummonerData = () => {
       },
     }
   );
-  console.log(matchData?.pages[matchData?.pages.length - 1]);
+
   // 매치 정보를 통해 세부 게임 결과 가져오는 쿼리
   const { data: gameData } = useQuery(
     ["gameData", matchData?.pages[matchData?.pages.length - 1]],
@@ -73,6 +53,7 @@ const useSummonerData = () => {
       staleTime: Infinity,
       refetchOnWindowFocus: false,
       notifyOnChangeProps: "tracked",
+      keepPreviousData: true,
     }
   );
 
