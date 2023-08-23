@@ -1,7 +1,6 @@
 import Header from "../header/Header";
 import Navbar from "../header/Navbar";
 import Home from "../home/Home";
-import { useTheme } from "../context/ThemeProvider";
 
 const HomeLayout = () => {
   return (

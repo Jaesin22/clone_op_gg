@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   GameData,
   convertUnixTimestampToDuration,
@@ -451,12 +452,12 @@ const Record = () => {
                               />
                             </div>
                             <div className="name inline-block max-w-[60px] align-middle text-[#758592] overflow-hidden text-ellipsis whitespace-nowrap">
-                              <a
-                                href="!#"
+                              <Link
+                                to={`/summoner/${userObj.summonerName}`}
                                 className="text-xs block overflow-hidden bg-inherit text-ellipsis"
                               >
                                 {userObj.summonerName}
-                              </a>
+                              </Link>
                             </div>
                           </li>
                         ))}
@@ -480,12 +481,12 @@ const Record = () => {
                               />
                             </div>
                             <div className="name inline-block max-w-[60px] align-middle text-[#758592] overflow-hidden text-ellipsis whitespace-nowrap">
-                              <a
-                                href="!#"
+                              <Link
+                                to={`/summoner/${userObj.summonerName}`}
                                 className="text-xs block overflow-hidden bg-inherit text-ellipsis"
                               >
                                 {userObj.summonerName}
-                              </a>
+                              </Link>
                             </div>
                           </li>
                         ))}

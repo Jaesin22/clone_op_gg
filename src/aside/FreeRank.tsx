@@ -17,7 +17,7 @@ const FreeRank = () => {
   if (isLoading) {
     return <div></div>;
   }
-  console.log(info);
+
   return (
     <div>
       <div

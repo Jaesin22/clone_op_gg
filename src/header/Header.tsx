@@ -71,6 +71,7 @@ const Header = () => {
               {isDarkMode ? (
                 <img
                   src="https://s-lol-web.op.gg/images/icon/icon-darkmode.svg"
+                  alt="changemode"
                   className="w-5 h-5"
                 />
               ) : (

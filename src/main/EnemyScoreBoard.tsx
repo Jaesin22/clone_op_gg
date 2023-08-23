@@ -9,6 +9,7 @@ import {
 } from "./Utils";
 import useSummonerData from "../hooks/useSummonerData";
 import { useTheme } from "../context/ThemeProvider";
+import { Link } from "react-router-dom";
 
 const EnemyScoreBoard = ({ GameData }: any) => {
   const { runeData, puuId, isLoading } = useSummonerData();
@@ -160,14 +161,14 @@ const EnemyScoreBoard = ({ GameData }: any) => {
                     </div>
                   </td>
                   <td className="name pl-[5px] whitespace-nowrap overflow-hidden text-ellipsis">
-                    <a
-                      href="!#"
+                    <Link
+                      to={`/summoner/${partObj.summonerName}`}
                       className={`leading-4 text-xs ${
                         isDarkMode ? `text-white` : `text-[#202D37]`
                       } `}
                     >
                       {partObj.summonerName}
-                    </a>
+                    </Link>
                     <div className="tier text-[11px] leading-[14px] text-[#9AA4AF]">
                       <div className="relative capitalize">
                         Level {partObj.summonerLevel}

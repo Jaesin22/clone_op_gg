@@ -11,7 +11,7 @@ const Search = () => {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
-  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmitHandler = () => {
     GetData(encodeURI(name));
     navigate(`/summoner/${name}`, { state: { name: name } });
   };
