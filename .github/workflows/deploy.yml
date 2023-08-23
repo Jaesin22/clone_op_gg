@@ -1,43 +1,43 @@
-# Repository에 나타날 workflow 이름(필수는 아님)
 name: CLONE_OP_GG
 
-# main 브랜치에 push 시 동작
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
 
-# action 동작
 jobs:
-  bulid:
+  build:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [14.x]
 
     steps:
-      - uses: acions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Cache node modules
-      id: node-cache
-      uses: actions/cache@v3
-      env:
-        cache-name: cache-node-modules
-      with:
-        # npm cache files are stored in `~/.npm` on Linux/macOS
-        path: "**/node_modules"
-        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-modules-
-    - name: Install NPM Modules
-      if: steps.node-cache.outputs.cache-hit != 'true'
-      run: npm install
 
-    - name: Run ESLint
-      run: npx eslint src --ext .js,.jsx,.ts,.tsx
+      - name: Cache node modules
+        id: node-cache
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: "**/node_modules"
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
+
+      - name: Install NPM Modules
+        if: steps.node-cache.outputs.cache-hit != 'true'
+        run: npm install
+
+      - name: Run ESLint
+        run: npx eslint src --ext .js,.jsx,.ts,.tsx
