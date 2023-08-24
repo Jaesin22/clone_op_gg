@@ -1,9 +1,16 @@
 import React from "react";
 import { useTheme } from "../context/ThemeProvider";
 import { SummaryList } from "./Utils";
+import useSummonerData from "../hooks/useSummonerData";
 
 const SummaryHeader = () => {
   const { isDarkMode } = useTheme();
+  const { data } = useSummonerData();
+
+  if (data?.name === "AxiosError") {
+    return <div></div>;
+  }
+
   return (
     <div
       className={`flex h-[45px] w-full ${

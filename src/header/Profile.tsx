@@ -3,10 +3,26 @@ import { useTheme } from "../context/ThemeProvider";
 const Profile = () => {
   const { data, isFetching } = useSummonerData();
   const { isDarkMode } = useTheme();
-  //#31313C
 
   if (isFetching) {
     return <div></div>;
+  }
+  if (data?.name === "AxiosError") {
+    return (
+      <div
+        className={`pt-[50px] leading-3 font-bold pb-[22px] mb-[15px] border-b  ${
+          isDarkMode ? `border-b-[#424254]` : `border-b-[#DBE0E4]`
+        }`}
+      >
+        <h2
+          className={`title text-2xl text-center ${
+            isDarkMode ? `text-white` : `text-[#202D37]`
+          }`}
+        >
+          OP.GG에 등록되지 않은 소환사입니다. 오타를 확인 후 다시 검색해주세요.
+        </h2>
+      </div>
+    );
   }
 
   const imgUrl = process.env.REACT_APP_PROFILE_ICON_URL?.replaceAll(

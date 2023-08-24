@@ -57,6 +57,8 @@ const useSummonerData = () => {
     }
   );
 
+  console.log(gameData);
+
   return {
     data,
     runeData,

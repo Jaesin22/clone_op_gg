@@ -9,9 +9,11 @@ export const GetData = async (name: string) => {
     const response = await axios.get(
       `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}?api_key=${key}`
     );
+    console.log(response.status);
     return response.data;
   } catch (e) {
     console.error(e);
+    return e;
   }
 };
 
