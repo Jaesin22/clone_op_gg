@@ -43,6 +43,19 @@ jobs:
       # - name: Run test codes
       #   run: npm run test
 
+      - name: Generate Environment Variables File for Production
+        run: |
+          echo "REACT_APP_API_KEY=$REACT_APP_API_KEY" >> .env.production
+          echo "REACT_APP_CHAMPION_ICON_URL=$REACT_APP_CHAMPION_ICON_URL" >> .env.production
+          echo "REACT_APP_ITEM_URL=$REACT_APP_ITEM_URL" >> .env.production
+          echo "REACT_APP_PROFILE_ICON_URL=$REACT_APP_PROFILE_ICON_URL" >> .env.production
+          echo "SKIP_PREFLIGHT_CHECK=$SKIP_PREFLIGHT_CHECK" >> .env.production
+        env:
+          REACT_APP_API_KEY: ${{secrets.REACT_APP_API_KEY}}
+          REACT_APP_CHAMPION_ICON_URL: ${{secrets.REACT_APP_CHAMPION_ICON_URL}}
+          REACT_APP_ITEM_URL: ${{secrets.REACT_APP_ITEM_URL}}
+          REACT_APP_PROFILE_ICON_URL: ${{secrets.REACT_APP_PROFILE_ICON_URL}}
+          SKIP_PREFLIGHT_CHECK: ${{secrets.SKIP_PREFLIGHT_CHECK}}
       - name: Build
         run: npm run build
         env:
