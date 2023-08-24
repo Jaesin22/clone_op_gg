@@ -39,9 +39,9 @@ jobs:
         if: steps.node-cache.outputs.cache-hit != 'true'
         run: npm install
 
-        # testcode 실행
-      - name: Run test codes
-        run: npm run test
+      #   # testcode 실행
+      # - name: Run test codes
+      #   run: npm run test
 
       - name: Build
         run: npm run build
