@@ -61,7 +61,7 @@ const useTeamInfo = (gameData: GameData[], puuId: string) => {
           };
 
           setChampion((prevChampion: Champions[]) => {
-            console.log(prevChampion);
+            // console.log(prevChampion);
             const existingChampionIndex = prevChampion.findIndex(
               (champion: Champions) =>
                 champion.championName === championData.championName

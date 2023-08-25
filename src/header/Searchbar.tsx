@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import History from "./History";
+import SearchHooks from "../hooks/SearchHooks";
 
 const Searchbar = () => {
   const [name, setName] = useState<string>("");
-  const [showHistory, setShowHistory] = useState(true);
+  const [showHistory, setShowHistory] = useState(false);
+  const { handleAddKeyword } = SearchHooks();
 
   const handleHistory = () => {
     setShowHistory(!showHistory);
@@ -13,11 +15,12 @@ const Searchbar = () => {
 
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     navigate(`/summoner/${name}`);
+    handleAddKeyword(name);
   };
 
-  const handleClose = () => {
-    setShowHistory(false);
-  };
+  // const handleClose = () => {
+  //   setShowHistory(false);
+  // };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -79,8 +82,8 @@ const Searchbar = () => {
             </button>
           </div>
         </form>
-        {showHistory && <History />}
       </div>
+      {showHistory && <History />}
     </div>
   );
 };

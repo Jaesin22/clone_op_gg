@@ -3,29 +3,32 @@ import { useNavigate } from "react-router-dom";
 import { GetData } from "../api/Champion";
 import { useTheme } from "../context/ThemeProvider";
 import History from "../header/History";
+import SearchHooks from "../hooks/SearchHooks";
 
 const Search = () => {
   const [name, setName] = useState<string>("");
   const navigate = useNavigate();
   const { isDarkMode } = useTheme();
   const [showHistory, setShowHistory] = useState(true);
+  const { handleAddKeyword } = SearchHooks();
 
   const handleHistory = () => {
-    console.log(showHistory);
     setShowHistory(!showHistory);
   };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
+
   const onSubmitHandler = () => {
+    handleAddKeyword(name);
     GetData(encodeURI(name));
     navigate(`/summoner/${name}`, { state: { name: name } });
   };
 
-  const handleClose = () => {
-    setShowHistory(false);
-  };
+  // const handleClose = () => {
+  //   setShowHistory(false);
+  // };
 
   return (
     <div className="relative w-[800px] my-0 mx-auto text-center">
