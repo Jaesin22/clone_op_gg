@@ -61,12 +61,15 @@ const useTeamInfo = (gameData: GameData[], puuId: string) => {
           };
 
           setChampion((prevChampion: Champions[]) => {
+            console.log(prevChampion);
             const existingChampionIndex = prevChampion.findIndex(
               (champion: Champions) =>
                 champion.championName === championData.championName
             );
 
             if (existingChampionIndex !== -1) {
+              //const existingChampion = prevChampion[existingChampionIndex];
+              //if (existingChampion.count <= championData.count) {
               const updatedChampion = prevChampion.map(
                 (champion: Champions, index: number) => {
                   if (index === existingChampionIndex) {
@@ -92,16 +95,16 @@ const useTeamInfo = (gameData: GameData[], puuId: string) => {
               );
 
               // 정렬
-              const sortedChampion = [...updatedChampion].sort(
+              const sortedChampion: any = [...updatedChampion].sort(
                 (a, b) => b.count - a.count
               );
               return sortedChampion;
             }
-
+            //   } else {
             // 새로운 챔피언 데이터 추가
             const updatedChampion = [...prevChampion, championData];
-
             return updatedChampion;
+            // }
           });
         }
       });

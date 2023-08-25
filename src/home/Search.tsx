@@ -2,11 +2,18 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GetData } from "../api/Champion";
 import { useTheme } from "../context/ThemeProvider";
+import History from "../header/History";
 
 const Search = () => {
   const [name, setName] = useState<string>("");
   const navigate = useNavigate();
   const { isDarkMode } = useTheme();
+  const [showHistory, setShowHistory] = useState(true);
+
+  const handleHistory = () => {
+    console.log(showHistory);
+    setShowHistory(!showHistory);
+  };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -15,6 +22,11 @@ const Search = () => {
     GetData(encodeURI(name));
     navigate(`/summoner/${name}`, { state: { name: name } });
   };
+
+  const handleClose = () => {
+    setShowHistory(false);
+  };
+
   return (
     <div className="relative w-[800px] my-0 mx-auto text-center">
       <form
@@ -46,6 +58,7 @@ const Search = () => {
              }`}
             onChange={onChange}
             value={name}
+            onClick={handleHistory}
           />
         </div>
         <button type="submit" className="flex ml-auto mr-6">
@@ -56,6 +69,7 @@ const Search = () => {
           />
         </button>
       </form>
+      {showHistory && <History />}
     </div>
   );
 };

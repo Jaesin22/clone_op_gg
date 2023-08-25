@@ -1,12 +1,22 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import History from "./History";
 
 const Searchbar = () => {
   const [name, setName] = useState<string>("");
+  const [showHistory, setShowHistory] = useState(true);
+
+  const handleHistory = () => {
+    setShowHistory(!showHistory);
+  };
   const navigate = useNavigate();
 
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     navigate(`/summoner/${name}`);
+  };
+
+  const handleClose = () => {
+    setShowHistory(false);
   };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,6 +65,7 @@ const Searchbar = () => {
               value={name}
               className="float-right w-[840px] h-8 text-xs px-2.5 outline-none"
               onChange={onChange}
+              onClick={handleHistory}
             />
             <button
               type="submit"
@@ -68,6 +79,7 @@ const Searchbar = () => {
             </button>
           </div>
         </form>
+        {showHistory && <History />}
       </div>
     </div>
   );
