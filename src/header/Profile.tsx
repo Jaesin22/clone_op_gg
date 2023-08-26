@@ -4,6 +4,7 @@ const Profile = () => {
   const { data, isFetching } = useSummonerData();
   const { isDarkMode } = useTheme();
 
+  console.log(isDarkMode);
   if (isFetching) {
     return <div></div>;
   }
