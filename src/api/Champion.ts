@@ -70,14 +70,8 @@ export const getGameInfo = async (matchList: []) => {
     }
   };
 
-  const delay = (ms: number) =>
-    new Promise((resolve) => setTimeout(resolve, ms));
-
   const gamePromises = matchList.map(async (matchId, index) => {
-    if (index !== 0) {
-      await delay(1000); // delay 주기
-    }
-    return fetchGameInfo(matchId);
+    return await fetchGameInfo(matchId);
   });
 
   const gameArray = await Promise.all(gamePromises);

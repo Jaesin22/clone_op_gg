@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GetData } from "../api/Champion";
 import { useTheme } from "../context/ThemeProvider";
@@ -20,7 +20,8 @@ const Search = () => {
     setName(e.target.value);
   };
 
-  const onSubmitHandler = () => {
+  const onSubmitHandler = (e: FormEvent) => {
+    e.preventDefault();
     handleAddKeyword(name);
     GetData(encodeURI(name));
     navigate(`/summoner/${name}`, { state: { name: name } });

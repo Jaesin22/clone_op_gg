@@ -45,7 +45,10 @@ const useSummonerData = () => {
   const { data: gameData } = useQuery(
     ["gameData", matchData?.pages[matchData?.pages.length - 1]],
     () => {
-      const allMatchIds: any = matchData?.pages.flatMap((page) => page);
+      const allMatchIds: any = matchData?.pages[
+        matchData.pages.length - 1
+      ].flatMap((page: any) => page);
+      console.log(allMatchIds);
       return getGameInfo(allMatchIds);
     },
     {
@@ -56,7 +59,7 @@ const useSummonerData = () => {
       keepPreviousData: true,
     }
   );
-
+  console.log(gameData);
   return {
     data,
     runeData,
