@@ -5,6 +5,36 @@ const SearchHooks = () => {
     JSON.parse(localStorage.getItem("keywords") || "[]")
   );
 
+  const [favorites, setFavorites] = useState(
+    JSON.parse(localStorage.getItem("favorites") || "[]")
+  );
+
+  const handleAddFavorites = (text: string) => {
+    const newFavorite = {
+      id: Date.now(),
+      name: text,
+    };
+    localStorage.setItem(
+      "keywords",
+      JSON.stringify([
+        newFavorite,
+        ...favorites.filter(
+          (favorite: any) => favorite.name !== newFavorite.name
+        ),
+      ])
+    );
+  };
+
+  const handleRemoveFavorites = (id: Date) => {
+    const nextFavorite = favorites.filter(
+      (thisFavorite: { id: Date; name: string }) => {
+        return thisFavorite.id !== id;
+      }
+    );
+    setFavorites(nextFavorite);
+    localStorage.setItem("favorites", JSON.stringify(nextFavorite));
+  };
+
   // 추가
   const handleAddKeyword = (text: string) => {
     const newKeyword = {

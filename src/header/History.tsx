@@ -101,12 +101,6 @@ const History = () => {
                       className=" hidden bg-transparent appearance-none"
                       type="checkbox"
                     />
-                    <label className="favorite-summoner-label block static h-6 w-6 m-0 align-middle border-0">
-                      <img
-                        src="https://s-lol-web.op.gg/images/icon/icon-bookmark.svg"
-                        alt="즐겨찾기"
-                      />
-                    </label>
                   </div>
                   <button
                     type="button"
