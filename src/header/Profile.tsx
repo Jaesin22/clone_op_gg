@@ -1,8 +1,10 @@
 import useSummonerData from "../hooks/useSummonerData";
 import { useTheme } from "../context/ThemeProvider";
+import SearchHooks from "../hooks/SearchHooks";
 const Profile = () => {
   const { data, isFetching } = useSummonerData();
   const { isDarkMode } = useTheme();
+  const { favorites, handleAddFavorites } = SearchHooks();
 
   if (isFetching) {
     return <div></div>;
@@ -68,6 +70,7 @@ const Profile = () => {
                   className={`w-7 h-7 rounded border-solid border ml-2 mt-0.5 ${
                     isDarkMode ? `border-[#424254]` : `border-[#DBE0E4]`
                   } `}
+                  //onClick={() => handleAddFavorites(data?.name)}
                 >
                   <img
                     src="https://s-lol-web.op.gg/images/icon/icon-bookmark.svg?v=1690447902108"

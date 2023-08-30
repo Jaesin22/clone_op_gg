@@ -15,7 +15,7 @@ const SearchHooks = () => {
       name: text,
     };
     localStorage.setItem(
-      "keywords",
+      "favorites",
       JSON.stringify([
         newFavorite,
         ...favorites.filter(
@@ -62,7 +62,14 @@ const SearchHooks = () => {
     setKeywords(nextKeyword);
     localStorage.setItem("keywords", JSON.stringify(nextKeyword));
   };
-  return { handleAddKeyword, handleRemoveKeyword, keywords };
+  return {
+    handleAddKeyword,
+    handleRemoveKeyword,
+    keywords,
+    favorites,
+    handleAddFavorites,
+    handleRemoveFavorites,
+  };
 };
 
 export default SearchHooks;

@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import SearchHooks from "../hooks/SearchHooks";
 
 const History = () => {
-  const { keywords, handleRemoveKeyword } = SearchHooks();
+  const {
+    keywords,
+    handleRemoveKeyword,
+    favorites,
+    handleAddFavorites,
+    handleRemoveFavorites,
+  } = SearchHooks();
   const [mode, setMode] = useState("recent");
 
   const handleModeChange = (mode: string) => {
@@ -51,7 +57,10 @@ const History = () => {
                       className=" hidden bg-transparent appearance-none"
                       type="checkbox"
                     />
-                    <label className="favorite-summoner-label block static h-6 w-6 m-0 align-middle border-0">
+                    <label
+                      className="favorite-summoner-label block static h-6 w-6 m-0 align-middle border-0 cursor-pointer"
+                      onClick={() => handleAddFavorites(items.text)}
+                    >
                       <img
                         src="https://s-lol-web.op.gg/images/icon/icon-bookmark.svg"
                         alt="즐겨찾기"
@@ -82,8 +91,8 @@ const History = () => {
                   최근에 본 소환사가 없습니다.
                 </p>
               </li>
-            ) : mode === "favorite" && keywords.length > 0 ? (
-              keywords.map((items: any) => (
+            ) : mode === "favorite" && favorites.length > 0 ? (
+              favorites.map((items: any) => (
                 <li
                   key={items?.id}
                   className="py-2 px-4 flex box-border items-center list-none hover:bg-[#F7F7F9]"
@@ -93,7 +102,7 @@ const History = () => {
                     href="www.naver.com"
                   >
                     <span className="summoner-name text-sm color">
-                      {items?.text}
+                      {items?.name}
                     </span>
                   </a>
                   <div className="relative">
@@ -105,7 +114,7 @@ const History = () => {
                   <button
                     type="button"
                     className="close-btn ml-2"
-                    onClick={() => handleRemoveKeyword(items.id)}
+                    onClick={() => handleRemoveFavorites(items.id)}
                   >
                     <img
                       src="https://s-lol-web.op.gg/images/icon/icon-close-small.svg?v=1692872564027"
@@ -115,8 +124,20 @@ const History = () => {
                   </button>
                 </li>
               ))
-            ) : mode === "favorite" && keywords.length === 0 ? (
-              ``
+            ) : mode === "favorite" && favorites.length === 0 ? (
+              <li className="noData box-border flex justify-center items-center w-full h-[264px] px-6 text-center text-xs text-[#9AA4AF]">
+                <div className="block">
+                  <img
+                    src="https://s-lol-web.op.gg/images/icon/icon-bookmark-on-yellow.svg?v=1693375322808"
+                    className="w-6 h-6 align-middle ml-[150px] mb-2"
+                    alt="info"
+                  />
+                  <p className="m-0">
+                    관심있는 소환사에 즐겨찾기를 하여 편리하게 정보를
+                    받아보세요.
+                  </p>
+                </div>
+              </li>
             ) : null}
           </ul>
         </div>
