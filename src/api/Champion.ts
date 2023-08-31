@@ -44,11 +44,6 @@ export const getMatchId = async (
 };
 
 export const getGameInfo = async (matchList: []) => {
-  const key = process.env.REACT_APP_API_KEY?.replaceAll('"', "")?.replace(
-    ";",
-    ""
-  );
-
   const fetchGameInfo = async (matchId: string) => {
     try {
       const response = await axios.get(

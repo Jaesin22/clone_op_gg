@@ -4,6 +4,7 @@ type MainHeaders = {
   name: string;
   selected?: boolean;
   icon?: string;
+  type?: string;
 };
 
 export const MainHeader: MainHeaders[] = [
@@ -13,15 +14,12 @@ export const MainHeader: MainHeaders[] = [
     selected: true,
   },
   {
-    name: "솔로랭크",
-    color: "#000000",
-    selected: false,
-  },
-  {
-    name: "자유랭크",
+    name: "랭크게임",
     color: "[#00A399]",
     selected: false,
+    type: "ranked",
   },
+
   // {
   //   name: "전략적 팀 전투",
   //   color: "red-600",
