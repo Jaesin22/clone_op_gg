@@ -15,9 +15,7 @@ const useSummonerData = () => {
   );
 
   // 룬 정보 가져오는 query
-  const { data: runeData } = useQuery(["runeData"], getRuneInfo, {
-    refetchOnWindowFocus: false,
-  });
+  const { data: runeData } = useQuery(["runeData"], getRuneInfo, {});
 
   const puuId = data?.puuid;
   const id = data?.id;
@@ -48,18 +46,15 @@ const useSummonerData = () => {
       const allMatchIds: any = matchData?.pages[
         matchData.pages.length - 1
       ].flatMap((page: any) => page);
-      console.log(allMatchIds);
       return getGameInfo(allMatchIds);
     },
     {
       enabled: !!matchData && !isLoading, // matchData가 있고, isLoading이 false인 경우에만 쿼리 실행
       staleTime: Infinity,
-      refetchOnWindowFocus: false,
       notifyOnChangeProps: "tracked",
       keepPreviousData: true,
     }
   );
-  console.log(gameData);
   return {
     data,
     runeData,

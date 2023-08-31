@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import History from "./History";
 import SearchHooks from "../hooks/SearchHooks";
@@ -13,7 +13,12 @@ const Searchbar = () => {
   };
   const navigate = useNavigate();
 
-  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmitHandler = (e: FormEvent) => {
+    // 값이 없거나 공백일 경우 제출하지 않음
+    e.preventDefault();
+    if (!name.trim()) {
+      return;
+    }
     navigate(`/summoner/${name}`);
     handleAddKeyword(name);
   };

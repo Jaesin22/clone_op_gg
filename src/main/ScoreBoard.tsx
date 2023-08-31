@@ -36,6 +36,10 @@ const ScoreBoard = ({ GameData }: any) => {
     GameData.participants
   ).totalDamageTaken;
 
+  if (!participantData.length) {
+    return <div></div>;
+  }
+
   return (
     <div className="mt-1">
       <div className="">
@@ -49,12 +53,12 @@ const ScoreBoard = ({ GameData }: any) => {
               <th colSpan={4} className="pl-[15px] text-left text-gray-400">
                 <span
                   className={`font-xs ${
-                    myTeam.win ? `text-[#4171D6]` : `text-[#D31A45]`
+                    myTeam?.win ? `text-[#4171D6]` : `text-[#D31A45]`
                   }`}
                 >
-                  {myTeam.win ? "승리" : "패배"}
+                  {myTeam?.win ? "승리" : "패배"}
                 </span>
-                ({myTeam.teamId === 100 ? "블루팀" : "레드팀"})
+                ({myTeam?.teamId === 100 ? "블루팀" : "레드팀"})
               </th>
               <th className=" h-8 text-[#9AA4AF] text-xs font-normal text-center border-b border-b-[#D5E3FF]">
                 KDA
@@ -75,7 +79,7 @@ const ScoreBoard = ({ GameData }: any) => {
           </thead>
           <tbody
             className={`${
-              myTeam.win
+              myTeam?.win
                 ? `${
                     isDarkMode ? `bg-[#28344E]` : `bg-[#ECF2FF]`
                   } border-[#d5e3ff]`
@@ -84,7 +88,7 @@ const ScoreBoard = ({ GameData }: any) => {
                   } border-[#ffd8d9]`
             } border-t `}
           >
-            {GameData.participants
+            {GameData?.participants
               .filter(
                 (partObj: participants) => partObj.teamId === myTeam.teamId
               )
@@ -116,7 +120,7 @@ const ScoreBoard = ({ GameData }: any) => {
                               (spell) => spell.key === partObj.summoner1Id
                             )?.id
                           }.png`}
-                          alt="점화"
+                          alt="스펠"
                           className="w-4 h-4 rounded"
                         />
                       </div>
@@ -127,7 +131,7 @@ const ScoreBoard = ({ GameData }: any) => {
                               (spell) => spell.key === partObj.summoner2Id
                             )?.id
                           }.png`}
-                          alt="점화"
+                          alt="스펠"
                           className="w-4 h-4 rounded"
                         />
                       </div>
@@ -153,7 +157,7 @@ const ScoreBoard = ({ GameData }: any) => {
                       <div className="relative mb-0.5 w-4 h-4">
                         <img
                           src={`https://ddragon.leagueoflegends.com/cdn/img/${
-                            runeData.find(
+                            runeData?.find(
                               (rune: runeTree) =>
                                 partObj.perks.styles[1].style === rune.id
                             )?.icon
@@ -170,7 +174,7 @@ const ScoreBoard = ({ GameData }: any) => {
                           isDarkMode ? `text-white` : `text-[#202D37]`
                         }`}
                       >
-                        {partObj.summonerName}
+                        {partObj?.summonerName}
                       </Link>
                       <div className="tier text-[11px] leading-[14px] text-[#9AA4AF]">
                         <div className="relative capitalize">

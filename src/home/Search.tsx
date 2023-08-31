@@ -22,6 +22,11 @@ const Search = () => {
 
   const onSubmitHandler = (e: FormEvent) => {
     e.preventDefault();
+    // 값이 없거나 공백일 경우 제출하지 않음
+    if (!name.trim()) {
+      return;
+    }
+
     handleAddKeyword(name);
     GetData(encodeURI(name));
     navigate(`/summoner/${name}`, { state: { name: name } });

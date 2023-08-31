@@ -10,6 +10,7 @@ const Summary = ({ GameData }: any) => {
   const participantData = GameData.participants.filter(
     (partObj: participants) => partObj.puuid === puuId
   );
+
   const myTeam = GameData.teams.find(
     (team: Team) => team.teamId === participantData[0]?.teamId
   );
@@ -17,6 +18,10 @@ const Summary = ({ GameData }: any) => {
   const enemyTeam = GameData.teams.find(
     (team: Team) => team.teamId !== participantData[0]?.teamId
   );
+
+  if (!participantData.length) {
+    return <div></div>;
+  }
 
   return (
     <div
@@ -82,7 +87,7 @@ const Summary = ({ GameData }: any) => {
             </div>
             <div
               className={`lose flex-grow flex-shrink ${
-                myTeam.win ? `bg-[#5383E8]` : `bg-red-500`
+                myTeam?.win ? `bg-[#5383E8]` : `bg-red-500`
               } h-4`}
               style={{
                 width: `${(
