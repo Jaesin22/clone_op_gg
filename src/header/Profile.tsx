@@ -69,12 +69,24 @@ const Profile = () => {
                 <button
                   className={`w-7 h-7 rounded border-solid border ml-2 mt-0.5 ${
                     isDarkMode ? `border-[#424254]` : `border-[#DBE0E4]`
+                  } ${
+                    favorites.some(
+                      (favorite: any) => favorite.name === data?.name
+                    )
+                      ? `bg-yellow-300`
+                      : `${isDarkMode ? `bg-[#31313C]` : `bg-white`}`
                   } `}
-                  //onClick={() => handleAddFavorites(data?.name)}
+                  onClick={() => handleAddFavorites(data?.name)}
                 >
                   <img
-                    src="https://s-lol-web.op.gg/images/icon/icon-bookmark.svg?v=1690447902108"
-                    alt="off"
+                    src={
+                      favorites.some(
+                        (favorite: any) => favorite.name === data?.name
+                      )
+                        ? "https://s-lol-web.op.gg/images/icon/icon-bookmark-on-w.svg?v=1693456151155"
+                        : "https://s-lol-web.op.gg/images/icon/icon-bookmark.svg"
+                    }
+                    alt="즐겨찾기"
                   />
                 </button>
               </div>

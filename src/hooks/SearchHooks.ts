@@ -10,19 +10,28 @@ const SearchHooks = () => {
   );
 
   const handleAddFavorites = (text: string) => {
-    const newFavorite = {
-      id: Date.now(),
-      name: text,
-    };
-    localStorage.setItem(
-      "favorites",
-      JSON.stringify([
-        newFavorite,
-        ...favorites.filter(
-          (favorite: any) => favorite.name !== newFavorite.name
-        ),
-      ])
-    );
+    if (
+      !favorites.find(
+        (favorite: { id: Date; name: string }) => favorite.name === text
+      )
+    ) {
+      const newFavorite = {
+        id: Date.now(),
+        name: text,
+      };
+      setFavorites((prevFavorites: any) => [newFavorite, ...prevFavorites]);
+      localStorage.setItem(
+        "favorites",
+        JSON.stringify([...favorites, newFavorite])
+      );
+    } else {
+      // 이미 즐겨찾기에 추가된 경우 제거
+      const updatedFavorites = favorites.filter(
+        (favorite: any) => favorite.name !== text
+      );
+      setFavorites(updatedFavorites);
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    }
   };
 
   const handleRemoveFavorites = (id: Date) => {

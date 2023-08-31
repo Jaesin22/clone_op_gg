@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SearchHooks from "../hooks/SearchHooks";
+import { Link } from "react-router-dom";
 
 const History = () => {
   const {
@@ -44,14 +45,14 @@ const History = () => {
                   key={items?.id}
                   className="py-2 px-4 flex box-border items-center list-none hover:bg-[#F7F7F9]"
                 >
-                  <a
+                  <Link
+                    to={`/summoner/${items?.text}`}
                     className="summoner flex flex-1 text-left items-center overflow-hidden"
-                    href="www.naver.com"
                   >
                     <span className="summoner-name text-sm color">
                       {items?.text}
                     </span>
-                  </a>
+                  </Link>
                   <div className="relative">
                     <input
                       className=" hidden bg-transparent appearance-none"
@@ -62,7 +63,13 @@ const History = () => {
                       onClick={() => handleAddFavorites(items.text)}
                     >
                       <img
-                        src="https://s-lol-web.op.gg/images/icon/icon-bookmark.svg"
+                        src={
+                          favorites.some(
+                            (favorite: any) => favorite.name === items.text
+                          )
+                            ? "https://s-lol-web.op.gg/images/icon/icon-bookmark-on-yellow.svg"
+                            : "https://s-lol-web.op.gg/images/icon/icon-bookmark.svg"
+                        }
                         alt="즐겨찾기"
                       />
                     </label>
@@ -97,14 +104,14 @@ const History = () => {
                   key={items?.id}
                   className="py-2 px-4 flex box-border items-center list-none hover:bg-[#F7F7F9]"
                 >
-                  <a
+                  <Link
+                    to={`/summoner/${items?.name}`}
                     className="summoner flex flex-1 text-left items-center overflow-hidden"
-                    href="www.naver.com"
                   >
                     <span className="summoner-name text-sm color">
                       {items?.name}
                     </span>
-                  </a>
+                  </Link>
                   <div className="relative">
                     <input
                       className=" hidden bg-transparent appearance-none"

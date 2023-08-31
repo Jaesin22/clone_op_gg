@@ -18,16 +18,16 @@ const Searchbar = () => {
     handleAddKeyword(name);
   };
 
-  // const handleClose = () => {
-  //   setShowHistory(false);
-  // };
+  const navigateToHome = () => {
+    navigate("/");
+  };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
   return (
     <div className="flex h-12 bg-[#5383E8] justify-center">
-      <div className="">
+      <div className="cursor-pointer" onClick={navigateToHome}>
         <img
           src="https://opgg-static.akamaized.net/logo/20230717181253.4193b693203f4c9ca15ec82267ba2682.png?image=q_auto,f_webp,w_auto&v=1690447901880"
           className=" max-w-full max-h-12"
