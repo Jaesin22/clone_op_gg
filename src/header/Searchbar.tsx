@@ -87,9 +87,23 @@ const Searchbar = () => {
               />
             </button>
           </div>
+          {showHistory && (
+            <div className="absolute mx-1 ml-[52px]">
+              <div
+                style={{
+                  position: "fixed",
+                  top: "0",
+                  right: "0",
+                  bottom: "0",
+                  left: "0",
+                }}
+                onClick={handleHistory}
+              />
+              <History />
+            </div>
+          )}
         </form>
       </div>
-      {showHistory && <History />}
     </div>
   );
 };
