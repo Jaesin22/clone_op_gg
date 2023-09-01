@@ -34,6 +34,10 @@ const EnemyScoreBoard = ({ GameData }: any) => {
     (team: Team) => team.teamId !== participantData[0]?.teamId
   );
 
+  if (!participantData.length) {
+    return <div></div>;
+  }
+
   return (
     <div className="">
       <table className="rounded-t w-[740px]">

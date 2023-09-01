@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export interface UserRank {
   filter(
     arg0: (infos: any) => boolean
@@ -16,3 +18,7 @@ export interface UserRank {
   freshBlood: boolean | null;
   hotStreak: boolean | null;
 }
+
+export const client = axios.create({
+  withCredentials: false,
+});

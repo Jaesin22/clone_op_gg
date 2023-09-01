@@ -1,4 +1,4 @@
-import axios from "axios";
+import { client } from "./Utils";
 
 const key = process.env.REACT_APP_API_KEY?.replaceAll('"', "")?.replace(
   ";",
@@ -7,7 +7,7 @@ const key = process.env.REACT_APP_API_KEY?.replaceAll('"', "")?.replace(
 
 export const GetData = async (name: string) => {
   try {
-    const response = await axios.get(
+    const response = await client.get(
       `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}?api_key=${key}`
     );
     return response.data;
@@ -19,7 +19,7 @@ export const GetData = async (name: string) => {
 
 export const GetRanks = async (summonerId: string | null) => {
   try {
-    const response = await axios.get(
+    const response = await client.get(
       `https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/${summonerId}?api_key=${key}`
     );
     return response.data;
@@ -34,7 +34,7 @@ export const getMatchId = async (
   count: number
 ) => {
   try {
-    const response = await axios.get(
+    const response = await client.get(
       `https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuId}/ids?start=${start}&count=${count}&api_key=${key}`
     );
     return response.data;
@@ -46,7 +46,7 @@ export const getMatchId = async (
 export const getGameInfo = async (matchList: []) => {
   const fetchGameInfo = async (matchId: string) => {
     try {
-      const response = await axios.get(
+      const response = await client.get(
         `https://asia.api.riotgames.com/lol/match/v5/matches/${matchId}?api_key=${key}`
       );
       if (response.data.info.queueId !== 1700) {
@@ -73,7 +73,7 @@ export const getRuneInfo = async () => {
   try {
     const url = `https://ddragon.leagueoflegends.com/cdn/13.15.1/data/ko_KR/runesReforged.json`;
 
-    const runeResponse = await axios.get(url);
+    const runeResponse = await client.get(url);
     return runeResponse.data;
   } catch (e) {
     console.error(e);

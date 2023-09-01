@@ -68,6 +68,7 @@ const Searchbar = () => {
             <input
               type="text"
               name="search"
+              id="search"
               autoComplete="off"
               placeholder="소환사명, 소환사명, ..."
               value={name}
