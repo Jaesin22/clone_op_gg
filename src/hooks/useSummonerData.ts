@@ -28,7 +28,7 @@ const useSummonerData = () => {
   } = useInfiniteQuery(
     ["matchData", puuId],
     ({ pageParam = 0 }) => {
-      return getMatchId(puuId, pageParam, 10);
+      return getMatchId(puuId, pageParam, 10, "ALL");
     },
     {
       enabled: !!puuId,

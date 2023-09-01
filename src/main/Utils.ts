@@ -19,13 +19,6 @@ export const MainHeader: MainHeaders[] = [
     selected: false,
     type: "ranked",
   },
-
-  // {
-  //   name: "전략적 팀 전투",
-  //   color: "red-600",
-  //   selected: false,
-  //   icon: "https://s-lol-web.op.gg/images/icon/icon-tft.svg?image=q_auto,f_webp,w_32&v=1690771026044",
-  // },
 ];
 
 export type selections = {

@@ -8,7 +8,7 @@ import Header from "../header/Header";
 import Searchbar from "../header/Searchbar";
 import Navbar from "../header/Navbar";
 import Profile from "../header/Profile";
-import SummaryHeader from "../header/SummaryHeader";
+// import SummaryHeader from "../header/SummaryHeader";
 import { useTheme } from "../context/ThemeProvider";
 import useSummonerData from "../hooks/useSummonerData";
 
@@ -23,7 +23,6 @@ const SummonerLayout = () => {
       <Searchbar />
       <Navbar />
       <Profile />
-      <SummaryHeader />
 
       <div className="content-container w-[1080px] mx-auto my-0">
         {data?.name !== "AxiosError" && (

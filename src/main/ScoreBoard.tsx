@@ -45,7 +45,7 @@ const ScoreBoard = ({ GameData }: any) => {
       <div className="">
         <table className="rounded-t w-[740px]">
           <thead
-            className={`table-header-group align-middle border-inherit bg-white ${
+            className={`table-header-group align-middle border-inherit ${
               isDarkMode ? `bg-[#31313C]` : `bg-white`
             }`}
           >

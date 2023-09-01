@@ -31,13 +31,22 @@ export const GetRanks = async (summonerId: string | null) => {
 export const getMatchId = async (
   puuId: string | null,
   start: number,
-  count: number
+  count: number,
+  type: string
 ) => {
   try {
-    const response = await client.get(
-      `https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuId}/ids?start=${start}&count=${count}&api_key=${key}`
-    );
-    return response.data;
+    if (type === "ALL") {
+      const response = await client.get(
+        `https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuId}/ids?start=${start}&count=${count}&api_key=${key}`
+      );
+      return response.data;
+    }
+    if (type !== "ALL") {
+      const response = await client.get(
+        `https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuId}/ids?type=${type}&start=${start}&count=${count}&api_key=${key}`
+      );
+      return response.data;
+    }
   } catch (e) {
     console.error(e);
   }
