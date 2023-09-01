@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SearchHooks from "../hooks/SearchHooks";
 import { Link } from "react-router-dom";
+import { useTheme } from "../context/ThemeProvider";
 
 const History = () => {
   const {
@@ -16,22 +17,44 @@ const History = () => {
     setMode(mode);
   };
 
+  const { isDarkMode } = useTheme();
+
   return (
     <div className="static">
-      <div className="mt-[2px] absolute top-[calc(100% + 10px)] w-2/3 rounded shadow-sm z-50 overflow-hidden">
-        <div className="bg-white">
+      <div className="mt-[2px] absolute top-[calc(100% + 10px)] w-[480px] rounded shadow-sm z-50 overflow-hidden">
+        <div className={` ${isDarkMode ? `bg-[#31313C]` : `bg-white`}`}>
           <div>
             <button
-              className={`h-[34px] w-1/2 cursor-pointer ${
-                mode === "recent" ? `bg-white` : `bg-[#9AA4AF]`
+              className={`h-[34px] text-sm w-1/2 ${
+                isDarkMode ? `text-white` : `text-[#B7B7C9]`
+              } cursor-pointer ${
+                mode === "recent" && isDarkMode
+                  ? "bg-[#31313C]"
+                  : mode === "recent" && !isDarkMode
+                  ? "bg-white"
+                  : mode !== "recent" && isDarkMode
+                  ? "bg-[#282830]"
+                  : mode !== "recent" && !isDarkMode
+                  ? "bg-[#EBEEF1]"
+                  : ""
               }`}
               onClick={() => handleModeChange("recent")}
             >
-              최근 검색
+              최근검색
             </button>
             <button
-              className={` h-[34px] w-1/2 cursor-pointer ${
-                mode === "favorite" ? `bg-white` : `bg-[#9AA4AF]`
+              className={`h-[34px] text-sm w-1/2 ${
+                isDarkMode ? `text-white` : `text-[#B7B7C9]`
+              } cursor-pointer ${
+                mode === "favorite" && isDarkMode
+                  ? "bg-[#31313C]"
+                  : mode === "favorite" && !isDarkMode
+                  ? "bg-white"
+                  : mode !== "favorite" && isDarkMode
+                  ? "bg-[#282830]"
+                  : mode !== "favorite" && !isDarkMode
+                  ? "bg-[#EBEEF1]"
+                  : ""
               }`}
               onClick={() => handleModeChange("favorite")}
             >
@@ -43,13 +66,19 @@ const History = () => {
               keywords.map((items: any) => (
                 <li
                   key={items?.id}
-                  className="py-2 px-4 flex box-border items-center list-none hover:bg-[#F7F7F9]"
+                  className={`py-2 px-4 flex box-border items-center list-none ${
+                    isDarkMode ? `hover:bg-[#282830]` : `hover:bg-[#F7F7F9]`
+                  }`}
                 >
                   <Link
                     to={`/summoner/${items?.text}`}
                     className="summoner flex flex-1 text-left items-center overflow-hidden"
                   >
-                    <span className="summoner-name text-sm color">
+                    <span
+                      className={`summoner-name text-sm color ${
+                        isDarkMode ? `text-[#B7B7C9]` : `text-black`
+                      }`}
+                    >
                       {items?.text}
                     </span>
                   </Link>
@@ -102,13 +131,19 @@ const History = () => {
               favorites.map((items: any) => (
                 <li
                   key={items?.id}
-                  className="py-2 px-4 flex box-border items-center list-none hover:bg-[#F7F7F9]"
+                  className={`py-2 px-4 flex box-border items-center list-none ${
+                    isDarkMode ? `hover:bg-[#282830]` : `hover:bg-[#F7F7F9]`
+                  }`}
                 >
                   <Link
                     to={`/summoner/${items?.name}`}
                     className="summoner flex flex-1 text-left items-center overflow-hidden"
                   >
-                    <span className="summoner-name text-sm color">
+                    <span
+                      className={`summoner-name text-sm ${
+                        isDarkMode ? `text-[#B7B7C9]` : `text-black`
+                      }`}
+                    >
                       {items?.name}
                     </span>
                   </Link>
