@@ -19,7 +19,7 @@ const SearchHooks = () => {
         id: Date.now(),
         name: text,
       };
-      setFavorites((prevFavorites: any) => [newFavorite, ...prevFavorites]);
+      setFavorites((prevFavorites: []) => [newFavorite, ...prevFavorites]);
       localStorage.setItem(
         "favorites",
         JSON.stringify([...favorites, newFavorite])
@@ -27,7 +27,7 @@ const SearchHooks = () => {
     } else {
       // 이미 즐겨찾기에 추가된 경우 제거
       const updatedFavorites = favorites.filter(
-        (favorite: any) => favorite.name !== text
+        (favorite: { id: Date; name: string }) => favorite.name !== text
       );
       setFavorites(updatedFavorites);
       localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
@@ -55,7 +55,10 @@ const SearchHooks = () => {
       "keywords",
       JSON.stringify([
         newKeyword,
-        ...keywords.filter((keyword: any) => keyword.text !== newKeyword.text),
+        ...keywords.filter(
+          (keyword: { id: Date; text: string }) =>
+            keyword.text !== newKeyword.text
+        ),
       ])
     );
     //
