@@ -1,7 +1,7 @@
 import React from "react";
-import { Team, participants } from "../Utils";
-import useSummonerData from "../../hooks/useSummonerData";
-import { useTheme } from "../../context/ThemeProvider";
+import { Team, participants } from "../../../utils/MainUtils";
+import useSummonerData from "../../../hooks/useSummonerData";
+import { useTheme } from "../../../contexts/ThemeProvider";
 
 const Summary = ({ GameData }: any) => {
   const { puuId } = useSummonerData();

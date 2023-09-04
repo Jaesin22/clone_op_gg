@@ -1,4 +1,4 @@
-import { client } from "./Utils";
+import { client } from "../utils/ApiUtils";
 
 const key = process.env.REACT_APP_API_KEY?.replaceAll('"', "")?.replace(
   ";",

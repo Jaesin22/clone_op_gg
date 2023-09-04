@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { GetRanks } from "../api/Champion";
-import { UserRank } from "../api/Utils";
+import { UserRank } from "../utils/ApiUtils";
 import useSummonerData from "./useSummonerData";
 
 const GetRankGame = () => {

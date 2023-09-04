@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { UserRank } from "../api/Utils";
-import GetRankGame from "../hooks/GetRankGame";
-import { useTheme } from "../context/ThemeProvider";
+import { UserRank } from "../../utils/ApiUtils";
+import GetRankGame from "../../hooks/GetRankGame";
+import { useTheme } from "../../contexts/ThemeProvider";
 
-const Rank = () => {
+const Arena = () => {
   const [info, setInfo] = useState<UserRank[]>([]);
   const { infoss, isLoading } = GetRankGame();
   const { isDarkMode } = useTheme();
+
   useEffect(() => {
     if (infoss) {
-      setInfo(infoss.filter((infos) => infos.queueType === "RANKED_SOLO_5x5"));
+      setInfo(infoss.filter((infos) => infos.queueType === "Arena"));
     }
   }, [infoss]);
 
@@ -24,7 +25,7 @@ const Rank = () => {
       >
         <div className="flex header leading-9 px-3 text-sm justify-between">
           <span className={`${isDarkMode ? `text-white` : `text-[#31313C]`}`}>
-            솔로랭크
+            아레나
           </span>
           {!info.length ? (
             <span className="unranked text-sm font-bold text-[#C3C8D1] mt-2">
@@ -53,11 +54,7 @@ const Rank = () => {
               />
             </div>
             <div className="info flex-1 relative ml-4">
-              <div
-                className={`tier leading-[26px] w-[130px] text-xl font-bold ${
-                  isDarkMode ? `text-white` : `text-[#202D37]`
-                } `}
-              >
+              <div className="tier leading-[26px] w-[130px] text-xl font-bold text-[#202D37]">
                 {obj?.tier} {obj?.rank}
               </div>
               <div className="lp leading-4 text-xs text-[#758592]">30 LP</div>
@@ -77,4 +74,4 @@ const Rank = () => {
     </div>
   );
 };
-export default Rank;
+export default Arena;

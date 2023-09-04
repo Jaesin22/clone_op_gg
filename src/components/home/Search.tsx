@@ -1,9 +1,9 @@
 import React, { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { GetData } from "../api/Champion";
-import { useTheme } from "../context/ThemeProvider";
+import { GetData } from "../../api/Champion";
+import { useTheme } from "../../contexts/ThemeProvider";
 import History from "../header/History";
-import SearchHooks from "../hooks/SearchHooks";
+import SearchHooks from "../../hooks/SearchHooks";
 
 const Search = () => {
   const [name, setName] = useState<string>("");

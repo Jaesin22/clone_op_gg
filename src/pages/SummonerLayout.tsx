@@ -1,15 +1,15 @@
-import Rank from "../aside/Rank";
-import FreeRank from "../aside/FreeRank";
-import Arena from "../aside/Arena";
-import MainTop from "../main/MainTop";
-import Statbox from "../main/Statbox";
-import Record from "../main/Record";
-import Header from "../header/Header";
-import Searchbar from "../header/Searchbar";
-import Navbar from "../header/Navbar";
-import Profile from "../header/Profile";
+import Rank from "../components/aside/Rank";
+import FreeRank from "../components/aside/FreeRank";
+import Arena from "../components/aside/Arena";
+import Statbox from "../components/main/Statbox";
+import MainTop from "../components/main/MainTop";
+import Record from "../components/main/Record";
+import Header from "../components/header/Header";
+import Searchbar from "../components/header/Searchbar";
+import Navbar from "../components/header/Navbar";
+import Profile from "../components/header/Profile";
 // import SummaryHeader from "../header/SummaryHeader";
-import { useTheme } from "../context/ThemeProvider";
+import { useTheme } from "../contexts/ThemeProvider";
 import useSummonerData from "../hooks/useSummonerData";
 
 const SummonerLayout = () => {

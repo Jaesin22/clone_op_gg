@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { GameData, participants } from "../main/Utils";
-import { Team } from "../main/Utils";
-import { Champions } from "./Utils";
+import { GameData, participants } from "../utils/MainUtils";
+import { Team } from "../utils/MainUtils";
+import { Champions } from "../utils/HookUtils";
 
 const useTeamInfo = (gameData: GameData[], puuId: string) => {
   const [win, setWin] = useState(0);

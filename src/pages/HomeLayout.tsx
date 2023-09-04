@@ -1,6 +1,6 @@
-import Header from "../header/Header";
-import Navbar from "../header/Navbar";
-import Home from "../home/Home";
+import Header from "../components/header/Header";
+import Navbar from "../components/header/Navbar";
+import Home from "../components/home/Home";
 
 const HomeLayout = () => {
   return (
