@@ -83,7 +83,7 @@ const Statbox = () => {
               <div className="inline-block text-[11px] ml-1 text-[#00A399]">
                 {(
                   (obj.championKill + obj.championAssist) /
-                  obj.championDeath
+                  (obj.championDeath === 0 ? 1 : obj.championDeath)
                 ).toFixed(2)}{" "}
                 평점
               </div>
