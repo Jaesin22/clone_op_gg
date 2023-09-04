@@ -6,9 +6,9 @@ import {
   getMaxDamageInParticipant,
   getMaxtotalDamageTaken,
   Team,
-} from "./Utils";
-import useSummonerData from "../hooks/useSummonerData";
-import { useTheme } from "../context/ThemeProvider";
+} from "../../utils/MainUtils";
+import useSummonerData from "../../hooks/useSummonerData";
+import { useTheme } from "../../contexts/ThemeProvider";
 import { Link } from "react-router-dom";
 
 const EnemyScoreBoard = ({ GameData }: any) => {

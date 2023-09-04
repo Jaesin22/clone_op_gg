@@ -1,6 +1,6 @@
-import useSummonerData from "../hooks/useSummonerData";
-import { useTheme } from "../context/ThemeProvider";
-import SearchHooks from "../hooks/SearchHooks";
+import useSummonerData from "../../hooks/useSummonerData";
+import { useTheme } from "../../contexts/ThemeProvider";
+import SearchHooks from "../../hooks/SearchHooks";
 const Profile = () => {
   const { data, isFetching } = useSummonerData();
   const { isDarkMode } = useTheme();

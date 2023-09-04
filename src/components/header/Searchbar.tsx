@@ -1,7 +1,7 @@
 import React, { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import History from "./History";
-import SearchHooks from "../hooks/SearchHooks";
+import SearchHooks from "../../hooks/SearchHooks";
 
 const Searchbar = () => {
   const [name, setName] = useState<string>("");

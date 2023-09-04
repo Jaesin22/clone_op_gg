@@ -1,6 +1,6 @@
 import React from "react";
 import Search from "./Search";
-import { useTheme } from "../context/ThemeProvider";
+import { useTheme } from "../../contexts/ThemeProvider";
 
 const Home = () => {
   const { isDarkMode } = useTheme();

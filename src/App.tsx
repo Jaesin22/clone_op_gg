@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import SummonerLayout from "./layout/SummonerLayout";
-import HomeLayout from "./layout/HomeLayout";
-import { ThemeProvider } from "./context/ThemeProvider";
+import SummonerLayout from "./pages/SummonerLayout";
+import HomeLayout from "./pages/HomeLayout";
+import { ThemeProvider } from "./contexts/ThemeProvider";
 
 function App() {
   return (

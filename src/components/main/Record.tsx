@@ -7,10 +7,10 @@ import {
   spellArray,
   runeTree,
   Team,
-} from "./Utils";
+} from "../../utils/MainUtils";
 import ScoreBoard from "./ScoreBoard";
-import useSummonerData from "../hooks/useSummonerData";
-import { useTheme } from "../context/ThemeProvider";
+import useSummonerData from "../../hooks/useSummonerData";
+import { useTheme } from "../../contexts/ThemeProvider";
 import LazyLoad from "react-lazyload";
 
 const Record = () => {

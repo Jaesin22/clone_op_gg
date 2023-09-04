@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useTheme } from "../context/ThemeProvider";
-import useSummonerData from "../hooks/useSummonerData";
-import { getMatchId } from "../api/Champion";
+import { useTheme } from "../../contexts/ThemeProvider";
+import useSummonerData from "../../hooks/useSummonerData";
+import { getMatchId } from "../../api/Champion";
 
 const MainTop = () => {
   const { isDarkMode } = useTheme();

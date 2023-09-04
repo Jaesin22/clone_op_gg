@@ -1,9 +1,9 @@
 import React from "react";
 import PieGraph from "./PieGraph";
-import useSummonerData from "../hooks/useSummonerData";
-import useTeamInfo from "../hooks/useTeamInfo";
-import { Champions } from "../hooks/Utils";
-import { useTheme } from "../context/ThemeProvider";
+import useSummonerData from "../../hooks/useSummonerData";
+import useTeamInfo from "../../hooks/useTeamInfo";
+import { Champions } from "../../utils/HookUtils";
+import { useTheme } from "../../contexts/ThemeProvider";
 
 const Statbox = () => {
   const { gameData, puuId, isLoading }: any = useSummonerData();

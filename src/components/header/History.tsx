@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import SearchHooks from "../hooks/SearchHooks";
+import SearchHooks from "../../hooks/SearchHooks";
 import { Link } from "react-router-dom";
-import { useTheme } from "../context/ThemeProvider";
+import { useTheme } from "../../contexts/ThemeProvider";
 
 const History = () => {
   const {

@@ -1,7 +1,7 @@
 import React from "react";
-import { useTheme } from "../context/ThemeProvider";
+import { useTheme } from "../../contexts/ThemeProvider";
 import { SummaryList } from "./Utils";
-import useSummonerData from "../hooks/useSummonerData";
+import useSummonerData from "../../hooks/useSummonerData";
 
 const SummaryHeader = () => {
   const { isDarkMode } = useTheme();

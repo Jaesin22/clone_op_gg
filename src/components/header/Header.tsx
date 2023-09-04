@@ -1,6 +1,6 @@
 import { gameList } from "./Utils";
 import { useNavigate } from "react-router-dom";
-import { useTheme } from "../context/ThemeProvider";
+import { useTheme } from "../../contexts/ThemeProvider";
 
 const Header = () => {
   const navigate = useNavigate();
