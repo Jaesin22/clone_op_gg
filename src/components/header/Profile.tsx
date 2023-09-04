@@ -1,10 +1,22 @@
+import React, { useState } from "react";
 import useSummonerData from "../../hooks/useSummonerData";
 import { useTheme } from "../../contexts/ThemeProvider";
 import SearchHooks from "../../hooks/SearchHooks";
+import { convertUnixTimestampToDuration } from "../../utils/MainUtils";
 const Profile = () => {
   const { data, isFetching } = useSummonerData();
   const { isDarkMode } = useTheme();
   const { favorites, handleAddFavorites } = SearchHooks();
+
+  const [updateTime, setupdateTime]: any = useState(
+    localStorage.getItem("clickTime") || Date.now()
+  );
+
+  const now = Math.floor(Date.now());
+
+  const timeDifferenceInMilliseconds = convertUnixTimestampToDuration(
+    now - updateTime
+  );
 
   if (isFetching) {
     return <div></div>;
@@ -26,6 +38,13 @@ const Profile = () => {
       </div>
     );
   }
+
+  const reload = () => {
+    const date = Date.now();
+    setupdateTime(date);
+    localStorage.setItem("clickTime", date.toString());
+    window.location.reload(); // 새로고침
+  };
 
   const imgUrl = process.env.REACT_APP_PROFILE_ICON_URL?.replaceAll(
     '"',
@@ -116,14 +135,14 @@ const Profile = () => {
               </div>
               <div className="reload_button mt-2">
                 <button
-                  type="button"
                   className="rounded text-white bg-[#5383e9] py-2.5 px-3 text-sm"
+                  onClick={() => reload()}
                 >
                   전적 갱신
                 </button>
               </div>
               <div className="last-update mt-1.5 text-xs text-gray-400">
-                <div>최근 업데이트 : 3일 전</div>
+                <div>최근 업데이트 : {timeDifferenceInMilliseconds}전</div>
               </div>
             </div>
           </div>
