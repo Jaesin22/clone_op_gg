@@ -142,7 +142,7 @@ const Profile = () => {
                 </button>
               </div>
               <div className="last-update mt-1.5 text-xs text-gray-400">
-                <div>최근 업데이트 : {timeDifferenceInMilliseconds}전</div>
+                <div>최근 업데이트 : {timeDifferenceInMilliseconds}</div>
               </div>
             </div>
           </div>

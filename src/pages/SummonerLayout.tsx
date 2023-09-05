@@ -1,3 +1,7 @@
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useQuery, useInfiniteQuery, useQueryClient } from "react-query";
+import { useTheme } from "../contexts/ThemeProvider";
 import Rank from "../components/aside/Rank";
 import FreeRank from "../components/aside/FreeRank";
 import Arena from "../components/aside/Arena";
@@ -9,12 +13,54 @@ import Searchbar from "../components/header/Searchbar";
 import Navbar from "../components/header/Navbar";
 import Profile from "../components/header/Profile";
 // import SummaryHeader from "../header/SummaryHeader";
-import { useTheme } from "../contexts/ThemeProvider";
+
 import useSummonerData from "../hooks/useSummonerData";
+
+import { getMatchId, getGameInfo } from "../api/Champion";
 
 const SummonerLayout = () => {
   const { isDarkMode } = useTheme();
-  const { data } = useSummonerData();
+  const { data, puuId } = useSummonerData();
+  const { type } = useSelector((state: { typeInfo: any }) => state.typeInfo);
+
+  const {
+    data: matchData,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+  } = useInfiniteQuery(
+    ["matchData", puuId, type],
+    ({ pageParam = 0 }) => {
+      return getMatchId(puuId, pageParam, 10, type);
+    },
+    {
+      enabled: !!puuId,
+      staleTime: Infinity,
+      getNextPageParam: (lastPage, pages) => {
+        return 10 * pages.length;
+      },
+    }
+  );
+
+  // 매치 정보를 통해 세부 게임 결과 가져오는 쿼리
+  const queryKey = ["gameData", matchData?.pages[matchData?.pages.length - 1]];
+
+  const { data: gameData } = useQuery(
+    queryKey,
+    () => {
+      const allMatchIds: any = matchData?.pages[
+        matchData.pages.length - 1
+      ].flatMap((page: any) => page);
+      return getGameInfo(allMatchIds);
+    },
+    {
+      enabled: !!matchData && !isLoading,
+      staleTime: Infinity,
+      notifyOnChangeProps: "tracked",
+      keepPreviousData: true,
+    }
+  );
+
   return (
     <div
       className={`${isDarkMode ? "bg-[#1C1C1F]" : "bg-[#dadada]"} min-h-screen`}
@@ -38,7 +84,12 @@ const SummonerLayout = () => {
               <div className="w-[740px] mt-2 ml-2 text-xs align-top">
                 <MainTop />
                 <Statbox />
-                <Record />
+                <Record
+                  data={gameData}
+                  hasNextPage={hasNextPage}
+                  fetchNextPage={fetchNextPage}
+                  isLoading={isLoading}
+                />
               </div>
             </main>
           </div>
