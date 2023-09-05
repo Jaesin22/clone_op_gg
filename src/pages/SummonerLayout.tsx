@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import { useQuery, useInfiniteQuery, useQueryClient } from "react-query";
+import { useQuery, useInfiniteQuery } from "react-query";
 import { useTheme } from "../contexts/ThemeProvider";
 import Rank from "../components/aside/Rank";
 import FreeRank from "../components/aside/FreeRank";
@@ -83,7 +83,7 @@ const SummonerLayout = () => {
             <main>
               <div className="w-[740px] mt-2 ml-2 text-xs align-top">
                 <MainTop />
-                <Statbox />
+                <Statbox data={gameData} />
                 <Record
                   data={gameData}
                   hasNextPage={hasNextPage}

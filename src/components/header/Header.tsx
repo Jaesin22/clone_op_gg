@@ -1,24 +1,20 @@
 import { gameList } from "./Utils";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useTheme } from "../../contexts/ThemeProvider";
 
 const Header = () => {
-  const navigate = useNavigate();
-  const navigateToHome = () => {
-    navigate("/");
-  };
   const { isDarkMode, toggleMode } = useTheme();
 
   return (
     <header>
       <div className="flex bg-[#28344e]">
-        <a className="logo" href="/" onClick={navigateToHome}>
+        <Link className="logo" to="/">
           <img
             src="https://s-lol-web.op.gg/images/icon/opgglogo.svg?v=1690271849565"
             alt="로고"
             className="w-24 h-11 px-3 float-left bg-[#5383E8] justify-center items-center"
           />
-        </a>
+        </Link>
         <nav>
           <ul className="flex list-none ">
             {gameList.map((obj, index) => (

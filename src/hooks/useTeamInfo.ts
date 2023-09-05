@@ -49,6 +49,7 @@ const useTeamInfo = (gameData: GameData[], puuId: string) => {
               [position]: prevCounts[position] + 1,
             }));
           }
+          console.log(positionCounts);
           const championData: any = {
             championName: participant.championName,
             championWinCount: participant.win ? 1 : 0,
@@ -68,8 +69,6 @@ const useTeamInfo = (gameData: GameData[], puuId: string) => {
             );
 
             if (existingChampionIndex !== -1) {
-              //const existingChampion = prevChampion[existingChampionIndex];
-              //if (existingChampion.count <= championData.count) {
               const updatedChampion = prevChampion.map(
                 (champion: Champions, index: number) => {
                   if (index === existingChampionIndex) {
@@ -100,11 +99,8 @@ const useTeamInfo = (gameData: GameData[], puuId: string) => {
               );
               return sortedChampion;
             }
-            //   } else {
-            // 새로운 챔피언 데이터 추가
             const updatedChampion = [...prevChampion, championData];
             return updatedChampion;
-            // }
           });
         }
       });
@@ -122,7 +118,6 @@ const useTeamInfo = (gameData: GameData[], puuId: string) => {
   return {
     win,
     lose,
-    calculateVictory,
     kill,
     death,
     assist,
