@@ -12,7 +12,7 @@ export const types = (types: string) => ({ type: TYPE, types });
 
 type action = ReturnType<typeof types>;
 
-const typeInfo = (state: state, action: action) => {
+const typeInfo = (state: state = initialState, action: action) => {
   switch (action.type) {
     case TYPE:
       return {

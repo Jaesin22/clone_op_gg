@@ -1,6 +1,7 @@
 import { useQuery, useInfiniteQuery } from "react-query";
 import { getRuneInfo, getMatchId, getGameInfo, GetData } from "../api/Champion";
 import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const useSummonerData = () => {
   const PAGE_SIZE = 10;
@@ -13,6 +14,7 @@ const useSummonerData = () => {
   const { data, isFetching } = useQuery(["summonerData", summonerName], () =>
     GetData(summonerName)
   );
+  const { type } = useSelector((state: { typeInfo: any }) => state.typeInfo);
 
   // 룬 정보 가져오는 query
   const { data: runeData } = useQuery(["runeData"], getRuneInfo, {});
@@ -20,15 +22,10 @@ const useSummonerData = () => {
   const puuId = data?.puuid;
   const id = data?.id;
 
-  const {
-    data: matchData,
-    isLoading,
-    fetchNextPage,
-    hasNextPage,
-  } = useInfiniteQuery(
+  const { data: matchData, isLoading } = useInfiniteQuery(
     ["matchData", puuId],
     ({ pageParam = 0 }) => {
-      return getMatchId(puuId, pageParam, 10, "ALL");
+      return getMatchId(puuId, pageParam, 10, type);
     },
     {
       enabled: !!puuId,
@@ -59,13 +56,10 @@ const useSummonerData = () => {
     data,
     runeData,
     puuId,
-    matchData,
     isLoading,
-    fetchNextPage,
     gameData,
     isFetching,
     id,
-    hasNextPage,
   };
 };
 

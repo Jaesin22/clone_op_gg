@@ -1,18 +1,24 @@
 import React, { useState } from "react";
 import { useTheme } from "../../contexts/ThemeProvider";
-import useSummonerData from "../../hooks/useSummonerData";
-import { getMatchId } from "../../api/Champion";
+import { useDispatch } from "react-redux";
+import { types } from "../../reducers/buttonEvent";
 
 const MainTop = () => {
   const { isDarkMode } = useTheme();
   const [selected, setSelected] = useState("ALL");
-  const { puuId } = useSummonerData();
+  const [idx, setIdx] = useState("");
+
+  const dispatch = useDispatch();
 
   const handleButtonClick = (name: string) => {
     setSelected(name);
+    dispatch(types(name));
   };
 
-  console.log(puuId);
+  const onSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setIdx(e.target.value);
+    dispatch(types(e.target.value));
+  };
 
   return (
     <div
@@ -56,7 +62,7 @@ const MainTop = () => {
                       : `hover:bg-[#ebecf3] text-black`
                   } `
             }`}
-            onClick={() => handleButtonClick("RANKED")}
+            onClick={() => handleButtonClick("ranked")}
           >
             <span>랭크게임</span>
           </button>
@@ -71,10 +77,11 @@ const MainTop = () => {
                 isDarkMode ? `text-white bg-[#31313C]` : `bg-white text-black`
               } ${isDarkMode ? `hover:bg-[#282830]` : `hover:bg-[#ebecf3]`}`}
               id="queueType"
+              onChange={onSelect}
+              value={idx}
             >
-              <option value="TOTAL">큐 타입</option>
-              <option value="NORMAL">큐 타입</option>
-              <option value="무작위 총력전">큐 타입</option>
+              <option value="ALL">큐 타입</option>
+              <option value="normal">일반 게임</option>
             </select>
           </span>
         </li>

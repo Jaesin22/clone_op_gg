@@ -13,15 +13,12 @@ import useSummonerData from "../../hooks/useSummonerData";
 import { useTheme } from "../../contexts/ThemeProvider";
 import LazyLoad from "react-lazyload";
 
-const Record = () => {
+const Record = ({ data, hasNextPage, fetchNextPage, isLoading }: any) => {
   const now = useMemo(() => Math.floor(Date.now()), []); // 한 번만 계산됨
-  const { runeData, puuId, isLoading, gameData, fetchNextPage, hasNextPage } =
-    useSummonerData();
+  const { runeData, puuId } = useSummonerData();
   const { isDarkMode } = useTheme();
 
-  const [showScore, setShowScore] = useState(
-    Array(gameData?.length).fill(false)
-  );
+  const [showScore, setShowScore] = useState(Array(data?.length).fill(false));
 
   const toggleScoreBoard = (index: number) => {
     const updatedShowScore = [...showScore];
@@ -450,7 +447,7 @@ const Record = () => {
 
   return (
     <div className="mt-2">
-      {gameData?.map((obj: GameData, index: number) => {
+      {data?.map((obj: GameData, index: number) => {
         return (
           <li key={index} className="relative mb-2 list-none">
             <LazyLoad height={130}>
