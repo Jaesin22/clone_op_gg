@@ -5,13 +5,13 @@ import useTeamInfo from "../../hooks/useTeamInfo";
 import { Champions } from "../../utils/HookUtils";
 import { useTheme } from "../../contexts/ThemeProvider";
 
-const Statbox = () => {
-  const { gameData, puuId, isLoading }: any = useSummonerData();
+const Statbox = ({ data }: any) => {
+  const { puuId, isLoading }: any = useSummonerData();
   const { win, lose, kill, death, assist, teamKill, champion, positionCounts } =
-    useTeamInfo(gameData, puuId);
+    useTeamInfo(data, puuId);
   const { isDarkMode } = useTheme();
 
-  if (isLoading || gameData === undefined) {
+  if (isLoading || data === undefined) {
     return <div></div>; // 또는 원하는 뷰로 대체할 수 있음
   }
 
