@@ -2,8 +2,8 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Label } from "recharts";
 import useSummonerData from "../../hooks/useSummonerData";
 import useTeamInfo from "../../hooks/useTeamInfo";
 
-const PieGraph = () => {
-  const { gameData, puuId }: any = useSummonerData(); // Adjust this according to your code
+const PieGraph = ({ gameData }: any) => {
+  const { puuId }: any = useSummonerData(); // Adjust this according to your code
   const { win, lose } = useTeamInfo(gameData, puuId);
 
   const data = [

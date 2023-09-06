@@ -9,7 +9,7 @@ const Search = () => {
   const [name, setName] = useState<string>("");
   const navigate = useNavigate();
   const { isDarkMode } = useTheme();
-  const [showHistory, setShowHistory] = useState(true);
+  const [showHistory, setShowHistory] = useState(false);
   const { handleAddKeyword } = SearchHooks();
 
   const handleHistory = () => {
@@ -37,7 +37,7 @@ const Search = () => {
   // };
 
   return (
-    <div className="relative w-[800px] my-0 mx-auto text-center">
+    <div className="relative w-[800px] mx-auto text-center">
       <form
         className={`flex h-[60px] items-center relative rounded-[30px] text-left ${
           isDarkMode ? `bg-[#31313C]` : `bg-white`

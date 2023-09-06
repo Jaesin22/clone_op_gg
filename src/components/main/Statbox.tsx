@@ -28,7 +28,7 @@ const Statbox = ({ data }: any) => {
         <div className="kda flex items-center mt-3">
           <div className="chart w-[88px] h-[88px] relative">
             <div className="charts-wrapper relative cursor-default w-[88px] h-[88px]">
-              <PieGraph />
+              <PieGraph gameData={data} />
             </div>
           </div>
           <div className="info ml-8">

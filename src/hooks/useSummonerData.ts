@@ -1,10 +1,8 @@
-import { useQuery, useInfiniteQuery } from "react-query";
-import { getRuneInfo, getMatchId, getGameInfo, GetData } from "../api/Champion";
+import { useQuery } from "react-query";
+import { getRuneInfo, GetData } from "../api/Champion";
 import { useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 const useSummonerData = () => {
-  const PAGE_SIZE = 10;
   const location = useLocation();
   const splitUrl = location.pathname.split("/") ?? null;
   const summonerName =
@@ -14,50 +12,18 @@ const useSummonerData = () => {
   const { data, isFetching } = useQuery(["summonerData", summonerName], () =>
     GetData(summonerName)
   );
-  const { type } = useSelector((state: { typeInfo: any }) => state.typeInfo);
 
   // 룬 정보 가져오는 query
-  const { data: runeData } = useQuery(["runeData"], getRuneInfo, {});
+  const { data: runeData, isLoading } = useQuery(["runeData"], getRuneInfo, {});
 
   const puuId = data?.puuid;
   const id = data?.id;
 
-  const { data: matchData, isLoading } = useInfiniteQuery(
-    ["matchData", puuId],
-    ({ pageParam = 0 }) => {
-      return getMatchId(puuId, pageParam, 10, type);
-    },
-    {
-      enabled: !!puuId,
-      staleTime: Infinity,
-      getNextPageParam: (lastPage, pages) => {
-        return PAGE_SIZE * pages.length;
-      },
-    }
-  );
-
-  // 매치 정보를 통해 세부 게임 결과 가져오는 쿼리
-  const { data: gameData } = useQuery(
-    ["gameData", matchData?.pages[matchData?.pages.length - 1]],
-    () => {
-      const allMatchIds: any = matchData?.pages[
-        matchData.pages.length - 1
-      ].flatMap((page: any) => page);
-      return getGameInfo(allMatchIds);
-    },
-    {
-      enabled: !!matchData && !isLoading, // matchData가 있고, isLoading이 false인 경우에만 쿼리 실행
-      staleTime: Infinity,
-      notifyOnChangeProps: "tracked",
-      keepPreviousData: true,
-    }
-  );
   return {
     data,
     runeData,
     puuId,
     isLoading,
-    gameData,
     isFetching,
     id,
   };
