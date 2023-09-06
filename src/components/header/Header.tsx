@@ -1,9 +1,20 @@
 import { gameList } from "./Utils";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../contexts/ThemeProvider";
+import Beacon from "../Beacon";
+import { useState } from "react";
 
 const Header = () => {
   const { isDarkMode, toggleMode } = useTheme();
+  const [onBeacon, setOnBeacon] = useState(false);
+
+  const onBeaconSelect = () => {
+    setOnBeacon(!onBeacon);
+  };
+
+  const handleClose = () => {
+    setOnBeacon(false);
+  };
 
   return (
     <header>
@@ -37,17 +48,8 @@ const Header = () => {
           </ul>
         </nav>
         <div className="flex justify-end ml-auto mr-3">
-          <div className="mt-2 ml-14 mr-5">
-            <button>
-              <img
-                src="https://s-lol-web.op.gg/images/icon/icon-more.svg?v=1690447902108"
-                alt="more"
-                className="flex hover:bg-[#2F436E]"
-              />
-            </button>
-          </div>
           <div className="mt-2.5 mx-2">
-            <button>
+            <button onClick={onBeaconSelect}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -109,6 +111,21 @@ const Header = () => {
               </div>
             </div>
           </div>
+          {onBeacon && (
+            <div className="absolute">
+              <div
+                style={{
+                  position: "fixed",
+                  top: "0",
+                  right: "0",
+                  bottom: "0",
+                  left: "0",
+                }}
+                onClick={handleClose} // 배경 클릭 시 Beacon 컴포넌트를 숨깁니다.
+              />
+              <Beacon />
+            </div>
+          )}
         </div>
       </div>
     </header>

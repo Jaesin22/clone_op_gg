@@ -54,7 +54,7 @@ const Rank = () => {
             </div>
             <div className="info flex-1 relative ml-4">
               <div
-                className={`tier leading-[26px] w-[130px] text-xl font-bold ${
+                className={`tier leading-[26px] w-[130px] text-sm font-bold ${
                   isDarkMode ? `text-white` : `text-[#202D37]`
                 } `}
               >
