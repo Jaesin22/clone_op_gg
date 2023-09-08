@@ -13,3 +13,7 @@
 
   
 <img width="1723" alt="홈 화면" src="https://github.com/Jaesin22/clone_op_gg/assets/45066128/53947afe-c56c-4879-ab33-34d5fdf37f1f">
+
+
+<img width="1723" alt="전적 검색 화면" src="https://github.com/Jaesin22/clone_op_gg/assets/45066128/81b3f790-5762-4ab1-b0ed-5612228e73f9">
+
