@@ -10,3 +10,4 @@
   - React, JavaScript, TypeScript, TailWind CSS
   - AWS S3
 - 💻구동화면
+<img width="1723" alt="홈 화면" src="https://github.com/Jaesin22/clone_op_gg/assets/45066128/53947afe-c56c-4879-ab33-34d5fdf37f1f">
