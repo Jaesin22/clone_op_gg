@@ -66,7 +66,9 @@ const Profile = () => {
                 <img
                   src={`${profile_icons}`}
                   alt="icon"
-                  className="w-24 h-24 float-left rounded-2xl"
+                  className="float-left rounded-2xl"
+                  width="96px"
+                  height="96px"
                 />
                 <div className="level absolute text-center pt-20 pl-7">
                   <span className="inline-block py-0 px-2 bg-[#202D37] rounded-lg text-xs leading-5 text-white">
