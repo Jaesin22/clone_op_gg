@@ -49,7 +49,7 @@ const Header = () => {
         </nav>
         <div className="flex justify-end ml-auto mr-3">
           <div className="mt-2.5 mx-2">
-            <button onClick={onBeaconSelect}>
+            <button onClick={onBeaconSelect} aria-label="onBeacon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -65,7 +65,7 @@ const Header = () => {
             </button>
           </div>
           <div className="mt-2.5 mx-2">
-            <button onClick={toggleMode}>
+            <button onClick={toggleMode} aria-label="light/dark mode">
               {isDarkMode ? (
                 <img
                   src="https://s-lol-web.op.gg/images/icon/icon-darkmode.svg"
