@@ -450,7 +450,7 @@ const Record = ({ data, hasNextPage, fetchNextPage, isLoading }: any) => {
       {data?.map((obj: GameData, index: number) => {
         return (
           <li key={index} className="relative mb-2 list-none">
-            <LazyLoad height={130}>
+            <LazyLoad height={110}>
               {renderInfos(obj, index)}
               {showScore[index] && <ScoreBoard GameData={obj} />}
             </LazyLoad>

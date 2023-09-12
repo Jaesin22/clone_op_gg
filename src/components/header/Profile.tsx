@@ -113,7 +113,7 @@ const Profile = () => {
               </div>
               <div className="advertise mt-2 items-center">
                 <a
-                  href="!#"
+                  href="#!"
                   className="flex border border-[#DBE0E4] bg-inherit p-1.5 rounded"
                 >
                   <img

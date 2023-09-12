@@ -50,7 +50,7 @@ const Arena = () => {
                 alt="tier"
                 className={`${
                   isDarkMode ? `bg-[#282830]` : `bg-[#F7F7F9]`
-                }  rounded-[50%] h-[72px] min-w-[72px] w-[100%]`}
+                }  rounded-[50%] min-w-[72px] w-[100%]`}
                 width="100%"
                 height="72px"
               />
