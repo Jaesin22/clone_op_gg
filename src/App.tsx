@@ -1,9 +1,10 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import SummonerLayout from "./pages/SummonerLayout";
-import HomeLayout from "./pages/HomeLayout";
 import { ThemeProvider } from "./contexts/ThemeProvider";
+
+const Home = lazy(() => import("./pages/HomeLayout"));
+const Summoner = lazy(() => import("./pages/SummonerLayout"));
 
 function App() {
   return (
@@ -11,11 +12,8 @@ function App() {
       <BrowserRouter>
         <ThemeProvider>
           <Routes>
-            <Route path="/" element={<HomeLayout />} />
-            <Route
-              path="/summoner/:summonerName"
-              element={<SummonerLayout />}
-            />
+            <Route path="/" element={<Home />} />
+            <Route path="/summoner/:summonerName" element={<Summoner />} />
           </Routes>
         </ThemeProvider>
       </BrowserRouter>

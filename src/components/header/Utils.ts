@@ -10,32 +10,32 @@ export const gameList: listInfo[] = [
   {
     name: "리그오브레전드",
     src: "https://opgg-gnb.akamaized.net/static/images/icons/img-navi-lol-white.svg?image=q_auto,f_webp,w_48&v=1690271849565",
-    href: "https://www.naver.com",
+    href: "#!",
   },
   {
     name: "Gigs",
     src: "https://opgg-gnb.akamaized.net/static/images/icons/gigs.svg?image=q_auto,f_webp,w_48&v=1690271849565",
-    href: "https://www.naver.com",
+    href: "#!",
   },
   {
     name: "데스크톱",
     src: "https://opgg-gnb.akamaized.net/static/images/icons/01-icon-00-logo-icon-opggsquare.svg?image=q_auto,f_webp,w_48&v=1690271849565",
-    href: "https://www.naver.com",
+    href: "#!",
   },
   {
     name: "전략적 팀 전투",
     src: "https://opgg-gnb.akamaized.net/static/images/icons/img_navi_tft-whte.svg?image=q_auto,f_webp,w_48&v=1690271849565",
-    href: "https://www.naver.com",
+    href: "#!",
   },
   {
     name: "발로란트",
     src: "https://opgg-gnb.akamaized.net/static/images/icons/img-navi-valorant-white.svg?image=q_auto,f_webp,w_48&v=1690271849565",
-    href: "https://www.naver.com",
+    href: "#!",
   },
   {
     name: "배틀그라운드",
     src: "https://opgg-gnb.akamaized.net/static/images/icons/img-navi-pubg-gray.svg?image=q_auto,f_webp,w_48&v=1690271849565",
-    href: "https://www.naver.com",
+    href: "#!",
   },
 ];
 
