@@ -21,6 +21,7 @@ const Searchbar = () => {
     }
     navigate(`/summoner/${name}`);
     handleAddKeyword(name);
+    setShowHistory(false);
   };
 
   const navigateToHome = () => {

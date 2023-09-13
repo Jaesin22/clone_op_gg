@@ -30,6 +30,7 @@ const Search = () => {
     handleAddKeyword(name);
     GetData(encodeURI(name));
     navigate(`/summoner/${name}`, { state: { name: name } });
+    setShowHistory(false);
   };
 
   // const handleClose = () => {
