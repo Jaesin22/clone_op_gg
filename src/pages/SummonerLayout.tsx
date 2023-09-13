@@ -25,9 +25,10 @@ const SummonerLayout = () => {
 
   const {
     data: matchData,
-    isLoading,
+    isFetching,
     fetchNextPage,
     hasNextPage,
+    isFetchingNextPage,
   } = useInfiniteQuery(
     ["matchData", puuId, type],
     ({ pageParam = 0 }) => {
@@ -39,25 +40,29 @@ const SummonerLayout = () => {
       getNextPageParam: (lastPage, pages) => {
         return 10 * pages.length;
       },
+      keepPreviousData: true,
     }
   );
 
   // 매치 정보를 통해 세부 게임 결과 가져오는 쿼리
   const queryKey = ["gameData", matchData?.pages[matchData?.pages.length - 1]];
+  //const queryKey = ["gameData", matchData?.pages];
+  console.log(matchData);
 
   const { data: gameData } = useQuery(
     queryKey,
     () => {
-      const allMatchIds: any = matchData?.pages[
+      //const allMatchIds: any = matchData?.pages.flatMap((page) => page);
+      const allMatchIds: [] = matchData?.pages[
         matchData.pages.length - 1
-      ].flatMap((page: any) => page);
+      ].flatMap((page: []) => page);
       return getGameInfo(allMatchIds);
     },
     {
-      enabled: !!matchData && !isLoading,
+      enabled: !!matchData && !isFetching,
+      keepPreviousData: true,
       staleTime: Infinity,
       notifyOnChangeProps: "tracked",
-      keepPreviousData: true,
     }
   );
 
@@ -88,7 +93,8 @@ const SummonerLayout = () => {
                   data={gameData}
                   hasNextPage={hasNextPage}
                   fetchNextPage={fetchNextPage}
-                  isLoading={isLoading}
+                  isFetching={isFetching}
+                  isFetchingNextPage={isFetchingNextPage}
                 />
               </div>
             </main>

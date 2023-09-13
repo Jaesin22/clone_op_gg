@@ -9,12 +9,12 @@ const useSummonerData = () => {
     splitUrl.length > 1
       ? splitUrl[splitUrl.length - 1].replaceAll("'", "")
       : "";
-  const { data, isFetching } = useQuery(["summonerData", summonerName], () =>
+  const { data, isLoading } = useQuery(["summonerData", summonerName], () =>
     GetData(summonerName)
   );
 
   // 룬 정보 가져오는 query
-  const { data: runeData, isLoading } = useQuery(["runeData"], getRuneInfo, {});
+  const { data: runeData } = useQuery(["runeData"], getRuneInfo, {});
 
   const puuId = data?.puuid;
   const id = data?.id;
@@ -24,7 +24,6 @@ const useSummonerData = () => {
     runeData,
     puuId,
     isLoading,
-    isFetching,
     id,
   };
 };

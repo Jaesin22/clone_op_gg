@@ -13,7 +13,13 @@ import useSummonerData from "../../hooks/useSummonerData";
 import { useTheme } from "../../contexts/ThemeProvider";
 import LazyLoad from "react-lazyload";
 
-const Record = ({ data, hasNextPage, fetchNextPage, isLoading }: any) => {
+const Record = ({
+  data,
+  hasNextPage,
+  fetchNextPage,
+  isFetching,
+  isFetchingNextPage,
+}: any) => {
   const now = useMemo(() => Math.floor(Date.now()), []); // 한 번만 계산됨
   const { runeData, puuId } = useSummonerData();
   const { isDarkMode } = useTheme();
@@ -26,7 +32,7 @@ const Record = ({ data, hasNextPage, fetchNextPage, isLoading }: any) => {
     setShowScore(updatedShowScore);
   };
 
-  if (isLoading) {
+  if (isFetching) {
     return <div></div>;
   }
 
@@ -465,10 +471,9 @@ const Record = ({ data, hasNextPage, fetchNextPage, isLoading }: any) => {
             : `bg-white text-black border-[#DBE0E4]`
         }`}
         onClick={() => {
-          if (hasNextPage) {
-            fetchNextPage();
-          }
+          fetchNextPage();
         }}
+        disabled={!hasNextPage || isFetchingNextPage}
         type="button"
       >
         더 보기
