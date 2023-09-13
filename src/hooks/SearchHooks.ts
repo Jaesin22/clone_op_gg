@@ -50,7 +50,7 @@ const SearchHooks = () => {
       id: Date.now(),
       text: text,
     };
-    //setKeywords((prevKeywords: any) => [newKeyword, ...prevKeywords]);
+    setKeywords((prevKeywords: any) => [newKeyword, ...prevKeywords]);
     localStorage.setItem(
       "keywords",
       JSON.stringify([
@@ -61,7 +61,6 @@ const SearchHooks = () => {
         ),
       ])
     );
-    //
   };
 
   // 삭제
