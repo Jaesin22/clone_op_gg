@@ -7,6 +7,8 @@ const SummaryHeader = () => {
   const { isDarkMode } = useTheme();
   const { data } = useSummonerData();
 
+  console.log(data);
+
   if (data?.name === "AxiosError") {
     return <div></div>;
   }
