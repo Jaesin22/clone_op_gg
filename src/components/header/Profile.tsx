@@ -4,7 +4,7 @@ import { useTheme } from "../../contexts/ThemeProvider";
 import SearchHooks from "../../hooks/SearchHooks";
 import { convertUnixTimestampToDuration } from "../../utils/MainUtils";
 const Profile = () => {
-  const { data, isFetching } = useSummonerData();
+  const { data, isLoading } = useSummonerData();
   const { isDarkMode } = useTheme();
   const { favorites, handleAddFavorites } = SearchHooks();
 
@@ -18,7 +18,7 @@ const Profile = () => {
     now - updateTime
   );
 
-  if (isFetching) {
+  if (isLoading) {
     return <div></div>;
   }
   if (data?.name === "AxiosError") {
