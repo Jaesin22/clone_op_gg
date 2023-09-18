@@ -46,7 +46,6 @@ const SummonerLayout = () => {
 
   // 매치 정보를 통해 세부 게임 결과 가져오는 쿼리
   const queryKey = ["gameData", matchData?.pages[matchData?.pages.length - 1]];
-  //const queryKey = ["gameData", matchData?.pages];
 
   const { data: gameData } = useQuery(
     queryKey,
