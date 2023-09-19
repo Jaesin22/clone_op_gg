@@ -49,7 +49,6 @@ const useTeamInfo = (gameData: GameData[], puuId: string) => {
               [position]: prevCounts[position] + 1,
             }));
           }
-          // console.log(positionCounts);
           const championData: any = {
             championName: participant.championName,
             championWinCount: participant.win ? 1 : 0,
