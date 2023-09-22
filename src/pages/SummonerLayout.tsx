@@ -50,7 +50,7 @@ const SummonerLayout = () => {
   const { data: gameData } = useQuery(
     queryKey,
     () => {
-      //const allMatchIds: any = matchData?.pages.flatMap((page) => page);
+      //const allMatchIds: any = matchData?.pages.flatMap((page) => page)
       const allMatchIds: [] = matchData?.pages[
         matchData.pages.length - 1
       ].flatMap((page: []) => page);
