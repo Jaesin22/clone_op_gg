@@ -5,7 +5,7 @@ import useSummonerData from "./useSummonerData";
 
 const GetRankGame = () => {
   const { id } = useSummonerData();
-  // 랭크게임 전적 가져 오는 쿼리임
+  // 랭크게임 전적 가져 오는 쿼리
   const { data: infoss, isLoading } = useQuery<UserRank[], Error>(
     ["rankData", id],
     () => GetRanks(id),
