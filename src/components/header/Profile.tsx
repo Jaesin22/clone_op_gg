@@ -51,7 +51,7 @@ const Profile = () => {
     ""
   ).replace(";", "");
   const profile_icons: string = `${imgUrl}${data.profileIconId}.png`;
-
+  //
   return (
     <article>
       {data && (
@@ -70,16 +70,16 @@ const Profile = () => {
                   width="96px"
                   height="96px"
                 />
-                <div className="level absolute text-center pt-20 pl-7">
+                <div className="absolute pt-20 text-center level pl-7">
                   <span className="inline-block py-0 px-2 bg-[#202D37] rounded-lg text-xs leading-5 text-white">
                     {data?.summonerLevel}
                   </span>
                 </div>
               </div>
             </div>
-            <div className="info ml-6 mt-3">
-              <div className="prev-tier items-center justify-between mt-4"></div>
-              <div className="flex name mt-2">
+            <div className="mt-3 ml-6 info">
+              <div className="items-center justify-between mt-4 prev-tier"></div>
+              <div className="flex mt-2 name">
                 <h1
                   className={`summoner-name text-2xl font-bold ${
                     isDarkMode ? `text-white` : `text-black`
@@ -111,7 +111,7 @@ const Profile = () => {
                   />
                 </button>
               </div>
-              <div className="advertise mt-2 items-center">
+              <div className="items-center mt-2 advertise">
                 <a
                   href="#!"
                   className="flex border border-[#DBE0E4] bg-inherit p-1.5 rounded"
@@ -135,7 +135,7 @@ const Profile = () => {
                   />
                 </a>
               </div>
-              <div className="reload_button mt-2">
+              <div className="mt-2 reload_button">
                 <button
                   className="rounded text-white bg-[#5383e9] py-2.5 px-3 text-sm"
                   onClick={() => reload()}
