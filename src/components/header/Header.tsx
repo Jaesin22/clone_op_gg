@@ -11,6 +11,7 @@ const Header = () => {
   const onBeaconSelect = () => {
     setOnBeacon(!onBeacon);
   };
+  console.log(onBeaconSelect);
 
   const handleClose = () => {
     setOnBeacon(false);
@@ -37,9 +38,9 @@ const Header = () => {
                     : "bg-[#28344e] text-[#C3CBD1] hover:bg-[#2F436E]"
                 }`}
               >
-                <a href={obj.href} className="flex h-11 items-center">
-                  <img src={obj.src} alt={obj.name} className=" w-6 h-9" />
-                  <span className="text-xs ml-2 text-center justify-center">
+                <a href={obj.href} className="flex items-center h-11">
+                  <img src={obj.src} alt={obj.name} className="w-6 h-9" />
+                  <span className="justify-center ml-2 text-xs text-center">
                     {obj.name}
                   </span>
                 </a>
@@ -84,10 +85,10 @@ const Header = () => {
               )}
             </button>
           </div>
-          <div className="flex mt-2 mx-2 ">
+          <div className="flex mx-2 mt-2 ">
             <div>
               <div className="flex">
-                <div className="text-sm text-gray-500 ml-6 mr-6">|</div>
+                <div className="ml-6 mr-6 text-sm text-gray-500">|</div>
                 <button
                   type="button"
                   className={`text-xs mt-1 bg-white"
